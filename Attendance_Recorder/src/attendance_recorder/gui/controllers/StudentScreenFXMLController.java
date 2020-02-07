@@ -5,9 +5,12 @@
  */
 package attendance_recorder.gui.controllers;
 
+import attendance_recorder.be.Student;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -16,6 +19,10 @@ import javafx.fxml.Initializable;
  */
 public class StudentScreenFXMLController implements Initializable {
 
+    @FXML
+    private Label lblLoggedIn;
+    private Student currentlyLoggedIn;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +30,11 @@ public class StudentScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setCurrentlyLoggedIn(Student student)
+    {
+        currentlyLoggedIn = student;
+        lblLoggedIn.setText("Logged in as: " + student.getFirstName() + " " + student.getLastName());
+    }
     
 }
