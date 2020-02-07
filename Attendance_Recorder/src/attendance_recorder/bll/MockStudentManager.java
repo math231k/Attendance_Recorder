@@ -20,7 +20,8 @@ public class MockStudentManager {
     public MockStudentManager() {
         
         students = new ArrayList<Student>();
-        Student s1 = new Student("Mathias", "Birins", 2);
+        Student s1 = new Student("Mathias", "Birins", "test");
+        s1.setAbsence(2);
         
         students.add(s1);
         
