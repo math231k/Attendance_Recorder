@@ -13,8 +13,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -27,7 +29,7 @@ public class TeacherScreenFXMLController implements Initializable {
     private MockStudentManager msm;
     
     @FXML
-    private AnchorPane diagramPane;
+    private BorderPane diagramPane;
     @FXML
     private TableView<?> tableClasses;
     @FXML
@@ -40,9 +42,31 @@ public class TeacherScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         msm = new MockStudentManager();
         
-        students.addAll(msm.getStudents());
+        buildPieChart();
         
-        tableStudents.setItems(students);
-    }    
+    }  
+    
+    private void buildPieChart(){
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
+                new PieChart.Data("Mondays", 3),
+                new PieChart.Data("Tuesdays", 6),
+                new PieChart.Data("wednesdays", 2),
+                new PieChart.Data("Thursday", 5),
+                new PieChart.Data("Fridays", 1)
+                );
+        
+        PieChart pieChart = new PieChart(pieData);
+        pieChart.setTitle("Student Absence");
+        pieChart.setClockwise(true);
+        pieChart.setLabelLineLength(50);
+        pieChart.setLabelsVisible(true);
+        pieChart.setStartAngle(180);
+        
+        diagramPane.setCenter(pieChart);
+        
+        
+    }
+    
+    
     
 }

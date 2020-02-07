@@ -6,6 +6,7 @@
 package attendance_recorder.bll;
 
 import attendance_recorder.be.Student;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,18 +18,19 @@ public class MockStudentManager {
     private List<Student> students;
 
     public MockStudentManager() {
+        
+        students = new ArrayList<Student>();
         Student s1 = new Student("Mathias", "Birins", 2);
-        Student s2 = new Student("Kenneth", "Christensen", 2);
-        Student s4 = new Student("Tobias", "Hasen", 2);
-    
+        
         students.add(s1);
-        students.add(s2);
-        students.add(s4);
+        
     }
     
     
     
     public List<Student> getStudents(){
+                
+        
         return students;
     }
     
