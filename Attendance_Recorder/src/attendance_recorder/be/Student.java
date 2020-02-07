@@ -15,8 +15,9 @@ public class Student {
     private String profileName;
     private int absence;
     private String password;
+    private String imageView;
 
-    public Student(String firstName, String lastName, String profileName, String password) {
+    public Student(String firstName, String lastName, String profileName, String password, String imageView) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -60,6 +61,13 @@ public class Student {
 
     public void setProfileName(String profileName) {
         this.profileName = profileName;
+    }
+    public String getImageView(){
+        return imageView;
+        
+    }
+    public void setImageView(String imageView){
+        this.imageView = imageView;
     }
     
     

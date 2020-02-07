@@ -20,7 +20,7 @@ public class MockStudentManager {
     public MockStudentManager() {
         
         students = new ArrayList<Student>();
-        Student s1 = new Student("Mathias", "Birins", "math231k", "test");
+        Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
         s1.setAbsence(2);
         
         students.add(s1);
