@@ -60,17 +60,17 @@ public class FXMLDocumentController implements Initializable {
         List<Student> students = msm.getStudents();
         String name = txtName.getText().trim();
         String password = txtPassword.getText().trim();
-                
-        for (Student student : students)
+           
+        if (!name.isEmpty() && !password.isEmpty()) {
+            for (Student student : students)
         {
-            if (!name.isEmpty() && !password.isEmpty()) 
-            {
+            
                 if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
                     return true;
                     }                
-            }                    
-        }
-        
+            }    
+        }                        
+                
         return false;        
     }   
         
