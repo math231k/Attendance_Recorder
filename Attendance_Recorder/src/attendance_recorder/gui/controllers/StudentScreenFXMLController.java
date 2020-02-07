@@ -7,7 +7,9 @@ package attendance_recorder.gui.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class
@@ -15,6 +17,11 @@ import javafx.fxml.Initializable;
  * @author math2
  */
 public class StudentScreenFXMLController implements Initializable {
+
+    @FXML
+    private MenuItem handleClose;
+    @FXML
+    private MenuItem handlePieChart;
 
     /**
      * Initializes the controller class.

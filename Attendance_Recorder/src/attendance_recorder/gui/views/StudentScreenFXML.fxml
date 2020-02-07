@@ -1,10 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.StudentScreenFXMLController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.StudentScreenFXMLController">
+   <children>
+      <JFXRadioButton layoutX="11.0" layoutY="165.0" text="Absent" />
+      <JFXRadioButton layoutX="10.0" layoutY="134.0" text="Present" />
+      <Label layoutX="10.0" layoutY="27.0" text="Good Morning Mathias">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="11.0" layoutY="208.0" prefHeight="36.0" prefWidth="65.0" style="-fx-background-color: d3d3d3;" text="submit" />
+      <Label layoutX="10.0" layoutY="63.0" text="Today Is Friday">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="213.0" layoutY="93.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Date" />
+          <TableColumn prefWidth="75.0" text="Presence" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="10.0" layoutY="267.0" text="Your total absence is 2%">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="103.0" text="You are connected to EASV" />
+      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="423.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="handleClose" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Statistics">
+            <items>
+              <MenuItem fx:id="handlePieChart" mnemonicParsing="false" text="Pie chart" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
 </AnchorPane>
