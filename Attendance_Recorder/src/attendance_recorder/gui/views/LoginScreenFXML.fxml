@@ -6,15 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="342.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
    <children>
       <Label layoutX="70.0" layoutY="25.0" text="EASV Attendance">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUsername" layoutX="50.0" layoutY="76.0" promptText="Username" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <TextField fx:id="txtName" layoutX="50.0" layoutY="76.0" promptText="Username" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <TextField fx:id="txtPassword" layoutX="51.0" layoutY="114.0" promptText="Password" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="49.0" />
       <JFXButton fx:id="btnLogin" layoutX="125.0" layoutY="164.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" />
    </children>
