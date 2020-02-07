@@ -53,6 +53,16 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getProfileName() {
+        return profileName;
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+    }
+    
+    
     
     
     
