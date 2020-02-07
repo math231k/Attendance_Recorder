@@ -10,22 +10,23 @@ package attendance_recorder.be;
  * @author math2
  */
 public class Student {
-    private String name;
+    private String firstName;
     private String lastName;
     private int absence;
+    private String password;
 
-    public Student(String name, String lastName, int absence) {
-        this.name = name;
+    public Student(String firstName, String lastName, String password) {
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.absence = absence;
+        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -43,6 +44,16 @@ public class Student {
     public void setAbsence(int absence) {
         this.absence = absence;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
     
     
 }
