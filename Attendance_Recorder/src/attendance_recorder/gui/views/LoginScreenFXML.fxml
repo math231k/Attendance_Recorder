@@ -6,5 +6,5 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.StudentScreenFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
 </AnchorPane>
