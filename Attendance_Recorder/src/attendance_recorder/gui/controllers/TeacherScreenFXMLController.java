@@ -14,7 +14,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -31,9 +34,19 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private BorderPane diagramPane;
     @FXML
-    private TableView<?> tableClasses;
-    @FXML
     private TableView<Student> tableStudents;
+    @FXML
+    private Label lblFirstName;
+    @FXML
+    private Label lblLastName;
+    @FXML
+    private Label lblAbsenceProcentage;
+    @FXML
+    private Label lblPresentStatus;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private ComboBox<?> btnClassSelect;
 
     /**
      * Initializes the controller class.
