@@ -5,9 +5,16 @@
  */
 package attendance_recorder;
 
+import attendance_recorder.be.Student;
+import attendance_recorder.bll.MockStudentManager;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -16,12 +23,26 @@ import javafx.fxml.Initializable;
  */
 public class TeacherScreenFXMLController implements Initializable {
 
+    private ObservableList<Student> students = FXCollections.observableArrayList();;
+    private MockStudentManager msm;
+    
+    @FXML
+    private AnchorPane diagramPane;
+    @FXML
+    private TableView<?> tableClasses;
+    @FXML
+    private TableView<Student> tableStudents;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        msm = new MockStudentManager();
+        
+        students.addAll(msm.getStudents());
+        
+        tableStudents.setItems(students);
     }    
     
 }
