@@ -57,7 +57,10 @@ public class TeacherScreenFXMLController implements Initializable {
         
         buildPieChart();
         
-    }  
+    
+ 
+
+}
     
     private void buildPieChart(){
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
