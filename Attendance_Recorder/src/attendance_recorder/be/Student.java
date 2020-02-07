@@ -21,6 +21,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.profileName = profileName;
     }
 
     public String getFirstName() {
