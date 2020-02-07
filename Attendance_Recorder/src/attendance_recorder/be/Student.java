@@ -12,10 +12,11 @@ package attendance_recorder.be;
 public class Student {
     private String firstName;
     private String lastName;
+    private String profileName;
     private int absence;
     private String password;
 
-    public Student(String firstName, String lastName, String password) {
+    public Student(String firstName, String lastName, String profileName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
