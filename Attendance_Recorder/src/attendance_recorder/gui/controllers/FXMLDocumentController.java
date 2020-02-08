@@ -48,14 +48,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent event)
     {
-        if (validate()!=null)
+        if (validateUser()!=null)
         {
-            openStudentScreen(validate());
+            if (validateUser().isIncreasedAccess())
+            {
+                openTeacherScreen(validateUser());
+            }
+            else openStudentScreen(validateUser());
         }
         else errorAlert("Enter correct name and password");
     }
     
-    private Student validate()
+    private Student validateUser()
     {
         List<Student> students = msm.getStudents();
         String name = txtName.getText().trim();
@@ -98,7 +102,32 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(primStage);
             StudentScreenFXMLController controller = fxmlLoader.getController();
-            controller.setCurrentlyLoggedIn(student);
+            controller.setCurrentUser(student);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            
+        
+    }
+    
+    private void openTeacherScreen(Student student)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/TeacherScreenFXML.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage primStage = (Stage) btnLogin.getScene().getWindow();
+            Stage stage = new Stage();                       
+            
+            stage.setTitle("Teacher Overview");
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primStage);
+            TeacherScreenFXMLController controller = fxmlLoader.getController();
+            controller.setCurrentUser(student);
             stage.show();
 
         } catch (IOException e) {

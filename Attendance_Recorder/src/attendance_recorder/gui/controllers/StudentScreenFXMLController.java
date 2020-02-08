@@ -6,6 +6,7 @@
 package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
+import attendance_recorder.bll.MockStudentManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -20,13 +21,15 @@ import javafx.scene.control.Label;
  */
 public class StudentScreenFXMLController implements Initializable {
 
+    private MockStudentManager msm;
+    private Student currentUser;
+    
     @FXML
     private MenuItem handleClose;
     @FXML
-    private MenuItem handlePieChart;
-
-    private Label lblLoggedIn;
-    private Student currentlyLoggedIn;
+    private MenuItem handlePieChart;   
+    @FXML
+    private Label lblWelcome;
 
 
     /**
@@ -34,13 +37,13 @@ public class StudentScreenFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        msm = new MockStudentManager();
     }    
     
-    public void setCurrentlyLoggedIn(Student student)
+    public void setCurrentUser(Student student)
     {
-        currentlyLoggedIn = student;
-        lblLoggedIn.setText("Logged in as: " + student.getFirstName() + " " + student.getLastName());
+        currentUser = student;
+        lblWelcome.setText("Good Morning " + student.getFirstName() + " " + student.getLastName());
     }
     
 }

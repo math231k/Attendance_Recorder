@@ -30,6 +30,7 @@ public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();;
     private MockStudentManager msm;
+    private Student currentUser;
     
     @FXML
     private BorderPane diagramPane;
@@ -47,6 +48,8 @@ public class TeacherScreenFXMLController implements Initializable {
     private ImageView imageView;
     @FXML
     private ComboBox<?> btnClassSelect;
+    @FXML
+    private Label lblCurrentUser;
 
     /**
      * Initializes the controller class.
@@ -61,6 +64,12 @@ public class TeacherScreenFXMLController implements Initializable {
  
 
 }
+    
+    public void setCurrentUser(Student student)
+    {
+        currentUser = student;
+        lblCurrentUser.setText("Logged in as: " + student.getFirstName() + " " + student.getLastName());
+    }
     
     private void buildPieChart(){
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(

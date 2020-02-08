@@ -16,12 +16,15 @@ public class Student {
     private int absence;
     private String password;
     private String imageView;
+    private boolean increasedAccess;
 
-    public Student(String firstName, String lastName, String profileName, String password, String imageView) {
+    public Student(String firstName, String lastName, String profileName, String password, String imageView, boolean increasedAccess) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.profileName = profileName;
+        this.imageView = imageView;
+        this.increasedAccess = increasedAccess;
     }
 
     public String getFirstName() {
@@ -69,6 +72,14 @@ public class Student {
     }
     public void setImageView(String imageView){
         this.imageView = imageView;
+    }
+
+    public boolean isIncreasedAccess() {
+        return increasedAccess;
+    }
+
+    public void setIncreasedAccess(boolean increasedAccess) {
+        this.increasedAccess = increasedAccess;
     }
     
     

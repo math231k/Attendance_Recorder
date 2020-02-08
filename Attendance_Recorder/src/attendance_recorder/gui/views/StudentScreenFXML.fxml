@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.control.Label?>
@@ -10,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.StudentScreenFXMLController">
    <children>
       <JFXRadioButton layoutX="11.0" layoutY="165.0" text="Absent" />
       <JFXRadioButton layoutX="10.0" layoutY="134.0" text="Present" />
-      <Label layoutX="10.0" layoutY="27.0" text="Good Morning Mathias">
+      <Label fx:id="lblWelcome" layoutX="10.0" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Good Morning Mathias">
          <font>
             <Font size="25.0" />
          </font>

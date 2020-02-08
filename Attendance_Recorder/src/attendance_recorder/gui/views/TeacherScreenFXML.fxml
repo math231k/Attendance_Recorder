@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="551.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.TeacherScreenFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="551.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.TeacherScreenFXMLController">
    <children>
       <TableView fx:id="tableStudents" layoutX="10.0" layoutY="48.0" prefHeight="338.0" prefWidth="200.0">
         <columns>
@@ -91,5 +91,6 @@
             <DropShadow />
          </effect></BorderPane>
       <ComboBox fx:id="btnClassSelect" layoutX="10.0" layoutY="13.0" prefHeight="27.0" prefWidth="200.0" promptText="Class Select..." />
+      <Label fx:id="lblCurrentUser" layoutX="10.0" layoutY="390.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Logged in as: " />
    </children>
 </AnchorPane>

@@ -20,10 +20,13 @@ public class MockStudentManager {
     public MockStudentManager() {
         
         students = new ArrayList<Student>();
-        Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
-        s1.setAbsence(2);
+        //Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
+        Student s1 = new Student("Mathias", "Birins", "math231k", "test", "noimage", false);
+        Student s2 = new Student("Jeppe", "Moritz Led", "jle", "test", "noimage", true);
+        s1.setAbsence(2);        
         
         students.add(s1);
+        students.add(s2);
         
     }
     
