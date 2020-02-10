@@ -6,6 +6,7 @@
 package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
+import attendance_recorder.be.Teacher;
 import attendance_recorder.bll.MockStudentManager;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();;
     private MockStudentManager msm;
-    private Student currentUser;
+    private Teacher currentUser;
     
     @FXML
     private BorderPane diagramPane;
@@ -65,10 +66,10 @@ public class TeacherScreenFXMLController implements Initializable {
 
 }
     
-    public void setCurrentUser(Student student)
+    public void setCurrentUser(Teacher teacher)
     {
-        currentUser = student;
-        lblCurrentUser.setText("Logged in as: " + student.getFirstName() + " " + student.getLastName());
+        currentUser = teacher;
+        lblCurrentUser.setText("Logged in as: " + teacher.getFirstName() + " " + teacher.getLastName());
     }
     
     private void buildPieChart(){

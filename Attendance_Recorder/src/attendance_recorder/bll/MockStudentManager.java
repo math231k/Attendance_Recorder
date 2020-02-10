@@ -6,6 +6,8 @@
 package attendance_recorder.bll;
 
 import attendance_recorder.be.Student;
+import attendance_recorder.be.Teacher;
+import attendance_recorder.be.Class;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,27 +18,34 @@ import java.util.List;
 public class MockStudentManager {
     
     private List<Student> students;
+    private List<Teacher> teachers;
 
     public MockStudentManager() {
         
         students = new ArrayList<Student>();
+        teachers = new ArrayList<Teacher>();
         //Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
-        Student s1 = new Student("Mathias", "Birins", "math231k", "test", "noimage", false);
-        Student s2 = new Student("Jeppe", "Moritz Led", "jle", "test", "noimage", true);
+        Student s1 = new Student("Mathias", "Birins", "math231k", "test");
+        Teacher t1 = new Teacher("Jeppe", "Moritz Led", "jle", "test");
         s1.setAbsence(2);        
         
         students.add(s1);
-        students.add(s2);
+        List<Class> classes = new ArrayList<Class>();
+        Class cl = new Class("CS2019");
+        classes.add(cl);
+        cl.setStudents(students);
+        t1.setClasses(classes);
+        teachers.add(t1);
         
     }
-    
-    
-    
+           
     public List<Student> getStudents(){
-                
-        
+                        
         return students;
     }
     
-    
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+        
 }

@@ -6,6 +6,8 @@
 package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
+import attendance_recorder.be.Teacher;
+import attendance_recorder.be.User;
 import attendance_recorder.bll.MockStudentManager;
 import java.io.IOException;
 import java.net.URL;
@@ -50,18 +52,19 @@ public class FXMLDocumentController implements Initializable {
     {
         if (validateUser()!=null)
         {
-            if (validateUser().isIncreasedAccess())
+            if (validateUser() instanceof Teacher)
             {
-                openTeacherScreen(validateUser());
+                openTeacherScreen((Teacher) validateUser());
             }
-            else openStudentScreen(validateUser());
+            else openStudentScreen((Student) validateUser());
         }
         else errorAlert("Enter correct name and password");
     }
     
-    private Student validateUser()
+    private User validateUser()
     {
         List<Student> students = msm.getStudents();
+        List<Teacher> teachers = msm.getTeachers();
         String name = txtName.getText().trim();
         String password = txtPassword.getText().trim();
            
@@ -72,7 +75,13 @@ public class FXMLDocumentController implements Initializable {
                 if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
                     return student;
                     }                
-            }    
+            }
+            
+            for (Teacher teacher : teachers) {
+                if (teacher.getProfileName().equals(name) && teacher.getPassword().equals(password)) {
+                    return teacher;
+                    }
+            }
         }                        
                 
         return null;        
@@ -112,7 +121,7 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
-    private void openTeacherScreen(Student student)
+    private void openTeacherScreen(Teacher teacher)
     {
         try
         {
@@ -127,7 +136,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(primStage);
             TeacherScreenFXMLController controller = fxmlLoader.getController();
-            controller.setCurrentUser(student);
+            controller.setCurrentUser(teacher);
             stage.show();
 
         } catch (IOException e) {
