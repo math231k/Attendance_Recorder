@@ -13,7 +13,7 @@ public class User {
     
     private String firstName;
     private String lastName;
-    private String profileName;
+    private String profileName; //should be unique id in database
     private String password;
 
     public User(String firstName, String lastName, String profileName, String password) {

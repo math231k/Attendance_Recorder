@@ -26,11 +26,14 @@ public class MockStudentManager {
         teachers = new ArrayList<Teacher>();
         //Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
         Student s1 = new Student("Mathias", "Birins", "math231k", "test");
+        Student s2 = new Student("Mock", "Student", "student", "password");
         Teacher t1 = new Teacher("Jeppe", "Moritz Led", "jle", "test");
         Teacher t2 = new Teacher("Søren", "Spangsberg Jørgensen", "smsj", "test");
-        s1.setAbsence(2);   
+        Teacher t3 = new Teacher("Mock", "Teacher", "teacher", "password");
+        s1.setAbsence(2);             
         
         students.add(s1);
+        students.add(s2);
         
         List<Class> classes = new ArrayList<Class>();
         Class cl = new Class("CS2019");
@@ -39,6 +42,7 @@ public class MockStudentManager {
         t1.setClasses(classes);
         teachers.add(t1);
         teachers.add(t2);
+        teachers.add(t3);
         
     }
            
