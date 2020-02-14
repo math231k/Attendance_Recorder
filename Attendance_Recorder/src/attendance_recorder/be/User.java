@@ -9,7 +9,7 @@ package attendance_recorder.be;
  *
  * @author fauxtistic
  */
-public class User {
+public abstract class User {
     
     private String firstName;
     private String lastName;

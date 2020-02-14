@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,7 +39,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
     @FXML
     private Button btnLogin;    
         
@@ -50,42 +51,48 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent event)
     {
-        if (validateUser()!=null)
-        {
-            if (validateUser() instanceof Teacher)
-            {
-                openTeacherScreen((Teacher) validateUser());
-            }
-            else openStudentScreen((Student) validateUser());
+        String name = txtName.getText();
+        String password = txtPassword.getText();
+        
+        if (name.isEmpty() || password.isEmpty()) {
+            errorAlert("Enter correct name and password");
+        }
+        else if (getVerifiedStudent(name, password)!=null) {
+            openStudentScreen(getVerifiedStudent(name, password));
+        }
+        else if (getVerifiedTeacher(name, password)!=null) {
+            openTeacherScreen(getVerifiedTeacher(name, password));
         }
         else errorAlert("Enter correct name and password");
+        
+        txtPassword.clear();
     }
     
-    private User validateUser()
+    private Student getVerifiedStudent(String name, String password)
     {
         List<Student> students = msm.getStudents();
+
+        for (Student student : students) {
+            if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
+                return student;
+            }
+        }             
+                             
+        return null;      
+    }
+    
+    private Teacher getVerifiedTeacher(String name, String password)
+    {
         List<Teacher> teachers = msm.getTeachers();
-        String name = txtName.getText().trim();
-        String password = txtPassword.getText().trim();
-           
-        if (!name.isEmpty() && !password.isEmpty()) {
-            for (Student student : students)
-        {
-            
-                if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
-                    return student;
-                    }                
+
+        for (Teacher teacher : teachers) {
+            if (teacher.getProfileName().equals(name) && teacher.getPassword().equals(password)) {
+                return teacher;
             }
-            
-            for (Teacher teacher : teachers) {
-                if (teacher.getProfileName().equals(name) && teacher.getPassword().equals(password)) {
-                    return teacher;
-                    }
-            }
-        }                        
-                
-        return null;        
-    }   
+        }                     
+                             
+        return null;
+    }           
         
     private void errorAlert(String message)
     {
