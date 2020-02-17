@@ -60,7 +60,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private TableColumn<Student, String> nameColumn;
     @FXML
-    private TableColumn<Student, Number> absenceColumn;
+    private TableColumn<Student, String> absenceColumn;
 
     /**
      * Initializes the controller class.
@@ -69,15 +69,7 @@ public class TeacherScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         msm = new MockStudentManager();
         
-        nameColumn.setCellValueFactory(data -> {
-            String name = data.getValue().getFirstName() + " " + data.getValue().getLastName();
-            return new SimpleStringProperty(name);
-        });
-        
-        absenceColumn.setCellValueFactory(data -> {
-            int absence = data.getValue().getAbsence();
-            return new SimpleIntegerProperty(absence);
-        });
+        initColumns();
         
         btnClassSelect.setItems(classes);
         tableStudents.setItems(students);
@@ -86,6 +78,19 @@ public class TeacherScreenFXMLController implements Initializable {
             (observable, oldValue, newValue) -> showStudentsInClass(newValue));
         
         buildPieChart();       
+    }
+    
+    private void initColumns()
+    {
+        nameColumn.setCellValueFactory(data -> {
+            String name = data.getValue().getFirstName() + " " + data.getValue().getLastName();
+            return new SimpleStringProperty(name);
+        });
+        
+        absenceColumn.setCellValueFactory(data -> {
+            String absence = data.getValue().getAbsence() + "%";
+            return new SimpleStringProperty(absence);
+        });
     }
     
     public void setCurrentUser(Teacher teacher)
