@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
  */
 public class Student extends User {
     private int absence;
-    private Image image;
+    private String imageFilePath;
     
     public Student(String firstName, String lastName, String profileName, String password)
     {
@@ -22,7 +22,7 @@ public class Student extends User {
     
     public Student(String firstName, String lastName, String profileName, String password, String imageFilePath) {
         super(firstName, lastName, profileName, password);
-        this.image = new Image("/attendance_recorder/images/defaultuserimage.png");
+        this.imageFilePath = imageFilePath;
     }
      
     public int getAbsence() {
@@ -33,15 +33,15 @@ public class Student extends User {
         this.absence = absence;
     }
 
-    public void setImage(String imageFilePath)
-    {
-        this.image = new Image(imageFilePath);
+    public String getImageFilePath() {
+        return imageFilePath;
     }
+
+    public void setImageFilePath(String imageFilePath) {
+        this.imageFilePath = imageFilePath;
+    }
+
     
-    public Image getImage()
-    {
-        return image;
-    }
                    
     
 }

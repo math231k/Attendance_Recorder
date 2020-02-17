@@ -118,7 +118,7 @@ public class TeacherScreenFXMLController implements Initializable {
         lblFirstName.setText(student.getFirstName());
         lblLastName.setText(student.getLastName());
         lblAbsenceProcentage.setText(student.getAbsence() + "");
-        imageView.setImage(student.getImage());
+        imageView.setImage(new Image(student.getImageFilePath())); //perhaps student should just hold Image
     }
     
     
