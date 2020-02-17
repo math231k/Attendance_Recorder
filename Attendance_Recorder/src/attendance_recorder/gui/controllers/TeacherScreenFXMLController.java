@@ -7,9 +7,13 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
+import attendance_recorder.be.User;
+import attendance_recorder.be.Class;
 import attendance_recorder.bll.MockStudentManager;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +34,8 @@ import javafx.scene.layout.BorderPane;
  */
 public class TeacherScreenFXMLController implements Initializable {
 
-    private ObservableList<Student> students = FXCollections.observableArrayList();;
+    private ObservableList<Student> students = FXCollections.observableArrayList();
+    private ObservableList<Class> classes = FXCollections.observableArrayList();
     private MockStudentManager msm;
     private Teacher currentUser;
     
@@ -48,9 +54,13 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private ImageView imageView;
     @FXML
-    private ComboBox<?> btnClassSelect;
+    private ComboBox<Class> btnClassSelect;
     @FXML
     private Label lblCurrentUser;
+    @FXML
+    private TableColumn<Student, String> nameColumn;
+    @FXML
+    private TableColumn<Student, Number> absenceColumn;
 
     /**
      * Initializes the controller class.
@@ -59,18 +69,39 @@ public class TeacherScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         msm = new MockStudentManager();
         
-        buildPieChart();
+        nameColumn.setCellValueFactory(data -> {
+            String name = data.getValue().getFirstName() + " " + data.getValue().getLastName();
+            return new SimpleStringProperty(name);
+        });
         
-    
- 
-
-}
+        absenceColumn.setCellValueFactory(data -> {
+            int absence = data.getValue().getAbsence();
+            return new SimpleIntegerProperty(absence);
+        });
+        
+        btnClassSelect.setItems(classes);
+        tableStudents.setItems(students);
+        
+        btnClassSelect.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> showStudentsInClass(newValue));
+        
+        buildPieChart();       
+    }
     
     public void setCurrentUser(Teacher teacher)
     {
         currentUser = teacher;
+        classes = FXCollections.observableArrayList(teacher.getClasses());
+        btnClassSelect.setItems(classes); //is this really necessary?
         lblCurrentUser.setText("Logged in as: " + teacher.getFirstName() + " " + teacher.getLastName());
     }
+    
+    private void showStudentsInClass(Class cl)
+    {
+        students = FXCollections.observableArrayList(cl.getStudents());
+        tableStudents.setItems(students);        
+    }
+    
     
     private void buildPieChart(){
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
@@ -88,11 +119,8 @@ public class TeacherScreenFXMLController implements Initializable {
         pieChart.setLabelsVisible(true);
         pieChart.setStartAngle(180);
         
-        diagramPane.setCenter(pieChart);
+        diagramPane.setCenter(pieChart);        
         
-        
-    }
-    
-    
+    }        
     
 }

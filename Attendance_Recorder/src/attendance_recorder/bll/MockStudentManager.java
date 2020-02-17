@@ -23,6 +23,7 @@ public class MockStudentManager {
     public MockStudentManager() {
         
         students = new ArrayList<Student>();
+        List<Student> students2 = new ArrayList<Student>();
         teachers = new ArrayList<Teacher>();
         //Student s1 = new Student("Mathias", "Birins", "math231k", "test", "C:\\Users\\jonas\\OneDrive\\Desktop\\Skole projekter\\Movie\\Attendance_Recorder");
         Student s1 = new Student("Mathias", "Birins", "math231k", "test");
@@ -34,11 +35,15 @@ public class MockStudentManager {
         
         students.add(s1);
         students.add(s2);
+        students2.add(s2);
         
         List<Class> classes = new ArrayList<Class>();
-        Class cl = new Class("CS2019");
-        classes.add(cl);
-        cl.setStudents(students);
+        Class c1 = new Class("CS2019");
+        Class c2 = new Class ("Mock class");
+        classes.add(c1);
+        classes.add(c2);
+        c1.setStudents(students);
+        c2.setStudents(students2);
         t1.setClasses(classes);
         teachers.add(t1);
         teachers.add(t2);
