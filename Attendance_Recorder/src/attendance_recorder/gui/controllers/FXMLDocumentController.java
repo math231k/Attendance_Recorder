@@ -55,7 +55,7 @@ public class FXMLDocumentController implements Initializable {
         String password = txtPassword.getText();
         
         if (name.isEmpty() || password.isEmpty()) {
-            errorAlert("Enter correct name and password");
+            errorAlert("The input fields must be filled out");
         }
         else if (getVerifiedStudent(name, password)!=null) {
             openStudentScreen(getVerifiedStudent(name, password));
@@ -63,7 +63,7 @@ public class FXMLDocumentController implements Initializable {
         else if (getVerifiedTeacher(name, password)!=null) {
             openTeacherScreen(getVerifiedTeacher(name, password));
         }
-        else errorAlert("Enter correct name and password");
+        else errorAlert("Name or password incorrect");
         
         txtPassword.clear();
     }
@@ -115,11 +115,12 @@ public class FXMLDocumentController implements Initializable {
             
             stage.setTitle("Student Overview");
             stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(primStage);
+            //stage.initModality(Modality.WINDOW_MODAL);
+            //stage.initOwner(primStage);
             StudentScreenFXMLController controller = fxmlLoader.getController();
             controller.setCurrentUser(student);
             stage.show();
+            primStage.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,11 +141,12 @@ public class FXMLDocumentController implements Initializable {
             
             stage.setTitle("Teacher Overview");
             stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(primStage);
+            //stage.initModality(Modality.WINDOW_MODAL);
+            //stage.initOwner(primStage);
             TeacherScreenFXMLController controller = fxmlLoader.getController();
             controller.setCurrentUser(teacher);
             stage.show();
+            primStage.close();
 
         } catch (IOException e) {
             e.printStackTrace();
