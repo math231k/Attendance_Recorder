@@ -5,6 +5,8 @@
  */
 package attendance_recorder.be;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author math2
@@ -13,8 +15,14 @@ public class Student extends User {
     private int absence;
     private String imageFilePath;
     
-    public Student(String firstName, String lastName, String profileName, String password) {
+    public Student(String firstName, String lastName, String profileName, String password)
+    {
+        this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage.png");
+    }
+    
+    public Student(String firstName, String lastName, String profileName, String password, String imageFilePath) {
         super(firstName, lastName, profileName, password);
+        this.imageFilePath = imageFilePath;
     }
      
     public int getAbsence() {
@@ -31,7 +39,9 @@ public class Student extends User {
 
     public void setImageFilePath(String imageFilePath) {
         this.imageFilePath = imageFilePath;
-    }    
+    }
+
+    
                    
     
 }
