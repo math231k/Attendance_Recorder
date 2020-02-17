@@ -10,6 +10,7 @@ import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.be.Class;
 import attendance_recorder.bll.MockStudentManager;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -23,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -77,7 +79,11 @@ public class TeacherScreenFXMLController implements Initializable {
         btnClassSelect.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showStudentsInClass(newValue));
         
+        tableStudents.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> showIndvidualStudentInformation(newValue));
+        
         buildPieChart();       
+                
     }
     
     private void initColumns()
@@ -105,6 +111,14 @@ public class TeacherScreenFXMLController implements Initializable {
     {
         students = FXCollections.observableArrayList(cl.getStudents());
         tableStudents.setItems(students);        
+    }
+    
+    private void showIndvidualStudentInformation(Student student)
+    {
+        lblFirstName.setText(student.getFirstName());
+        lblLastName.setText(student.getLastName());
+        lblAbsenceProcentage.setText(student.getAbsence() + "");
+        imageView.setImage(student.getImage());
     }
     
     
