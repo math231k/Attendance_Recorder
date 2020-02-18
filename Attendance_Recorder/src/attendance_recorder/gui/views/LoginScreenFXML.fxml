@@ -2,20 +2,35 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
    <children>
-      <Label layoutX="70.0" layoutY="25.0" text="EASV Attendance">
+      <Label layoutX="113.0" layoutY="38.0" text="EASV Attendance">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="50.0" layoutY="76.0" promptText="Username" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <PasswordField fx:id="txtPassword" layoutX="51.0" layoutY="109.0" promptText="Password" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <JFXButton fx:id="btnLogin" layoutX="125.0" layoutY="164.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" />
+      <TextField fx:id="txtName" layoutX="113.0" layoutY="84.0" prefHeight="25.0" prefWidth="215.0" promptText="Username" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="14.0" />
+      <PasswordField fx:id="txtPassword" layoutX="113.0" layoutY="116.0" prefHeight="25.0" prefWidth="215.0" promptText="Password" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="14.0" />
+      <JFXButton fx:id="btnLogin" layoutX="113.0" layoutY="153.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" />
+      <MenuBar prefHeight="25.0" prefWidth="370.0" stylesheets="@css/LoginCss.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handeTeacher" text="Change to teacher" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleStudent" text="Change to student" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -50,9 +50,9 @@
    <top>
       <MenuBar prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Options">
             <items>
-              <MenuItem fx:id="handleClose" mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Utilities">

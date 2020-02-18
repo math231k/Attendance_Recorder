@@ -31,8 +31,6 @@ public class StudentScreenFXMLController implements Initializable {
     private Student currentUser;
     
     @FXML
-    private MenuItem handleClose; 
-    @FXML
     private Label lblWelcome;
     @FXML
     private AnchorPane studentPane;
@@ -84,6 +82,13 @@ public class StudentScreenFXMLController implements Initializable {
        
         studentPane.setVisible(true);
         diagramPane.setCenter(studentPane);
+        
+    }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
+    
+    System.exit(0);
         
     }
     

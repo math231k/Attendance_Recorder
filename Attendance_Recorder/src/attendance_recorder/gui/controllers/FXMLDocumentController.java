@@ -23,6 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,8 +35,6 @@ import javafx.stage.StageStyle;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private Label label;
     private MockStudentManager msm;
     @FXML
     private TextField txtName;
@@ -42,10 +42,14 @@ public class FXMLDocumentController implements Initializable {
     private PasswordField txtPassword;
     @FXML
     private Button btnLogin;    
+    @FXML
+    private ImageView imageView;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         msm = new MockStudentManager();
+        
+        imageView.setImage(getImage());
     }    
     
     @FXML
@@ -154,6 +158,22 @@ public class FXMLDocumentController implements Initializable {
             
         
     }
+
+    @FXML
+    private void handeTeacher(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void handleStudent(ActionEvent event) {
+    
+    }
+    
+    private Image getImage(){
+        Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
+        return logo;
+    }
+    
             
                 
     
