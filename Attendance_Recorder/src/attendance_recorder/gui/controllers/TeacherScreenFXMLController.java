@@ -11,23 +11,31 @@ import attendance_recorder.be.User;
 import attendance_recorder.be.Class;
 import attendance_recorder.bll.MockStudentManager;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -62,6 +70,8 @@ public class TeacherScreenFXMLController implements Initializable {
     private TableColumn<Student, String> nameColumn;
     @FXML
     private TableColumn<Student, Number> absenceColumn;
+    @FXML
+    private MenuBar menuBarTeacher;
 
     /**
      * Initializes the controller class.
@@ -141,5 +151,28 @@ public class TeacherScreenFXMLController implements Initializable {
         diagramPane.setCenter(pieChart);        
         
     }        
+
+    @FXML
+    private void handleLogout(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/LoginScreenFXML.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage primStage = (Stage) menuBarTeacher.getScene().getWindow();
+            Stage stage = new Stage();                       
+            
+            stage.setTitle("Attendance Login");
+            stage.setScene(scene);
+            stage.show();
+            primStage.close();
+            
+            
+        } catch (IOException ex)
+        {
+            Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
