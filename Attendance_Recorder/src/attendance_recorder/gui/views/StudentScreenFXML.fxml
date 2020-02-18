@@ -48,11 +48,11 @@
       </AnchorPane>
    </center>
    <top>
-      <MenuBar fx:id="menuBarOptions" prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>
-              <MenuItem fx:id="optionLogout" mnemonicParsing="false" onAction="#handleClose" text="Log out" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Utilities">
