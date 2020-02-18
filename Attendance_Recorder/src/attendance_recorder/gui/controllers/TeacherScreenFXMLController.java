@@ -26,8 +26,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -37,11 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-
 
 /**
  * FXML Controller class
@@ -180,17 +174,5 @@ public class TeacherScreenFXMLController implements Initializable {
             Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    @FXML
-//    private void handleDisplayAbout(ActionEvent event) {
-//        Alert alert = new Alert(AlertType.INFORMATION);
-//        alert.setTitle("Information about license");
-//        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-//        alert.setResizable(true);        
-//        alert.setHeaderText(null);
-//        String content = String.format("%s%n%s%n%s", "Default user image is courtesy of Font Awesome by Dave Gandy.", "License: https://creativecommons.org/licenses/by-sa/3.0/deed.en", "No changes have been to the image.");
-//        alert.setContentText(content);
-//        alert.showAndWait();
-//    }
     
 }
