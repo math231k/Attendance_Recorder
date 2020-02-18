@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="371.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
    <children>
-      <Label layoutX="113.0" layoutY="38.0" text="EASV Attendance">
+      <Label fx:id="LblTitle" layoutX="113.0" layoutY="38.0" text="EASV Attendance">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -31,6 +31,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutX="2.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
