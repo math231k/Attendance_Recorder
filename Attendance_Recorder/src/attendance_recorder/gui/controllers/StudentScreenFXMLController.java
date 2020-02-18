@@ -27,7 +27,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class StudentScreenFXMLController implements Initializable {
 
-    private MockStudentManager msm;
+    
     private Student currentUser;
     
     @FXML
@@ -45,7 +45,7 @@ public class StudentScreenFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        msm = new MockStudentManager();
+        
     }    
     
     public void setCurrentUser(Student student)

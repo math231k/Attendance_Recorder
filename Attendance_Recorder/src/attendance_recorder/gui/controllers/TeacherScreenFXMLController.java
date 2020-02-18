@@ -37,8 +37,7 @@ import javafx.scene.layout.BorderPane;
 public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Class> classes = FXCollections.observableArrayList();
-    private MockStudentManager msm;
+    private ObservableList<Class> classes = FXCollections.observableArrayList();    
     private Teacher currentUser;
     
     @FXML
@@ -69,7 +68,6 @@ public class TeacherScreenFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        msm = new MockStudentManager();
         
         initColumns();
         

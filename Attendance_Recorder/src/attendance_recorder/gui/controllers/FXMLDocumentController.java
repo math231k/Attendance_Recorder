@@ -9,6 +9,7 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.bll.MockStudentManager;
+import attendance_recorder.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -35,7 +36,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
-    private MockStudentManager msm;
+    private AppModel model;
     @FXML
     private TextField txtName;
     @FXML
@@ -45,7 +46,7 @@ public class FXMLDocumentController implements Initializable {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        msm = new MockStudentManager();
+        model = new AppModel();
     }    
     
     @FXML
@@ -70,7 +71,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Student getVerifiedStudent(String name, String password)
     {
-        List<Student> students = msm.getAllStudents();
+        List<Student> students = model.getAllStudents();
 
         for (Student student : students) {
             if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
@@ -83,7 +84,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Teacher getVerifiedTeacher(String name, String password)
     {
-        List<Teacher> teachers = msm.getTeachers();
+        List<Teacher> teachers = model.getTeachers();
 
         for (Teacher teacher : teachers) {
             if (teacher.getProfileName().equals(name) && teacher.getPassword().equals(password)) {

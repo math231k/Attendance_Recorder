@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance_recorder.dal;
+package attendance_recorder.dal.facades;
+
+import attendance_recorder.be.Teacher;
+import java.util.List;
 
 /**
  *
  * @author fauxtistic
  */
-public class MockStudentDAO {
+public interface TeacherDalFacade {
     
+    public List<Teacher> getTeachers();
 }
