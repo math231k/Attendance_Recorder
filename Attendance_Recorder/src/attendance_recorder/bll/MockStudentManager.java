@@ -33,6 +33,7 @@ public class MockStudentManager {
         Teacher t1 = new Teacher("Jeppe", "Moritz Led", "jle", "test");
         Teacher t2 = new Teacher("Søren", "Spangsberg Jørgensen", "smsj", "test");
         Teacher t3 = new Teacher("Mock", "Teacher", "teacher", "password");
+        s1.setImageFilePath("/attendance_recorder/images/thiasPic.jpg");
         s1.setAbsence(2);             
         s2.setAbsence(14);             
         s3.setAbsence(7);             
