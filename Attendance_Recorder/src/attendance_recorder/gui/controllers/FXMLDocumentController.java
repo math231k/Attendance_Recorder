@@ -70,7 +70,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Student getVerifiedStudent(String name, String password)
     {
-        List<Student> students = msm.getStudents();
+        List<Student> students = msm.getAllStudents();
 
         for (Student student : students) {
             if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
