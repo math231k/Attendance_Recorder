@@ -34,6 +34,10 @@ public class MockStudentManager {
         Teacher t2 = new Teacher("Søren", "Spangsberg Jørgensen", "smsj", "test");
         Teacher t3 = new Teacher("Mock", "Teacher", "teacher", "password");
         s1.setAbsence(2);             
+        s2.setAbsence(14);             
+        s3.setAbsence(7);             
+        s4.setAbsence(10);             
+        s5.setAbsence(8);             
         
         students.add(s1);
         students.add(s4);

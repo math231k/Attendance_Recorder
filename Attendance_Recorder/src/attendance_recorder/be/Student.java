@@ -14,15 +14,17 @@ import javafx.scene.image.Image;
 public class Student extends User {
     private int absence;
     private String imageFilePath;
+    private boolean present;
     
     public Student(String firstName, String lastName, String profileName, String password)
     {
-        this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage.png");
+        this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage1.png");
     }
     
     public Student(String firstName, String lastName, String profileName, String password, String imageFilePath) {
         super(firstName, lastName, profileName, password);
         this.imageFilePath = imageFilePath;
+        present = false;
     }
      
     public int getAbsence() {
@@ -40,6 +42,16 @@ public class Student extends User {
     public void setImageFilePath(String imageFilePath) {
         this.imageFilePath = imageFilePath;
     }
+
+    public boolean isPresent() {
+        return present;
+    }
+
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
+    
+    
 
     
                    
