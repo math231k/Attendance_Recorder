@@ -7,18 +7,25 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,6 +43,8 @@ public class StudentScreenFXMLController implements Initializable {
     private AnchorPane studentPane;
     @FXML
     private BorderPane diagramPane;
+    @FXML
+    private MenuBar menubarStudent;
 
 
     /**
@@ -88,7 +97,24 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private void handleClose(ActionEvent event) {
     
-    System.exit(0);
+   
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/LoginScreenFXML.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage primStage = (Stage) menubarStudent.getScene().getWindow();
+            Stage stage = new Stage();
+
+            stage.setTitle("Attendance Login");
+            stage.setScene(scene);
+            stage.show();
+            primStage.close();
+        } catch (IOException ex)
+        {
+            java.util.logging.Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
     }
     

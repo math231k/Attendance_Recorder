@@ -48,7 +48,7 @@
       </AnchorPane>
    </center>
    <top>
-      <MenuBar prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+      <MenuBar fx:id="menubarStudent" prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>
