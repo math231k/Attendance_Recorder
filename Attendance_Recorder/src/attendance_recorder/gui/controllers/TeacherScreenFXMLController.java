@@ -37,8 +37,7 @@ import javafx.scene.layout.BorderPane;
 public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Class> classes = FXCollections.observableArrayList();
-    private MockStudentManager msm;
+    private ObservableList<Class> classes = FXCollections.observableArrayList();    
     private Teacher currentUser;
     
     @FXML
@@ -62,14 +61,13 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private TableColumn<Student, String> nameColumn;
     @FXML
-    private TableColumn<Student, String> absenceColumn;
+    private TableColumn<Student, Number> absenceColumn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        msm = new MockStudentManager();
         
         initColumns();
         
@@ -94,8 +92,8 @@ public class TeacherScreenFXMLController implements Initializable {
         });
         
         absenceColumn.setCellValueFactory(data -> {
-            String absence = data.getValue().getAbsence() + "%";
-            return new SimpleStringProperty(absence);
+            int absence = data.getValue().getAbsence();
+            return new SimpleIntegerProperty(absence);
         });
     }
     
@@ -117,7 +115,9 @@ public class TeacherScreenFXMLController implements Initializable {
     {
         lblFirstName.setText(student.getFirstName());
         lblLastName.setText(student.getLastName());
-        lblAbsenceProcentage.setText(student.getAbsence() + "");
+        lblAbsenceProcentage.setText(student.getAbsence() + "%");
+        String presence = (student.isPresent()) ? "PRESENT" : "ABSENT";
+        lblPresentStatus.setText(presence);
         imageView.setImage(new Image(student.getImageFilePath())); //perhaps student should just hold Image
     }
     
