@@ -36,9 +36,6 @@ import javafx.stage.StageStyle;
  */
 public class FXMLDocumentController implements Initializable {
     
-
-    private MockStudentManager msm;
-
     @FXML
     private Label label;
     private AppModel model;
@@ -54,9 +51,7 @@ public class FXMLDocumentController implements Initializable {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        msm = new MockStudentManager();
-        
+                
         imageView.setImage(getImage());
 
         model = new AppModel();

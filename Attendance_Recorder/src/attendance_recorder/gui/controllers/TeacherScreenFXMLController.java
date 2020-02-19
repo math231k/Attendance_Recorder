@@ -99,7 +99,7 @@ public class TeacherScreenFXMLController implements Initializable {
     private void initColumns()
     {
         nameColumn.setCellValueFactory(data -> {
-            String name = data.getValue().getFirstName() + " " + data.getValue().getLastName();
+            String name = data.getValue().getLastName() + ", " + data.getValue().getFirstName();
             return new SimpleStringProperty(name);
         });
         
@@ -112,9 +112,9 @@ public class TeacherScreenFXMLController implements Initializable {
     public void setCurrentUser(Teacher teacher)
     {
         currentUser = teacher;
-        classes = FXCollections.observableArrayList(teacher.getClasses());
+        classes = FXCollections.observableArrayList(currentUser.getClasses());
         btnClassSelect.setItems(classes); //is this really necessary?
-        lblCurrentUser.setText("Logged in as: " + teacher.getFirstName() + " " + teacher.getLastName());
+        lblCurrentUser.setText("Logged in as: " + currentUser.getFirstName() + " " + currentUser.getLastName());
     }
     
     private void showStudentsInClass(Class cl)

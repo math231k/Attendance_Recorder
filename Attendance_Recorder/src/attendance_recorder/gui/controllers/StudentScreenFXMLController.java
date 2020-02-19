@@ -10,6 +10,10 @@ import attendance_recorder.bll.MockStudentManager;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
@@ -57,6 +61,10 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private MenuBar menubarStudent;
+    @FXML
+    private Label lblDate;
+    @FXML
+    private Label lblAbsence;
 
 
 
@@ -71,7 +79,11 @@ public class StudentScreenFXMLController implements Initializable {
     public void setCurrentUser(Student student)
     {
         currentUser = student;
-        lblWelcome.setText("Good Morning " + student.getFirstName() + " " + student.getLastName());
+        lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
+        lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
+        lblAbsence.setText("Your total absence is " + currentUser.getAbsence() + "%");
     }
 
     @FXML
