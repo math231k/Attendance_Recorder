@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -36,6 +38,8 @@ public class StudentScreenFXMLController implements Initializable {
     private AnchorPane studentPane;
     @FXML
     private BorderPane diagramPane;
+    @FXML
+    private ImageView imgLogo;
 
 
     /**
@@ -43,7 +47,7 @@ public class StudentScreenFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        imgLogo.setImage(getImage());
     }    
     
     public void setCurrentUser(Student student)
@@ -90,6 +94,11 @@ public class StudentScreenFXMLController implements Initializable {
     
     System.exit(0);
         
+    }
+    
+    private Image getImage(){
+        Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
+        return logo;
     }
     
 }
