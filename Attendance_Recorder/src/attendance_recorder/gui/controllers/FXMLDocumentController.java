@@ -38,9 +38,11 @@ public class FXMLDocumentController implements Initializable {
     
 
     private MockStudentManager msm;
-    private AppModel model;
-    
+
+    @FXML
     private Label label;
+    private AppModel model;
+
     @FXML
     private TextField txtName;
     @FXML
@@ -49,8 +51,6 @@ public class FXMLDocumentController implements Initializable {
     private Button btnLogin;    
     @FXML
     private ImageView imageView;
-    @FXML
-    private Label LblTitle;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -172,12 +172,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handeTeacher(ActionEvent event) {
-        LblTitle.setText("Teacher Login");
+        
     }
 
     @FXML
     private void handleStudent(ActionEvent event) {
-        LblTitle.setText("Student Login");
+    
     }
     
     private Image getImage(){
