@@ -90,7 +90,7 @@ public class TeacherScreenFXMLController implements Initializable {
             (observable, oldValue, newValue) -> showStudentsInClass(newValue));
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> showIndvidualStudentInformation(newValue));
+            (observable, oldValue, newValue) -> showIndividualStudentInformation(newValue));
         
         buildPieChart();       
                 
@@ -120,17 +120,28 @@ public class TeacherScreenFXMLController implements Initializable {
     private void showStudentsInClass(Class cl)
     {
         students = FXCollections.observableArrayList(cl.getStudents());
-        tableStudents.setItems(students);        
+        tableStudents.getSelectionModel().clearSelection();
+        tableStudents.setItems(students);  
+        showIndividualStudentInformation(null);
     }
     
-    private void showIndvidualStudentInformation(Student student)
+    private void showIndividualStudentInformation(Student student)
     {
+        if (student != null) {
         lblFirstName.setText(student.getFirstName());
         lblLastName.setText(student.getLastName());
         lblAbsenceProcentage.setText(student.getAbsence() + "%");
         String presence = (student.isPresent()) ? "PRESENT" : "ABSENT";
         lblPresentStatus.setText(presence);
         imageView.setImage(new Image(student.getImageFilePath())); //perhaps student should just hold Image
+    }
+        else {
+        lblFirstName.setText("");
+        lblLastName.setText("");
+        lblAbsenceProcentage.setText("");        
+        lblPresentStatus.setText("");
+        imageView.setImage(null);
+        }
     }
     
     
