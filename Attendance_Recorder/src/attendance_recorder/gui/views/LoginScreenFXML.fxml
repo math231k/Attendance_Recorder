@@ -13,15 +13,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
    <children>
-      <Label layoutX="113.0" layoutY="38.0" text="EASV Attendance">
+      <Label layoutX="136.0" layoutY="39.0" text="EASV Attendance">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="113.0" layoutY="84.0" prefHeight="25.0" prefWidth="215.0" promptText="Username" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="14.0" />
-      <PasswordField fx:id="txtPassword" layoutX="113.0" layoutY="116.0" prefHeight="25.0" prefWidth="215.0" promptText="Password" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="14.0" />
-      <JFXButton fx:id="btnLogin" layoutX="113.0" layoutY="153.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" />
-      <MenuBar prefHeight="25.0" prefWidth="370.0" stylesheets="@css/LoginCss.css">
+      <TextField fx:id="txtName" layoutX="15.0" layoutY="97.0" prefHeight="25.0" prefWidth="215.0" promptText="Username" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="112.0" />
+      <PasswordField fx:id="txtPassword" layoutX="15.0" layoutY="129.0" prefHeight="25.0" prefWidth="215.0" promptText="Password" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="112.0" />
+      <JFXButton fx:id="btnLogin" layoutX="15.0" layoutY="166.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" />
+      <MenuBar prefHeight="0.0" prefWidth="370.0" stylesheets="@css/LoginCss.css">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>
@@ -31,6 +31,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

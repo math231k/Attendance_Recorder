@@ -158,8 +158,9 @@ public class TeacherScreenFXMLController implements Initializable {
         pieChart.setTitle("Student Absence");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(50);
-        pieChart.setLabelsVisible(true);
+        pieChart.setLabelsVisible(false);
         pieChart.setStartAngle(180);
+        pieChart.setLegendVisible(true);
         
         diagramPane.setCenter(pieChart);        
         

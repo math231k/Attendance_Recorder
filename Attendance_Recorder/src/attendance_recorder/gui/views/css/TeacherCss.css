@@ -4,23 +4,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 18. feb. 2020, 09.54.37
+    Created on : 19. feb. 2020, 19.05.47
     Author     : math2
 */
 
 AnchorPane{
     -fx-background-color: linear-gradient(
-    to bottom, 
+    to right,
     #eab040 0%, 
-    #eab040 38%, 
-    #00afeb 38%, 
-    #00afeb 100%,
-
+    #eab040 39%, 
+    #00afeb 39%, 
+    #00afeb 100%
   );
-    
-    
-}
-
-MenuBar{
-    -fx-background-color: #f2f2f2
 }

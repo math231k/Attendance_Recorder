@@ -103,7 +103,6 @@ public class StudentScreenFXMLController implements Initializable {
         pieChart.setLabelLineLength(50);
         pieChart.setLabelsVisible(true);
         pieChart.setStartAngle(180);
-        
         studentPane.setVisible(false);
         
         diagramPane.setCenter(pieChart);
