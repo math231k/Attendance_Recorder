@@ -102,9 +102,9 @@
               <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Log out" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Utilities">
+          <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="Nothing yet" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
             </items>
           </Menu>
         </menus>
