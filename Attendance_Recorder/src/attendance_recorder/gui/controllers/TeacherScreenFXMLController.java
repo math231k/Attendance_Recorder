@@ -36,6 +36,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -82,6 +83,10 @@ public class TeacherScreenFXMLController implements Initializable {
     private MenuBar menuBarTeacher;
     @FXML
     private Menu menubarTeacher;
+    @FXML
+    private MenuItem danishTgl;
+    @FXML
+    private MenuItem englishTgl;
   
 
     /**
@@ -216,6 +221,14 @@ public class TeacherScreenFXMLController implements Initializable {
 
     @FXML
     private void handleClose(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleDanishTrans(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleEngTrans(ActionEvent event) {
     }
     
 }
