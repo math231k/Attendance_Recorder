@@ -237,6 +237,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleClose(ActionEvent event) {
     }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
+    }
     
             
                 
