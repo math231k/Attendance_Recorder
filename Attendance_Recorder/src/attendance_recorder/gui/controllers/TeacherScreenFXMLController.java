@@ -25,7 +25,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
@@ -99,7 +103,7 @@ public class TeacherScreenFXMLController implements Initializable {
         
         
         
-        buildPieChart();       
+        buildChart();       
                 
     }
     
@@ -152,24 +156,28 @@ public class TeacherScreenFXMLController implements Initializable {
     }
     
     
-    private void buildPieChart(){
-        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
-                new PieChart.Data("Mondays", 3),
-                new PieChart.Data("Tuesdays", 6),
-                new PieChart.Data("wednesdays", 2),
-                new PieChart.Data("Thursday", 5),
-                new PieChart.Data("Fridays", 1)
-                );
+    private void buildChart(){
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Weekday");
         
-        PieChart pieChart = new PieChart(pieData);
-        pieChart.setTitle("Student Absence");
-        pieChart.setClockwise(true);
-        pieChart.setLabelLineLength(50);
-        pieChart.setLabelsVisible(false);
-        pieChart.setStartAngle(180);
-        pieChart.setLegendVisible(true);
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Presence");
         
-        diagramPane.setCenter(pieChart);        
+        BarChart barChart = new BarChart(xAxis, yAxis);
+        
+        XYChart.Series data = new XYChart.Series();
+        data.setName("Student presence by weekday");
+        
+        data.getData().add(new XYChart.Data("Monday", 80));
+        data.getData().add(new XYChart.Data("Tuesday", 95));
+        data.getData().add(new XYChart.Data("Wednesday", 90));
+        data.getData().add(new XYChart.Data("Thursday", 75));
+        data.getData().add(new XYChart.Data("Friday", 70));
+        
+        barChart.getData().add(data);
+        barChart.setLegendVisible(false);
+        
+        diagramPane.setCenter(barChart);       
         
     }        
 
