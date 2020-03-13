@@ -7,6 +7,7 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
@@ -69,6 +70,10 @@ public class StudentScreenFXMLController implements Initializable {
     private MenuItem menuItemDiagram;
     @FXML
     private MenuItem menuItemProfile;
+    @FXML
+    private JFXButton langEngBtn;
+    @FXML
+    private JFXButton langDanBtn;
 
 
 
@@ -80,6 +85,10 @@ public class StudentScreenFXMLController implements Initializable {
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
         menuItemProfile.setDisable(true);
+        
+        langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
+        langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
+        
     }    
     
     public void setCurrentUser(Student student)
@@ -156,6 +165,14 @@ public class StudentScreenFXMLController implements Initializable {
     private Image getImage(){
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
         return logo;
+    }
+
+    @FXML
+    private void handleDanTrans(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleEngTrans(ActionEvent event) {
     }
     
 }

@@ -205,5 +205,9 @@ public class TeacherScreenFXMLController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
+    }
     
 }

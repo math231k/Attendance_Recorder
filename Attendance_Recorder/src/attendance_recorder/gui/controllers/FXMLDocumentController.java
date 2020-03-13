@@ -227,11 +227,7 @@ public class FXMLDocumentController implements Initializable {
         txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
         btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
         titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
-        
-        
-        
-        
-        
+
     }
 
     @FXML

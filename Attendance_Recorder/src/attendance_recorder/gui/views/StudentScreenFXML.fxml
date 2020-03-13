@@ -66,6 +66,8 @@
                   <Font size="11.0" />
                </font></Label>
             <ImageView fx:id="imgLogo" fitHeight="50.0" fitWidth="108.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="langEngBtn" layoutX="281.0" layoutY="28.0" onAction="#handleEngTrans" text=" " />
+            <JFXButton fx:id="langDanBtn" layoutX="372.0" layoutY="28.0" onAction="#handleDanTrans" text=" " />
          </children>
       </AnchorPane>
    </center>
