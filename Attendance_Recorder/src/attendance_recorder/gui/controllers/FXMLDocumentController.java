@@ -35,6 +35,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -73,12 +74,28 @@ public class FXMLDocumentController implements Initializable {
         imageView.setImage(getImage());
 
         model = new AppModel();
+        
+        txtName.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
+        txtPassword.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
 
     }    
     
     @FXML
     private void handleLogin(ActionEvent event)
     {
+        login();
+        
+    }
+    
+    private void login() {
         String name = txtName.getText();
         String password = txtPassword.getText();
         
@@ -203,8 +220,16 @@ public class FXMLDocumentController implements Initializable {
         final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
         
         txtName.setPromptText((Arrays.toString(transDk.Translate(txtName.getPromptText()))));
-    
+        txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
       
+        btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
+        
+        titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
+        
+        transDanBtn.setText(Arrays.toString(transDk.Translate(transDanBtn.getText())));
+        transEngBtn.setText(Arrays.toString(transDk.Translate(transEngBtn.getText())));
+        
+        
         
     }
     

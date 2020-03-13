@@ -54,7 +54,7 @@ public class LangDanish implements ILanguage{
     }
     
     private String translateWord(String sourceWord) {
-        Object value = translator.get(sourceWord);
+        String value = (String) translator.get(sourceWord);
         String translatedWord;
         if (value != null) {
             translatedWord = String.valueOf(value);
@@ -63,11 +63,12 @@ public class LangDanish implements ILanguage{
             // if no translation is found, add the source word with a question mark
             translatedWord = sourceWord + "?";
         }
+        
         return translatedWord;
     }
     
     private String[] normalizeText(String text){
-        String alphaText = text.replace("^A-Za-z", " ");
+        String alphaText = text.replace("[^A-Za-z]", " ");
         return alphaText.split("\\s+");
     }
     
