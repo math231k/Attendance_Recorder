@@ -9,23 +9,34 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.bll.MockStudentManager;
+import attendance_recorder.bll.utility.ILanguage;
+import attendance_recorder.bll.utility.languages.LangDanish;
+import attendance_recorder.bll.utility.languages.LangDanish.Language;
+import attendance_recorder.bll.utility.languages.LangEnglish;
 import attendance_recorder.gui.model.AppModel;
+import com.jfoenix.controls.JFXButton;
+import com.sun.java.accessibility.util.Translator;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -46,6 +57,16 @@ public class FXMLDocumentController implements Initializable {
     private Button btnLogin;    
     @FXML
     private ImageView imageView;
+    @FXML
+    private Label titleLbl;
+    @FXML
+    private Menu optionsBar;
+    @FXML
+    private JFXButton transDanBtn;
+    @FXML
+    private Button transEngBtn;
+    @FXML
+    private AnchorPane mainPane;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,12 +74,28 @@ public class FXMLDocumentController implements Initializable {
         imageView.setImage(getImage());
 
         model = new AppModel();
+        
+        txtName.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
+        txtPassword.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
 
     }    
     
     @FXML
     private void handleLogin(ActionEvent event)
     {
+        login();
+        
+    }
+    
+    private void login() {
         String name = txtName.getText();
         String password = txtPassword.getText();
         
@@ -179,7 +216,22 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleClose(ActionEvent event) {
+
+    private void handleTranslation(ActionEvent event) {
+        final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
+        
+        txtName.setPromptText((Arrays.toString(transDk.Translate(txtName.getPromptText()))));
+        txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
+      
+        btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
+        
+        titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
+        
+        transDanBtn.setText(Arrays.toString(transDk.Translate(transDanBtn.getText())));
+        transEngBtn.setText(Arrays.toString(transDk.Translate(transEngBtn.getText())));
+        
+        
+        
     }
     
             

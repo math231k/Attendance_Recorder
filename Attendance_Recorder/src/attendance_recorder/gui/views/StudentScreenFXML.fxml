@@ -32,22 +32,22 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane fx:id="studentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="438.0" stylesheets="@css/StudentCss.css">
+      <AnchorPane fx:id="studentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="438.0" stylesheets="@css/StudentCss.css" BorderPane.alignment="CENTER">
          <children>
-            <JFXRadioButton layoutX="11.0" layoutY="143.0" text="Absent" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0" />
-            <JFXRadioButton layoutX="10.0" layoutY="112.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="112.0" />
-            <Label fx:id="lblWelcome" layoutX="10.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="260.0" text="Good Morning Mathias Birins" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="14.0">
+            <JFXRadioButton layoutX="11.0" layoutY="143.0" text="Absent" />
+            <JFXRadioButton layoutX="10.0" layoutY="112.0" text="Present" />
+            <Label fx:id="lblWelcome" layoutX="10.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="260.0" text="Good Morning Mathias Birins">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXButton layoutX="11.0" layoutY="175.0" prefHeight="36.0" prefWidth="65.0" style="-fx-background-color: d3d3d3;" text="submit" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="175.0" />
-            <Label fx:id="lblDate" layoutX="10.0" layoutY="50.0" text="Today Is Friday" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+            <JFXButton layoutX="11.0" layoutY="175.0" prefHeight="36.0" prefWidth="65.0" style="-fx-background-color: d3d3d3;" text="submit" />
+            <Label fx:id="lblDate" layoutX="10.0" layoutY="50.0" text="Today Is Friday">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="281.0" layoutY="72.0" prefHeight="202.0" prefWidth="153.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="4.0">
+            <TableView layoutX="281.0" layoutY="72.0" prefHeight="202.0" prefWidth="153.0">
               <columns>
                 <TableColumn prefWidth="76.0" text="Date" />
                 <TableColumn prefWidth="78.0" text="Presence" />
@@ -56,16 +56,16 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="lblAbsence" layoutX="10.0" layoutY="254.0" text="Your total absence is 2%" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="10.0">
+            <Label fx:id="lblAbsence" layoutX="10.0" layoutY="254.0" text="Your total absence is 2%">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="72.0" text="You are connected to EASV" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="75.0">
+            <Label layoutX="11.0" layoutY="72.0" text="You are connected to EASV">
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <ImageView fx:id="imgLogo" fitHeight="50.0" fitWidth="108.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="222.0" AnchorPane.rightAnchor="4.0" />
+            <ImageView fx:id="imgLogo" fitHeight="50.0" fitWidth="108.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </center>
@@ -83,11 +83,6 @@
                   <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleMainView" text="My Profile" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Resolution">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
-               </items>
-            </Menu>
         </menus>
       </MenuBar>
    </top>
