@@ -36,8 +36,6 @@ import javafx.stage.StageStyle;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private Label label;
     private AppModel model;
 
     @FXML
@@ -178,6 +176,10 @@ public class FXMLDocumentController implements Initializable {
     private Image getImage(){
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
         return logo;
+    }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
     }
     
             
