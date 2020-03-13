@@ -79,8 +79,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Utilities">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handlePieChart" text="Absence diagram" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleMainView" text="My Profile" />
+              <MenuItem fx:id="menuItemDiagram" mnemonicParsing="false" onAction="#handlePieChart" text="Absence diagram" />
+                  <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleMainView" text="My Profile" />
             </items>
           </Menu>
         </menus>

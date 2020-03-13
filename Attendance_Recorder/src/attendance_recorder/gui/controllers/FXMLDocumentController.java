@@ -216,6 +216,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+
     private void handleTranslation(ActionEvent event) {
         final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
         

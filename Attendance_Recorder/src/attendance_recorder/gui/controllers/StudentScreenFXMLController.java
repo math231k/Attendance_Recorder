@@ -65,6 +65,10 @@ public class StudentScreenFXMLController implements Initializable {
     private Label lblDate;
     @FXML
     private Label lblAbsence;
+    @FXML
+    private MenuItem menuItemDiagram;
+    @FXML
+    private MenuItem menuItemProfile;
 
 
 
@@ -74,6 +78,8 @@ public class StudentScreenFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgLogo.setImage(getImage());
+        menuItemDiagram.setDisable(false);
+        menuItemProfile.setDisable(true);
     }    
     
     public void setCurrentUser(Student student)
@@ -106,7 +112,8 @@ public class StudentScreenFXMLController implements Initializable {
         studentPane.setVisible(false);
         
         diagramPane.setCenter(pieChart);
-        
+        menuItemDiagram.setDisable(true);
+        menuItemProfile.setDisable(false);
     
     }
 
@@ -115,6 +122,9 @@ public class StudentScreenFXMLController implements Initializable {
        
         studentPane.setVisible(true);
         diagramPane.setCenter(studentPane);
+        menuItemProfile.setDisable(true);
+        menuItemDiagram.setDisable(false);
+        
         
     }
 
