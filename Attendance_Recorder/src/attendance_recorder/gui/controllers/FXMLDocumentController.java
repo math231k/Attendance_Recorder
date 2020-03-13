@@ -35,6 +35,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -73,12 +74,28 @@ public class FXMLDocumentController implements Initializable {
         imageView.setImage(getImage());
 
         model = new AppModel();
+        
+        txtName.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
+        txtPassword.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                login();
+            }
+        });
 
     }    
     
     @FXML
     private void handleLogin(ActionEvent event)
     {
+        login();
+        
+    }
+    
+    private void login() {
         String name = txtName.getText();
         String password = txtPassword.getText();
         
