@@ -79,7 +79,7 @@ public class StudentScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
-        menuItemProfile.setDisable(false);
+        menuItemProfile.setDisable(true);
     }    
     
     public void setCurrentUser(Student student)
