@@ -123,27 +123,6 @@ public class StudentScreenFXMLController implements Initializable {
         diagramPane.setCenter(barChart);
         menuItemDiagram.setDisable(true);
         menuItemProfile.setDisable(false);
-        
-        
-//        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
-//                new PieChart.Data("Mondays", 3),
-//                new PieChart.Data("Tuesdays", 6),
-//                new PieChart.Data("Wednesdays", 2),
-//                new PieChart.Data("Thursday", 5),
-//                new PieChart.Data("Fridays", 1)
-//                );
-//        
-//        PieChart pieChart = new PieChart(pieData);
-//        pieChart.setTitle("Student Absence");
-//        pieChart.setClockwise(true);
-//        pieChart.setLabelLineLength(50);
-//        pieChart.setLabelsVisible(true);
-//        pieChart.setStartAngle(180);
-//        studentPane.setVisible(false);
-//        
-//        diagramPane.setCenter(pieChart);
-//        menuItemDiagram.setDisable(true);
-//        menuItemProfile.setDisable(false);
     
     }
 
