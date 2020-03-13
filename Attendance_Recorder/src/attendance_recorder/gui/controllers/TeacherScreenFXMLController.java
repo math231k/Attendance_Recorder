@@ -97,8 +97,6 @@ public class TeacherScreenFXMLController implements Initializable {
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showIndividualStudentInformation(newValue));
         
-        
-        
         buildPieChart();       
                 
     }
