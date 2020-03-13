@@ -160,7 +160,10 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-            
+                    stage.setMaxHeight(279);
+                    stage.setMinHeight(279);
+                    stage.setMaxWidth(438);
+                    stage.setMinWidth(438);
             stage.setTitle("Student Overview");
             stage.setScene(scene);
             //stage.initModality(Modality.WINDOW_MODAL);
@@ -186,7 +189,10 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-            
+                    stage.setMaxHeight(468);
+                    stage.setMinHeight(468);
+                    stage.setMaxWidth(552);
+                    stage.setMinWidth(552);
             stage.setTitle("Teacher Overview");
             stage.setScene(scene);
             //stage.initModality(Modality.WINDOW_MODAL);
@@ -234,9 +240,5 @@ public class FXMLDocumentController implements Initializable {
     private void handleClose(ActionEvent event) {
     }
 
-    
-    
-            
-                
     
 }
