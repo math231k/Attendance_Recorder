@@ -7,13 +7,16 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
+import attendance_recorder.bll.utility.languages.LangDanish;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -40,6 +43,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -78,6 +82,18 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXButton langEngBtn;
     @FXML
     private JFXButton langDanBtn;
+    @FXML
+    private JFXRadioButton radioAbsent;
+    @FXML
+    private JFXRadioButton radioPresent;
+    @FXML
+    private JFXButton btnSubmit;
+    @FXML
+    private TableColumn<?, ?> clmDate;
+    @FXML
+    private TableColumn<?, ?> clmPresence;
+    @FXML
+    private Label lblConnection;
 
 
 
@@ -177,6 +193,18 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void handleDanTrans(ActionEvent event) {
+        
+        LangDanish transDk = new LangDanish(LangDanish.Language.EN, LangDanish.Language.DK);
+        
+        lblDate.setText(Arrays.toString(transDk.Translate(lblDate.getText())));
+        lblAbsence.setText(Arrays.toString(transDk.Translate(lblAbsence.getText())));
+        radioAbsent.setText(Arrays.toString(transDk.Translate(radioAbsent.getText())));
+        radioPresent.setText(Arrays.toString(transDk.Translate(radioPresent.getText())));
+        btnSubmit.setText(Arrays.toString(transDk.Translate(btnSubmit.getText())));
+        clmDate.setText(Arrays.toString(transDk.Translate(clmDate.getText())));
+        clmPresence.setText(Arrays.toString(transDk.Translate(clmPresence.getText())));
+        lblConnection.setText(Arrays.toString(transDk.Translate(lblConnection.getText())));
+        
     }
 
     @FXML
