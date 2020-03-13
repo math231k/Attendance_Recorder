@@ -225,16 +225,17 @@ public class FXMLDocumentController implements Initializable {
         
         txtName.setPromptText((Arrays.toString(transDk.Translate(txtName.getPromptText()))));
         txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
-      
         btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
-        
         titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
         
-        transDanBtn.setText(Arrays.toString(transDk.Translate(transDanBtn.getText())));
-        transEngBtn.setText(Arrays.toString(transDk.Translate(transEngBtn.getText())));
         
         
         
+        
+    }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
     }
     
             
