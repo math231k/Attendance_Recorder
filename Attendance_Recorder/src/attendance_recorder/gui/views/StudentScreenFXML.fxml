@@ -72,9 +72,9 @@
    <top>
       <MenuBar fx:id="menubarStudent" prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Options">
+          <Menu mnemonicParsing="false" text="Log out">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out to login screen" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Utilities">

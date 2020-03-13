@@ -97,9 +97,9 @@
       <Label fx:id="lblCurrentUser" layoutX="7.0" layoutY="450.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Logged in as: " AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="7.0" />
       <MenuBar fx:id="menuBarTeacher" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu fx:id="menubarTeacher" mnemonicParsing="false" text="Options">
+          <Menu fx:id="menubarTeacher" mnemonicParsing="false" text="Log out">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Log out" />
+              <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Log out to login screen" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
