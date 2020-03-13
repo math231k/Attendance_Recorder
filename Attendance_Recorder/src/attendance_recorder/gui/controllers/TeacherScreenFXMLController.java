@@ -10,11 +10,9 @@ import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.be.Class;
 import attendance_recorder.bll.MockStudentManager;
-import attendance_recorder.bll.utility.languages.LangDanish;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,16 +87,6 @@ public class TeacherScreenFXMLController implements Initializable {
     private MenuItem danishTgl;
     @FXML
     private MenuItem englishTgl;
-    @FXML
-    private Label firstNameLbl;
-    @FXML
-    private Label LastNameLbl;
-    @FXML
-    private Label absenceLbl;
-    @FXML
-    private Label statusLbl;
-    @FXML
-    private Label statisticsLbl;
   
 
     /**
@@ -237,20 +225,6 @@ public class TeacherScreenFXMLController implements Initializable {
 
     @FXML
     private void handleDanishTrans(ActionEvent event) {
-
-        LangDanish transDk = new LangDanish(LangDanish.Language.EN, LangDanish.Language.DK);
-        
-    danishTgl.setText(Arrays.toString(transDk.Translate(danishTgl.getText())));
-    englishTgl.setText(Arrays.toString(transDk.Translate(englishTgl.getText())));
-    firstNameLbl.setText("Fornavn");
-    LastNameLbl.setText("Efternavn");
-    absenceLbl.setText(Arrays.toString(transDk.Translate(absenceLbl.getText())));
-    statusLbl.setText(Arrays.toString(transDk.Translate(statusLbl.getText())));
-    statisticsLbl.setText(Arrays.toString(transDk.Translate(statisticsLbl.getText())));
-    lblCurrentUser.setText("Logget ind som: " + currentUser.getFirstName() + " " + currentUser.getLastName());
-    nameColumn.setText(Arrays.toString(transDk.Translate(nameColumn.getText())));
-    absenceColumn.setText(Arrays.toString(transDk.Translate(absenceColumn.getText())));
-    
     }
 
     @FXML
