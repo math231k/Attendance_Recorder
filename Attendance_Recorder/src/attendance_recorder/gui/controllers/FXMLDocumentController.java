@@ -223,8 +223,8 @@ public class FXMLDocumentController implements Initializable {
     private void handleTranslation(ActionEvent event) {
         final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
         
-        txtName.setPromptText((Arrays.toString(transDk.Translate(txtName.getPromptText()))));
-        txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
+        txtName.setPromptText(Arrays.toString(transDk.Translate(txtName.getPromptText())));
+        txtPassword.setPromptText(Arrays.toString(transDk.Translate(txtPassword.getPromptText())));
         btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
         titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
 

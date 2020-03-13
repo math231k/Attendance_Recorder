@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="552.0" stylesheets="@css/TeacherCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.TeacherScreenFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="744.0" stylesheets="@css/TeacherCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.TeacherScreenFXMLController">
    <children>
-      <TableView fx:id="tableStudents" layoutX="7.0" layoutY="64.0" prefHeight="386.0" prefWidth="200.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="64.0">
+      <TableView fx:id="tableStudents" layoutX="7.0" layoutY="64.0" prefHeight="383.0" prefWidth="262.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="64.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Student" />
           <TableColumn fx:id="absenceColumn" prefWidth="75.0" text="Absence %" />
@@ -30,7 +30,7 @@
             <DropShadow />
          </effect>
       </TableView>
-      <GridPane layoutX="221.0" layoutY="30.0" prefHeight="154.0" prefWidth="200.0" AnchorPane.leftAnchor="221.0" AnchorPane.topAnchor="30.0">
+      <GridPane layoutX="304.0" layoutY="35.0" prefHeight="154.0" prefWidth="286.0" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="35.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,17 +42,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="First Name:">
+            <Label fx:id="firstNameLbl" text="First Name">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Last Name:" GridPane.rowIndex="1">
+            <Label fx:id="LastNameLbl" text="Last Name" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Absence:" GridPane.rowIndex="2">
+            <Label fx:id="absenceLbl" text="Absence" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Status:" GridPane.rowIndex="3">
+            <Label fx:id="statusLbl" text="Status" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -88,12 +88,12 @@
          <effect>
             <DropShadow />
          </effect></ImageView>
-      <Label layoutX="221.0" layoutY="177.0" text="Statistics" />
-      <BorderPane fx:id="diagramPane" layoutX="221.0" layoutY="202.0" prefHeight="252.0" prefWidth="325.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="6.0">
+      <Label fx:id="statisticsLbl" layoutX="304.0" layoutY="185.0" text="Statistics" />
+      <BorderPane fx:id="diagramPane" layoutX="304.0" layoutY="202.0" prefHeight="252.0" prefWidth="429.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="11.0">
          <effect>
             <DropShadow />
          </effect></BorderPane>
-      <ComboBox fx:id="btnClassSelect" layoutX="7.0" layoutY="30.0" prefHeight="27.0" prefWidth="200.0" promptText="Class Select..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="30.0" />
+      <ComboBox fx:id="btnClassSelect" layoutX="7.0" layoutY="30.0" prefHeight="27.0" prefWidth="262.0" promptText="Class Select..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="30.0" />
       <Label fx:id="lblCurrentUser" layoutX="7.0" layoutY="450.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Logged in as: " AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="7.0" />
       <MenuBar fx:id="menuBarTeacher" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
