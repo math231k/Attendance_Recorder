@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="diagramPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.StudentScreenFXMLController">
+<BorderPane fx:id="diagramPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.StudentScreenFXMLController">
    <top>
       <MenuBar prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <menus>

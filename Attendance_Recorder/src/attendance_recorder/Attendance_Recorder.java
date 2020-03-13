@@ -29,8 +29,8 @@ public class Attendance_Recorder extends Application {
         stage.show();
         stage.setMaxHeight(280);
         stage.setMinHeight(280);
-        stage.setMaxWidth(400);
-        stage.setMinWidth(400);
+        stage.setMaxWidth(450);
+        stage.setMinWidth(450);
         
     }
 
