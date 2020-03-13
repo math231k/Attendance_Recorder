@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : math2
 */
 
-AnchorPane{
+BoarderPane{
     -fx-background-color: linear-gradient(
     to right,
     #eab040 0%, 
