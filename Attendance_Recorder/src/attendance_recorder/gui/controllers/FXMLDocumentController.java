@@ -72,7 +72,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
                 
         imageView.setImage(getImage());
-        
+
         model = new AppModel();
         
         txtName.setOnKeyPressed(e -> {
