@@ -85,6 +85,9 @@ public class FXMLDocumentController implements Initializable {
                 login();
             }
         });
+        
+        transDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
+        transEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
 
     }    
     
