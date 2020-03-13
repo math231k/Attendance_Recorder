@@ -160,7 +160,10 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-            
+                    stage.setMaxHeight(305);
+                    stage.setMinHeight(305);
+                    stage.setMaxWidth(438);
+                    stage.setMinWidth(438);
             stage.setTitle("Student Overview");
             stage.setScene(scene);
             //stage.initModality(Modality.WINDOW_MODAL);
@@ -186,7 +189,10 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-            
+                    stage.setMaxHeight(465);
+                    stage.setMinHeight(465);
+                    stage.setMaxWidth(744);
+                    stage.setMinWidth(744);
             stage.setTitle("Teacher Overview");
             stage.setScene(scene);
             //stage.initModality(Modality.WINDOW_MODAL);
@@ -223,8 +229,8 @@ public class FXMLDocumentController implements Initializable {
     private void handleTranslation(ActionEvent event) {
         final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
         
-        txtName.setPromptText((Arrays.toString(transDk.Translate(txtName.getPromptText()))));
-        txtPassword.setPromptText((Arrays.toString(transDk.Translate(txtPassword.getPromptText()))));
+        txtName.setPromptText(Arrays.toString(transDk.Translate(txtName.getPromptText())));
+        txtPassword.setPromptText(Arrays.toString(transDk.Translate(txtPassword.getPromptText())));
         btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
         titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
 
@@ -234,9 +240,5 @@ public class FXMLDocumentController implements Initializable {
     private void handleClose(ActionEvent event) {
     }
 
-    
-    
-            
-                
     
 }
