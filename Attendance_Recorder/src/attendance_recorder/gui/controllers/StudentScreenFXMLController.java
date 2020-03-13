@@ -91,9 +91,10 @@ public class StudentScreenFXMLController implements Initializable {
         lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
         lblAbsence.setText("Your total absence is " + currentUser.getAbsence() + "%");
     }
-
+   
+    
     @FXML
-    private void handlePieChart(ActionEvent event) {
+    private void handleChart(ActionEvent event) {
     
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
                 new PieChart.Data("Mondays", 3),
