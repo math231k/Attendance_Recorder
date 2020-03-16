@@ -25,7 +25,7 @@ public class CourseBllManager {
 
 
     public List<Course> getAllCourses() {
-        return courseManager.getAllCouses();
+        return courseManager.getAllCourses();
     }
     
 }
