@@ -14,17 +14,11 @@ import javafx.scene.image.Image;
 public class Student extends User {
     private int absence;
     private String imageFilePath;
-    private boolean present;
-    
-    
-    public Student(String firstName, String lastName, String profileName, String password)
-    {
-        this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage1.png");
-    }
-    
-    public Student(String firstName, String lastName, String profileName, String password, String imageFilePath) {
-        super(firstName, lastName, profileName, password);
-        this.imageFilePath = imageFilePath;
+    private boolean present;    
+       
+    public Student(int id, String firstName, String lastName, String profileName, String password, String imageFilePath) {
+        super(id, firstName, lastName, profileName, password);
+        this.imageFilePath = (imageFilePath != null) ? imageFilePath : "/attendance_recorder/images/defaultuserimage1.png";
         present = false;
     }
      

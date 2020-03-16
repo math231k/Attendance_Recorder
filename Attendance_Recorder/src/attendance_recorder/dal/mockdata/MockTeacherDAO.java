@@ -8,15 +8,15 @@ package attendance_recorder.dal.mockdata;
 import attendance_recorder.be.Course;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
-import attendance_recorder.dal.facades.TeacherDalFacade;
 import java.util.ArrayList;
 import java.util.List;
+import attendance_recorder.dal.facades.ITeacherDalFacade;
 
 /**
  *
  * @author fauxtistic
  */
-public class MockTeacherDAO implements TeacherDalFacade {
+public class MockTeacherDAO implements ITeacherDalFacade {
 
     public MockTeacherDAO() {
     }
@@ -25,11 +25,11 @@ public class MockTeacherDAO implements TeacherDalFacade {
     public List<Teacher> getTeachers() {
         List<Student> students = new ArrayList<Student>();        
         List<Teacher> teachers = new ArrayList<Teacher>();        
-        Student s1 = new Student("Mathias", "Birins", "math231k", "test");
-        Student s2 = new Student("Mock", "Student", "student", "password");
-        Student s3 = new Student("Peter", "Nielsen", "student2", "test");
-        Student s4 = new Student("Hans", "Sørensen", "student3", "test");
-        Student s5 = new Student("Kasper", "Davidsen", "student4", "test");
+        Student s1 = new Student(0, "Mathias", "Birins", "math231k", "test", null);
+        Student s2 = new Student(1, "Mock", "Student", "student", "password", null);
+        Student s3 = new Student(2, "Peter", "Nielsen", "student2", "test", null);
+        Student s4 = new Student(3, "Hans", "Sørensen", "student3", "test", null);
+        Student s5 = new Student(4, "Kasper", "Davidsen", "student4", "test", null);
         
         s1.setImageFilePath("/attendance_recorder/images/thiasPic.jpg");
         s1.setAbsence(2);             
@@ -44,9 +44,9 @@ public class MockTeacherDAO implements TeacherDalFacade {
         students.add(s2);
         students.add(s5);
         
-        Teacher t1 = new Teacher("Jeppe", "Moritz Led", "jle", "test");
-        Teacher t2 = new Teacher("Søren", "Spangsberg Jørgensen", "smsj", "test");
-        Teacher t3 = new Teacher("Mock", "Teacher", "teacher", "password");
+        Teacher t1 = new Teacher(0, "Jeppe", "Moritz Led", "jle", "test");
+        Teacher t2 = new Teacher(1, "Søren", "Spangsberg Jørgensen", "smsj", "test");
+        Teacher t3 = new Teacher(2, "Mock", "Teacher", "teacher", "password");
         
         List<Student> c1Students = new ArrayList<Student>();
         List<Student> c2Students = new ArrayList<Student>();
