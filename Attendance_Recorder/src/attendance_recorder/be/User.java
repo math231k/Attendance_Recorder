@@ -15,6 +15,11 @@ public abstract class User {
     private String lastName;
     private String profileName; //should be unique id in database
     private String password;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
 
     public User(String firstName, String lastName, String profileName, String password) {
         this.firstName = firstName;

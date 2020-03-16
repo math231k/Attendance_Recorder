@@ -16,6 +16,7 @@ public class Student extends User {
     private String imageFilePath;
     private boolean present;
     
+    
     public Student(String firstName, String lastName, String profileName, String password)
     {
         this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage1.png");
@@ -27,8 +28,8 @@ public class Student extends User {
         present = false;
     }
      
-    public int getAbsence() {
-        return absence;
+    public int getAbsence() {     
+        return absence;       
     }
 
     public void setAbsence(int absence) {

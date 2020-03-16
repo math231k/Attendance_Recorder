@@ -16,6 +16,7 @@ public class Course {
 
     private String name;
     List<Student> students;
+    List<Teacher> teachers;
     
     public Course(String name) {
         this.name = name;
