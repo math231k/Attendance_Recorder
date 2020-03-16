@@ -24,13 +24,12 @@ public class MockStudentDAO implements IStudentDalFacade {
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<Student>();        
                 
-        Student s1 = new Student(0, "Mathias", "Birins", "math231k", "test");
-        Student s2 = new Student(1, "Mock", "Student", "student", "password");
-        Student s3 = new Student(2, "Peter", "Nielsen", "student2", "test");
-        Student s4 = new Student(3, "Hans", "Sørensen", "student3", "test");
-        Student s5 = new Student(4, "Kasper", "Davidsen", "student4", "test");
+        Student s1 = new Student(0, "Mathias", "Birins", "math231k", "test", "/attendance_recorder/images/thiasPic.jpg");
+        Student s2 = new Student(1, "Mock", "Student", "student", "password", null);
+        Student s3 = new Student(2, "Peter", "Nielsen", "student2", "test", null);
+        Student s4 = new Student(3, "Hans", "Sørensen", "student3", "test", null);
+        Student s5 = new Student(4, "Kasper", "Davidsen", "student4", "test", null);        
         
-        s1.setImageFilePath("/attendance_recorder/images/thiasPic.jpg");
         s1.setAbsence(2);             
         s2.setAbsence(14);             
         s3.setAbsence(7);             

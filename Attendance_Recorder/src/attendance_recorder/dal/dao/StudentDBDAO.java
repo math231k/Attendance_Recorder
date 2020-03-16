@@ -44,9 +44,10 @@ public class StudentDBDAO implements IStudentDalFacade {
                 String firstName = rs.getString("Name");
                 String lastName = rs.getString("LastName");
                 String profileName = rs.getString("Username");                             
-                String password = rs.getString("Password");                             
+                String password = rs.getString("Password");
+                String imageFilePath = rs.getString("ImageFilePath");
 
-                Student student = new Student(id, firstName, lastName, profileName, password);                
+                Student student = new Student(id, firstName, lastName, profileName, password, imageFilePath);                
                 
                 students.add(student);
             }           
