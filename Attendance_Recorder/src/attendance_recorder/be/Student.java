@@ -17,13 +17,13 @@ public class Student extends User {
     private boolean present;
     
     
-    public Student(String firstName, String lastName, String profileName, String password)
+    public Student(int id, String firstName, String lastName, String profileName, String password)
     {
-        this(firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage1.png");
+        this(id, firstName, lastName, profileName, password, "/attendance_recorder/images/defaultuserimage1.png");
     }
     
-    public Student(String firstName, String lastName, String profileName, String password, String imageFilePath) {
-        super(firstName, lastName, profileName, password);
+    public Student(int id, String firstName, String lastName, String profileName, String password, String imageFilePath) {
+        super(id, firstName, lastName, profileName, password);
         this.imageFilePath = imageFilePath;
         present = false;
     }

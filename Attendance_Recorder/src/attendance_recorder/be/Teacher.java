@@ -16,8 +16,8 @@ public class Teacher extends User {
     
     List<Course> courses;
 
-    public Teacher(String firstName, String lastName, String profileName, String password) {
-        super(firstName, lastName, profileName, password);
+    public Teacher(int id, String firstName, String lastName, String profileName, String password) {
+        super(id, firstName, lastName, profileName, password);
         courses = new ArrayList<Course>();
     }
 

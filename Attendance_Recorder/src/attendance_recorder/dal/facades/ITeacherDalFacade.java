@@ -5,15 +5,14 @@
  */
 package attendance_recorder.dal.facades;
 
-import attendance_recorder.be.Student;
+import attendance_recorder.be.Teacher;
 import java.util.List;
 
 /**
  *
  * @author fauxtistic
  */
-public interface StudentDalFacade {
+public interface ITeacherDalFacade {
     
-    public List<Student> getAllStudents();
-    
+    public List<Teacher> getTeachers();
 }

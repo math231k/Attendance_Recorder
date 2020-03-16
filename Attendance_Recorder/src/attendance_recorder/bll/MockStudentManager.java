@@ -8,12 +8,12 @@ package attendance_recorder.bll;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.Course;
-import attendance_recorder.dal.facades.StudentDalFacade;
-import attendance_recorder.dal.facades.TeacherDalFacade;
 import attendance_recorder.dal.mockdata.MockStudentDAO;
 import attendance_recorder.dal.mockdata.MockTeacherDAO;
 import java.util.ArrayList;
 import java.util.List;
+import attendance_recorder.dal.facades.IStudentDalFacade;
+import attendance_recorder.dal.facades.ITeacherDalFacade;
 
 /**
  *
@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class MockStudentManager {
     
-    private StudentDalFacade studentDAO;
-    private TeacherDalFacade teacherDAO;
+    private IStudentDalFacade studentDAO;
+    private ITeacherDalFacade teacherDAO;
 
     public MockStudentManager() {
         

@@ -7,15 +7,15 @@ package attendance_recorder.dal.mockdata;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
-import attendance_recorder.dal.facades.StudentDalFacade;
 import java.util.ArrayList;
 import java.util.List;
+import attendance_recorder.dal.facades.IStudentDalFacade;
 
 /**
  *
  * @author fauxtistic
  */
-public class MockStudentDAO implements StudentDalFacade {
+public class MockStudentDAO implements IStudentDalFacade {
 
     public MockStudentDAO() {
     }
@@ -24,11 +24,11 @@ public class MockStudentDAO implements StudentDalFacade {
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<Student>();        
                 
-        Student s1 = new Student("Mathias", "Birins", "math231k", "test");
-        Student s2 = new Student("Mock", "Student", "student", "password");
-        Student s3 = new Student("Peter", "Nielsen", "student2", "test");
-        Student s4 = new Student("Hans", "Sørensen", "student3", "test");
-        Student s5 = new Student("Kasper", "Davidsen", "student4", "test");
+        Student s1 = new Student(0, "Mathias", "Birins", "math231k", "test");
+        Student s2 = new Student(1, "Mock", "Student", "student", "password");
+        Student s3 = new Student(2, "Peter", "Nielsen", "student2", "test");
+        Student s4 = new Student(3, "Hans", "Sørensen", "student3", "test");
+        Student s5 = new Student(4, "Kasper", "Davidsen", "student4", "test");
         
         s1.setImageFilePath("/attendance_recorder/images/thiasPic.jpg");
         s1.setAbsence(2);             

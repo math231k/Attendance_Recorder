@@ -15,17 +15,18 @@ public abstract class User {
     private String lastName;
     private String profileName; //should be unique id in database
     private String password;
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public User(String firstName, String lastName, String profileName, String password) {
+    private final int id;
+    
+    public User(int id, String firstName, String lastName, String profileName, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.profileName = profileName;
         this.password = password;
+    }
+    
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
