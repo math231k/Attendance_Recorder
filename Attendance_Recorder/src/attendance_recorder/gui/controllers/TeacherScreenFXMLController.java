@@ -11,10 +11,12 @@ import attendance_recorder.be.User;
 import attendance_recorder.be.Course;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
+import attendance_recorder.gui.model.AppModel;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,6 +102,8 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private Label statisticsLbl;
   
+    
+    private AppModel am;
 
     /**
      * Initializes the controller class.
@@ -108,6 +112,8 @@ public class TeacherScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         initColumns();
+        
+        am = AppModel.getAppModel();
         
         btnCourseSelect.setItems(courses);
         tableStudents.setItems(students);
@@ -172,6 +178,11 @@ public class TeacherScreenFXMLController implements Initializable {
         }
     }
     
+    private List<Course> getCurses(){
+        
+        return am.getAllCourses();
+
+    }
     
     private void buildChart(){
         CategoryAxis xAxis = new CategoryAxis();

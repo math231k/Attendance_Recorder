@@ -5,9 +5,12 @@
  */
 package attendance_recorder.gui.model;
 
+import attendance_recorder.be.Course;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
+import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.MockStudentManager;
+import attendance_recorder.bll.StudentBllManager;
 import java.util.List;
 
 /**
@@ -16,20 +19,36 @@ import java.util.List;
  */
 public class AppModel
 {
-    
-    private MockStudentManager msm;
+    private static AppModel am;
+    private CourseBllManager cbm;
+    private StudentBllManager sbm;
 
     public AppModel() {
-        msm = new MockStudentManager();
+        sbm = new StudentBllManager();
+        cbm = new CourseBllManager();
+    }
+    
+    public static AppModel getAppModel(){
+        if (am != null){
+            return am;
+        }
+        else{
+            am = new AppModel();
+            return am;
+        }
     }
     
     public List<Student> getAllStudents(){
                         
-        return msm.getAllStudents();
+        return sbm.getAllStudents();
     }
     
     public List<Teacher> getTeachers() {
-        return msm.getTeachers();
+        return sbm.getTeachers();
+    }
+
+    public List<Course> getAllCourses() {
+        return cbm.getAllCourses();
     }
     
     
