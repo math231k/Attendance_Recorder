@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author fauxtistic
  */
-public class Class {
+public class Course {
 
     private String name;
     List<Student> students;
     
-    public Class(String name) {
+    public Course(String name) {
         this.name = name;
         students = new ArrayList<Student>();
     }    

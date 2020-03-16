@@ -93,7 +93,7 @@
          <effect>
             <DropShadow />
          </effect></BorderPane>
-      <ComboBox fx:id="btnClassSelect" layoutX="7.0" layoutY="30.0" prefHeight="27.0" prefWidth="262.0" promptText="Class Select..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="30.0" />
+      <ComboBox fx:id="btnCourseSelect" layoutX="7.0" layoutY="30.0" prefHeight="27.0" prefWidth="262.0" promptText="Course Select..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="30.0" />
       <Label fx:id="lblCurrentUser" layoutX="7.0" layoutY="450.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Logged in as: " AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="7.0" />
       <MenuBar fx:id="menuBarTeacher" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>

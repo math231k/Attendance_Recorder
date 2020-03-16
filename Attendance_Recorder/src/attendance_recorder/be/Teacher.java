@@ -14,19 +14,19 @@ import java.util.List;
  */
 public class Teacher extends User {
     
-    List<Class> classes;
+    List<Course> courses;
 
     public Teacher(String firstName, String lastName, String profileName, String password) {
         super(firstName, lastName, profileName, password);
-        classes = new ArrayList<Class>();
+        courses = new ArrayList<Course>();
     }
 
-    public List<Class> getClasses() {
-        return classes;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setClasses(List<Class> classes) {
-        this.classes = classes;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
     
     

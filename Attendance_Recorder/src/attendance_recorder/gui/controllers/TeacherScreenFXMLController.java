@@ -8,7 +8,7 @@ package attendance_recorder.gui.controllers;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
-import attendance_recorder.be.Class;
+import attendance_recorder.be.Course;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import java.io.File;
@@ -56,7 +56,7 @@ import javafx.stage.Stage;
 public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Class> classes = FXCollections.observableArrayList();    
+    private ObservableList<Course> courses = FXCollections.observableArrayList();    
     private Teacher currentUser;
     
     @FXML
@@ -74,7 +74,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private ImageView imageView;
     @FXML
-    private ComboBox<Class> btnClassSelect;
+    private ComboBox<Course> btnCourseSelect;
     @FXML
     private Label lblCurrentUser;
     @FXML
@@ -109,10 +109,10 @@ public class TeacherScreenFXMLController implements Initializable {
         
         initColumns();
         
-        btnClassSelect.setItems(classes);
+        btnCourseSelect.setItems(courses);
         tableStudents.setItems(students);
         
-        btnClassSelect.getSelectionModel().selectedItemProperty().addListener(
+        btnCourseSelect.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showStudentsInClass(newValue));
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
@@ -140,12 +140,12 @@ public class TeacherScreenFXMLController implements Initializable {
     public void setCurrentUser(Teacher teacher)
     {
         currentUser = teacher;
-        classes = FXCollections.observableArrayList(currentUser.getClasses());
-        btnClassSelect.setItems(classes); //is this really necessary?
+        courses = FXCollections.observableArrayList(currentUser.getCourses());
+        btnCourseSelect.setItems(courses); //is this really necessary?
         lblCurrentUser.setText("Logged in as: " + currentUser.getFirstName() + " " + currentUser.getLastName());
     }
     
-    private void showStudentsInClass(Class cl)
+    private void showStudentsInClass(Course cl)
     {
         students = FXCollections.observableArrayList(cl.getStudents());
         tableStudents.getSelectionModel().clearSelection();

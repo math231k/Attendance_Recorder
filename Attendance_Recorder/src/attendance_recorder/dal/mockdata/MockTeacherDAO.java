@@ -5,6 +5,7 @@
  */
 package attendance_recorder.dal.mockdata;
 
+import attendance_recorder.be.Course;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.facades.TeacherDalFacade;
@@ -57,16 +58,16 @@ public class MockTeacherDAO implements TeacherDalFacade {
         c2Students.add(s4);
         c2Students.add(s5);
         
-        List<attendance_recorder.be.Class> classes = new ArrayList<attendance_recorder.be.Class>();
-        attendance_recorder.be.Class c1 = new attendance_recorder.be.Class("CS2019");
-        attendance_recorder.be.Class c2 = new attendance_recorder.be.Class ("Mock class");
-        classes.add(c1);
-        classes.add(c2);
+        List<Course> courses = new ArrayList<Course>();
+        Course c1 = new Course("CS2019");
+        Course c2 = new Course ("Mock class");
+        courses.add(c1);
+        courses.add(c2);
         c1.setStudents(c1Students);
         c2.setStudents(c2Students);
-        t1.setClasses(classes);
-        t2.setClasses(classes);
-        t3.setClasses(classes);
+        t1.setCourses(courses);
+        t2.setCourses(courses);
+        t3.setCourses(courses);
         teachers.add(t1);
         teachers.add(t2);
         teachers.add(t3);
