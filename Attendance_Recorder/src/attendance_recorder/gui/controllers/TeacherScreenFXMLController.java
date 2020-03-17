@@ -58,7 +58,7 @@ import javafx.stage.Stage;
 public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Course> courses = FXCollections.observableArrayList();    
+    private ObservableList<Course> courses;// = FXCollections.observableArrayList();    
     private Teacher currentUser;
     
     @FXML
@@ -114,6 +114,8 @@ public class TeacherScreenFXMLController implements Initializable {
         initColumns();
         
         am = AppModel.getAppModel();
+        
+        courses = am.getAllCourses();
         
         btnCourseSelect.setItems(courses);
         tableStudents.setItems(students);
