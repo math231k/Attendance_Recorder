@@ -12,6 +12,7 @@ import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.StudentBllManager;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class AppModel
     private static AppModel am;
     private CourseBllManager cbm;
     private StudentBllManager sbm;
+    ObservableList<Course> courses;
 
     public AppModel() {
         sbm = new StudentBllManager();
@@ -47,7 +49,9 @@ public class AppModel
         return sbm.getTeachers();
     }
 
-    public List<Course> getAllCourses() {
+    public ObservableList<Course> getAllCourses() {
+        
+        
         return cbm.getAllCourses();
     }
     

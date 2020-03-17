@@ -15,6 +15,15 @@ import java.util.List;
 public class Course {
 
     private String name;
+    int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     List<Student> students;
     List<Teacher> teachers;
     
