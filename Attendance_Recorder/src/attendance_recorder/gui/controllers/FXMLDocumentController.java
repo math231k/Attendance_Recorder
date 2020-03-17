@@ -73,7 +73,7 @@ public class FXMLDocumentController implements Initializable {
                 
         imageView.setImage(getImage());
 
-        model = new AppModel();
+        model = AppModel.getAppModel();
         
         txtName.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
@@ -104,6 +104,7 @@ public class FXMLDocumentController implements Initializable {
         
         if (name.isEmpty() || password.isEmpty()) {
             errorAlert("The input fields must be filled out");
+            
         }
         else if (getVerifiedStudent(name, password)!=null) {
             openStudentScreen(getVerifiedStudent(name, password));
@@ -112,6 +113,7 @@ public class FXMLDocumentController implements Initializable {
             openTeacherScreen(getVerifiedTeacher(name, password));
         }
         else errorAlert("Name or password incorrect");
+        
         
         txtPassword.clear();
     }
@@ -238,6 +240,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleClose(ActionEvent event) {
+        System.exit(0);
     }
 
     

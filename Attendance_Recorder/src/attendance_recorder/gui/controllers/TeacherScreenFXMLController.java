@@ -113,20 +113,23 @@ public class TeacherScreenFXMLController implements Initializable {
         
         initColumns();
         
+        currentUser = new Teacher(2, "jeppe", "led", "led", "jep");
+        
         am = AppModel.getAppModel();
         
-        courses = am.getAllCourses();
+        courses = am.getTeachersCourse(currentUser);
         
         btnCourseSelect.setItems(courses);
+        
         tableStudents.setItems(students);
         
         btnCourseSelect.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> showStudentsInClass(newValue));
+            (observable, oldValue, newValue) -> showStudentsInClass(currentUser));
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showIndividualStudentInformation(newValue));
         
-        
+       
         
         buildChart();       
                 
@@ -153,9 +156,9 @@ public class TeacherScreenFXMLController implements Initializable {
         lblCurrentUser.setText("Logged in as: " + currentUser.getFirstName() + " " + currentUser.getLastName());
     }
     
-    private void showStudentsInClass(Course cl)
+    private void showStudentsInClass(Teacher t)
     {
-        students = FXCollections.observableArrayList(cl.getStudents());
+        students = FXCollections.observableArrayList(am.getStudentsInCourse(t));
         tableStudents.getSelectionModel().clearSelection();
         tableStudents.setItems(students);  
         showIndividualStudentInformation(null);
@@ -178,12 +181,6 @@ public class TeacherScreenFXMLController implements Initializable {
         lblPresentStatus.setText("");
         imageView.setImage(null);
         }
-    }
-    
-    private List<Course> getCurses(){
-        
-        return am.getAllCourses();
-
     }
     
     private void buildChart(){

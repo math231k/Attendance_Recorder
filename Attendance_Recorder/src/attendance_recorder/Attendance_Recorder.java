@@ -28,11 +28,16 @@ public class Attendance_Recorder extends Application {
         stage.setTitle("EASV Attendance");
         stage.setScene(scene);
         stage.show();
+        stage.setMaxHeight(500);
+        stage.setMinHeight(500);
+        stage.setMaxWidth(800);
+        stage.setMinWidth(800);
+        /* resulutionen til login skærmen
         stage.setMaxHeight(280);
         stage.setMinHeight(280);
         stage.setMaxWidth(450);
         stage.setMinWidth(450);
-        
+        */
     }
 
     /**

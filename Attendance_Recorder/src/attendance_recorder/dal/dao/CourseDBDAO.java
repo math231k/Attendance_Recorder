@@ -9,6 +9,7 @@ import attendance_recorder.be.Course;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dbaccess.DBSettings;
+import attendance_recorder.dal.facades.ICourseDalFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,20 +26,26 @@ import java.util.logging.Logger;
  *
  * @author math2
  */
-public class CourseDBDAO {
+public class CourseDBDAO implements ICourseDalFacade{
     
     
+    
+    private List<Course> courses;
     private DBSettings dbs;
 
     public CourseDBDAO() {
         try {
             dbs = new DBSettings();
+            
         } catch (IOException e) {
 
         }
+        
+        setCourse();
+        
     }
-
-        public List<Course> getAllCourses() {
+   
+        public void setCourse() {
             
         try (Connection con = dbs.getConnection()) {
             String sql = "SELECT * FROM Course;";
@@ -47,24 +54,24 @@ public class CourseDBDAO {
             List<Course> courses = new ArrayList<>();
             
             while (rs.next()) {
-                String Id = rs.getInt("TeacherId")+""+rs.getInt("StudentId")+"";
+                int teacherId = rs.getInt("TeacherId");
+                int studentId = rs.getInt("StudentId");
                 String name = rs.getString("Name");
 
-                Course c = new Course(name);
-                c.setId(Integer.parseInt(Id));
+                Course c = new Course(name, teacherId, studentId);               
                 
-                courses.add(c);              
+                courses.add(c);    
+                                        
             }
             
-            return courses;
+            
+            
         } catch (SQLServerException ex) {
             Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Problem med server");
         } catch (SQLException ex) {
             Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Problem med sql");
         }
-        return null;
+          
     }
     
     public List<Course> getTeacherCourses(Teacher teacher) {
@@ -88,35 +95,20 @@ public class CourseDBDAO {
         return courses;
     }   
     
-//    public boolean addSongToPlaylist(Course c, Teacher t, Student s) {
-//
-//        try (Connection con = dbs.getConnection()) {
-//            String sql = "INSERT INTO Course (Name, TeacherId, StudentId) VALUES (?,?,?);";
-//            PreparedStatement stmt = con.prepareStatement(sql);
-//
-//            stmt.setString(1, c.getName());
-//            stmt.setInt(2, t.getId());
-//            stmt.setInt(3, s.getId);
-//
-//            int updatedRows = stmt.executeUpdate();
-//
-//            return updatedRows > 0;
-//
-//        } catch (SQLServerException ex) {
-//            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return false;
-//    }
 
-    public List<Student> getCourseStudents(Course course) {
+    public List<Student> getCourseStudents(Teacher t) {
+        
+        Course selectedCourse;
+        
         List<Student> students = new ArrayList();
         try(Connection con = dbs.getConnection()) {
-            String sql = "SELECT * FROM Course JOIN Student ON Course.StudentID = Student.ID"
-                    + " WHERE Course.name = ?;";
+            String sql = "SELECT * FROM Course"
+                    + " JOIN Student ON Course.StudentID = Student.ID"
+                    + " JOIN Teacher ON Course.TeacherID = Teacher.ID"
+                    + " WHERE Teacher.ID = ?;";
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, course.getName());
+            
+            pstmt.setInt(1, t.getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("ID");
@@ -138,6 +130,11 @@ public class CourseDBDAO {
         }
         return students;
     }   
+
+    @Override
+    public List<Course> getAllCourses() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
           
        
 }

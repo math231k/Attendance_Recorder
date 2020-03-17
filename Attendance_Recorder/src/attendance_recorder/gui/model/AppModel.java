@@ -12,6 +12,7 @@ import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.StudentBllManager;
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -23,9 +24,10 @@ public class AppModel
     private static AppModel am;
     private CourseBllManager cbm;
     private StudentBllManager sbm;
-    ObservableList<Course> courses;
+    private ObservableList<Course> courses = FXCollections.observableArrayList();
+    private ObservableList<Student> students = FXCollections.observableArrayList();
 
-    public AppModel() {
+    private AppModel() {
         sbm = new StudentBllManager();
         cbm = new CourseBllManager();
     }
@@ -40,9 +42,9 @@ public class AppModel
         }
     }
     
-    public List<Student> getAllStudents(){
-                        
-        return sbm.getAllStudents();
+    public ObservableList<Student> getAllStudents(){
+        students.addAll(sbm.getAllStudents());
+        return students;
     }
     
     public List<Teacher> getTeachers() {
@@ -53,6 +55,19 @@ public class AppModel
         
         courses.addAll(cbm.getAllCourses());
         return courses;
+    }
+    
+    public ObservableList<Course> getTeachersCourse(Teacher t){
+        
+        courses.removeAll();
+        courses.addAll(cbm.getTeachersCourse(t));
+        return courses;
+    }
+    
+    public ObservableList<Student> getStudentsInCourse(Teacher t){
+        students.removeAll();
+        students.addAll(cbm.getStudentsInCourse(t));
+        return students;
     }
     
     

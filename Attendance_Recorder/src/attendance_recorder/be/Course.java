@@ -15,15 +15,9 @@ import java.util.List;
 public class Course {
 
     private String name;
-    int id;
+    int teacherId;
+    int studentId;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     List<Student> students;
     List<Teacher> teachers;
     
@@ -32,6 +26,14 @@ public class Course {
         students = new ArrayList<Student>();
     }    
 
+    public Course(String name, int teacherId, int studentId) {
+        this.name = name;
+        this.teacherId = teacherId;
+        this.studentId = studentId;
+    }
+
+    
+    
     public List<Student> getStudents() {
         return students;
     }
@@ -46,7 +48,27 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
-    }    
+    }
+
+    
+    public int getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(int id) {
+        this.teacherId = id;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+    
+    
+    
     
     @Override
     public String toString() {
