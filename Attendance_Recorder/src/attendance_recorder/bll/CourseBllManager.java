@@ -10,6 +10,7 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dao.CourseDBDAO;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,6 +26,7 @@ public class CourseBllManager {
 
 
     public List<Course> getAllCourses() {
+               
         return courseManager.getAllCouses();
     }
     
