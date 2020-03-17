@@ -29,10 +29,11 @@ public class CourseBllManager {
     }
 
 
+
     public List<Course> getAllCourses() {               
         
         return courseManager.getAllCourses();
-        
+
     }
     
     public List<Course> getTeachersCourse(Teacher t){
