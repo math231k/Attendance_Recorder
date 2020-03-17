@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,9 +38,33 @@ public class CourseDBDAO {
         }
     }
 
-    public List<Course> getAllCourses() {
-        List<Course> courses = new ArrayList();
-        return courses;
+        public List<Course> getAllCourses() {
+            
+        try (Connection con = dbs.getConnection()) {
+            String sql = "SELECT * FROM Course;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<Course> courses = new ArrayList<>();
+            
+            while (rs.next()) {
+                String Id = rs.getInt("TeacherId")+""+rs.getInt("StudentId")+"";
+                String name = rs.getString("Name");
+
+                Course c = new Course(name);
+                c.setId(Integer.parseInt(Id));
+                
+                courses.add(c);              
+            }
+            
+            return courses;
+        } catch (SQLServerException ex) {
+            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Problem med server");
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Problem med sql");
+        }
+        return null;
     }
     
     public List<Course> getTeacherCourses(Teacher teacher) {

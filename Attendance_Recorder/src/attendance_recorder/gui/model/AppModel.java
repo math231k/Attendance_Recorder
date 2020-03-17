@@ -51,8 +51,8 @@ public class AppModel
 
     public ObservableList<Course> getAllCourses() {
         
-        
-        return cbm.getAllCourses();
+        courses.addAll(cbm.getAllCourses());
+        return courses;
     }
     
     

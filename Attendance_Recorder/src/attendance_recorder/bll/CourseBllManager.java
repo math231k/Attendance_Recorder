@@ -25,11 +25,10 @@ public class CourseBllManager {
     }
 
 
-    public List<Course> getAllCourses() {
-
-               
-        return courseManager.getAllCouses();
-
+    public List<Course> getAllCourses() {               
+        
+        return courseManager.getAllCourses();
+        
     }
     
 }
