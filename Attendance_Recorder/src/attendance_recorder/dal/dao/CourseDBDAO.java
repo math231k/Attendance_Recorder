@@ -35,25 +35,25 @@ public class CourseDBDAO {
     }
     
     
-    public boolean addSongToPlaylist(Course c, Teacher t, Student s) {
-
-        try (Connection con = dbs.getConnection()) {
-            String sql = "INSERT INTO Course (Name, TeacherId, StudentId) VALUES (?,?,?);";
-            PreparedStatement stmt = con.prepareStatement(sql);
-
-            stmt.setString(1, c.getName());
-            stmt.setInt(2, t.getId());
-            stmt.setInt(3, s.getId);
-
-            int updatedRows = stmt.executeUpdate();
-
-            return updatedRows > 0;
-
-        } catch (SQLServerException ex) {
-            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
+//    public boolean addSongToPlaylist(Course c, Teacher t, Student s) {
+//
+//        try (Connection con = dbs.getConnection()) {
+//            String sql = "INSERT INTO Course (Name, TeacherId, StudentId) VALUES (?,?,?);";
+//            PreparedStatement stmt = con.prepareStatement(sql);
+//
+//            stmt.setString(1, c.getName());
+//            stmt.setInt(2, t.getId());
+//            stmt.setInt(3, s.getId);
+//
+//            int updatedRows = stmt.executeUpdate();
+//
+//            return updatedRows > 0;
+//
+//        } catch (SQLServerException ex) {
+//            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return false;
+//    }
 }
