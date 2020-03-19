@@ -5,17 +5,27 @@
  */
 package attendance_recorder.be;
 
+import java.time.LocalDate;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import javafx.util.converter.LocalDateStringConverter;
+
 /**
  *
  * @author math2
  */
 public class Date {
     private String date;
+    private List<LocalDate> dates;
     private int studentId;
+    private boolean isPresent;
 
-    public Date(String date, int studentId) {
+    public Date(String date, int studentId, boolean isPresent) {
         this.date = date;
         this.studentId = studentId;
+        this.isPresent = isPresent;
     }
 
     public String getDate() {
@@ -33,12 +43,49 @@ public class Date {
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
+
+    public boolean isIsPresent() {
+        return isPresent;
+    }
+
+    public void setIsPresent(boolean isPresent) {
+        this.isPresent = isPresent;
+    }
+    
+    public LocalDate convertToLocalDate(String dateToBeConverted){
+       
+        LocalDate ld = LocalDate.parse(dateToBeConverted);
+        
+        return ld;
+    }
+
+    @Override
+    public String toString() {
+        return "Date{" + "date=" + date + ", studentId=" + studentId + ", isPresent=" + isPresent + '}';
+    }
+    
+    
+    
     
     
     public static void main(String[] args) {
-        System.out.println(java.time.LocalDate.now());  
-
+        
+       Date d = new Date("4848448", 1, true);
+       
+       List<LocalDate> dates = new ArrayList<>();
+       
+        dates.add(d.convertToLocalDate("1207-02-16"));
+        dates.add(d.convertToLocalDate("1227-02-16"));
+        dates.add(d.convertToLocalDate("1247-02-16"));
+        dates.add(d.convertToLocalDate("1267-02-16"));
+        
+        for (LocalDate date : dates) {
+            System.out.println(date.getDayOfWeek());
+        }
+        
+        
     }
+    
     
     
 }

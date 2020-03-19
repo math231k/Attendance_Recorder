@@ -9,17 +9,21 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.be.Course;
+import attendance_recorder.be.Date;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.gui.model.AppModel;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -41,6 +45,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -59,7 +64,9 @@ public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private ObservableList<Course> courses;// = FXCollections.observableArrayList();    
+    private AppModel am;
     private Teacher currentUser;
+    private Date currentDate;
     
     @FXML
     private BorderPane diagramPane;
@@ -103,7 +110,17 @@ public class TeacherScreenFXMLController implements Initializable {
     private Label statisticsLbl;
   
     
-    private AppModel am;
+
+    @FXML
+    private RadioButton presentRadiobtn;
+    @FXML
+    private RadioButton absentRadioBtn;
+    @FXML
+    private TableView<Date> AbsenceTabel;
+    @FXML
+    private TableColumn<Date, String> dateColumn;
+    @FXML
+    private TableColumn<Date, Boolean> presensColumn;
 
     /**
      * Initializes the controller class.
@@ -114,6 +131,7 @@ public class TeacherScreenFXMLController implements Initializable {
         initColumns();
         
         currentUser = new Teacher(2, "jeppe", "led", "led", "jep");
+        
         
         am = AppModel.getAppModel();
         
@@ -127,7 +145,14 @@ public class TeacherScreenFXMLController implements Initializable {
             (observable, oldValue, newValue) -> showStudentsInClass(currentUser));
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> showIndividualStudentInformation(newValue));
+            (observable, oldValue, newValue) -> {
+                AbsenceTabel.getItems().clear();
+                AbsenceTabel.setItems(getStudentDates());
+                
+        });
+        
+        AbsenceTabel.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue)-> currentDate = newValue);
         
        
         
@@ -145,6 +170,18 @@ public class TeacherScreenFXMLController implements Initializable {
         absenceColumn.setCellValueFactory(data -> {
             int absence = data.getValue().getAbsence();
             return new SimpleIntegerProperty(absence);
+        });
+        
+        dateColumn.setCellValueFactory(data -> {
+            String date = data.getValue().getDate();
+            return new SimpleStringProperty(date);
+        });
+        
+        presensColumn.setCellValueFactory(data -> {
+            
+            boolean absence = data.getValue().isIsPresent();
+             return new SimpleBooleanProperty(absence);
+
         });
     }
     
@@ -265,6 +302,36 @@ public class TeacherScreenFXMLController implements Initializable {
 
     @FXML
     private void handleEngTrans(ActionEvent event) {
+    }
+
+    @FXML
+    private void HandleChangePresence(ActionEvent event) {
+        
+        LocalDate currentDate = LocalDate.parse(AbsenceTabel.getSelectionModel().getSelectedItem().getDate());
+        int studentId = tableStudents.getSelectionModel().getSelectedItem().getId();
+        boolean presence = true;
+        
+        if(presentRadiobtn.isSelected()){
+            presence = true;
+        }
+        else if(absentRadioBtn.isSelected()){
+            presence = false;
+        }
+        else{
+            System.out.println("ikke valgt");
+        }
+        
+        
+        Date updatedDate = new Date(currentDate.toString(), studentId, presence);
+        
+        am.updatePresence(updatedDate);
+    }
+    
+    private ObservableList<Date> getStudentDates(){
+        
+        return am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
+        
+        
     }
     
 }

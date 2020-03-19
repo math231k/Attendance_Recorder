@@ -6,11 +6,14 @@
 package attendance_recorder.gui.model;
 
 import attendance_recorder.be.Course;
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.bll.CourseBllManager;
+import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.StudentBllManager;
+import java.util.Collection;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,12 +27,15 @@ public class AppModel
     private static AppModel am;
     private CourseBllManager cbm;
     private StudentBllManager sbm;
+    private DateBllManager dm;
     private ObservableList<Course> courses = FXCollections.observableArrayList();
     private ObservableList<Student> students = FXCollections.observableArrayList();
+    private ObservableList<Date> dates = FXCollections.observableArrayList();
 
     private AppModel() {
         sbm = new StudentBllManager();
         cbm = new CourseBllManager();
+        dm = new DateBllManager();
     }
     
     public static AppModel getAppModel(){
@@ -68,6 +74,21 @@ public class AppModel
         students.removeAll();
         students.addAll(cbm.getStudentsInCourse(t));
         return students;
+    }
+
+    public List<Date> getDates(Student s) {
+        return dm.getDates(s);
+    }
+
+    public void updatePresence(Date updatedDate) {
+        dm.updatePresence(updatedDate);
+    }
+
+    public ObservableList<Date> getStudentDates(Student selectedItem) {
+        
+        dates.removeAll();
+        dates.addAll(dm.getDates(selectedItem));
+        return dates;
     }
     
     

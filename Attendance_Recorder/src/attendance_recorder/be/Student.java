@@ -5,6 +5,7 @@
  */
 package attendance_recorder.be;
 
+import java.util.List;
 import javafx.scene.image.Image;
 
 /**
@@ -15,6 +16,7 @@ public class Student extends User {
     private int absence;
     private String imageFilePath;
     private boolean present;    
+    private List<Date> days;
        
     public Student(int id, String firstName, String lastName, String profileName, String password, String imageFilePath) {
         super(id, firstName, lastName, profileName, password);
@@ -45,6 +47,7 @@ public class Student extends User {
     public void setPresent(boolean present) {
         this.present = present;
     }
+    
     
     
 
