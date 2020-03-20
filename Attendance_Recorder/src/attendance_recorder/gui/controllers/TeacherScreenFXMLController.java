@@ -151,7 +151,7 @@ public class TeacherScreenFXMLController implements Initializable {
             (observable, oldValue, newValue) -> {
                 showIndividualStudentInformation(newValue);
                 AbsenceTabel.getItems().clear();
-                AbsenceTabel.setItems(getStudentDates());
+                AbsenceTabel.setItems(getStudentDates(newValue));
                 diagramPane.setCenter(am.buildChart(newValue));
                 
         });
@@ -227,34 +227,6 @@ public class TeacherScreenFXMLController implements Initializable {
         imageView.setImage(null);
         }
     }
-    
-    /*private void buildChart(Student s){
-        
-        
-        
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Weekday");
-        
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Presence");
-        
-        BarChart barChart = new BarChart(xAxis, yAxis);
-        
-        XYChart.Series data = new XYChart.Series();
-        data.setName("Student presence by weekday");
-        
-        data.getData().add(new XYChart.Data("Monday", 80));
-        data.getData().add(new XYChart.Data("Tuesday", 95));
-        data.getData().add(new XYChart.Data("Wednesday", 90));
-        data.getData().add(new XYChart.Data("Thursday", 75));
-        data.getData().add(new XYChart.Data("Friday", 70));
-        
-        barChart.getData().add(data);
-        barChart.setLegendVisible(false);
-        
-        diagramPane.setCenter(barChart);       
-        
-    }       */
 
     @FXML
     private void handleLogout(ActionEvent event)
@@ -338,11 +310,14 @@ public class TeacherScreenFXMLController implements Initializable {
         am.updatePresence(updatedDate);
         AbsenceTabel.getItems().clear();
         am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
+        diagramPane.setCenter(am.buildChart(tableStudents.getSelectionModel().getSelectedItem()));
+        
+        
     }
     
-    private ObservableList<Date> getStudentDates(){
+    private ObservableList<Date> getStudentDates(Student s){
         
-        return am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
+        return am.getStudentDates(s);
         
         
     }

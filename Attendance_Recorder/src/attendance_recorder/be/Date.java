@@ -63,29 +63,5 @@ public class Date {
     public String toString() {
         return "Date{" + "date=" + date + ", studentId=" + studentId + ", isPresent=" + isPresent + '}';
     }
-    
-    
-    
-    
-    
-    public static void main(String[] args) {
-        
-       Date d = new Date("4848448", 1, true);
-       
-       List<LocalDate> dates = new ArrayList<>();
-       
-        dates.add(d.convertToLocalDate("1207-02-16"));
-        dates.add(d.convertToLocalDate("1227-02-16"));
-        dates.add(d.convertToLocalDate("1247-02-16"));
-        dates.add(d.convertToLocalDate("1267-02-16"));
-        
-        for (LocalDate date : dates) {
-            System.out.println(date.getDayOfWeek());
-        }
-        
-        
-    }
-    
-    
-    
+      
 }

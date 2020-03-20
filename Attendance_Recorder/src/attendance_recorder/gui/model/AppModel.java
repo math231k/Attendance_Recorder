@@ -94,7 +94,7 @@ public class AppModel
 
     public ObservableList<Date> getStudentDates(Student selectedItem) {
         
-        dates.removeAll();
+        dates.clear();
         dates.addAll(dm.getDates(selectedItem));
         return dates;
     }
