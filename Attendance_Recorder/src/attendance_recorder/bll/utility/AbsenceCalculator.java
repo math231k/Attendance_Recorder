@@ -5,9 +5,11 @@
  */
 package attendance_recorder.bll.utility;
 
+import attendance_recorder.be.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -31,7 +33,7 @@ public class AbsenceCalculator {
     private int saturdays;
     private int sundays;
 
-    public AbsenceCalculator(List<LocalDate> dates) {
+    public AbsenceCalculator(ObservableList<Date> dates) {
     
         dayCounter(dates);
         
@@ -76,37 +78,37 @@ public class AbsenceCalculator {
         return sundays;
     }
     
-    public void dayCounter(List<LocalDate> d){
+    public void dayCounter(List<Date> d){
         
-        for (LocalDate localDate : d) {
+        for (Date localDate : d) {
             
         
     
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().MONDAY)){
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().MONDAY)){
             mondays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().TUESDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().TUESDAY)){
             tuesdays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().WEDNESDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().WEDNESDAY)){
             wednesdays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().THURSDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().THURSDAY)){
             thursdays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().FRIDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().FRIDAY)){
             fridays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().SATURDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SATURDAY)){
             saturdays++;
         }
         
-        if(localDate.getDayOfWeek().equals(localDate.getDayOfWeek().SUNDAY)){
+        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SUNDAY)){
             sundays++;
         }
         
@@ -116,58 +118,6 @@ public class AbsenceCalculator {
         
         
     }
-    
-        public static void main(String[] args) {
-        
-            
-            
-            List<LocalDate> dates = new ArrayList<>();
-                    
-            
-            LocalDate ld1 = LocalDate.parse("2020-04-21");
-            LocalDate ld2 = LocalDate.parse("2020-02-04");
-            LocalDate ld3 = LocalDate.parse("2020-04-25");
-            LocalDate ld4 = LocalDate.parse("2020-04-20");
-            LocalDate ld5 = LocalDate.parse("2020-06-05");
-            LocalDate ld6 = LocalDate.parse("2020-04-19");
-            LocalDate ld7 = LocalDate.parse("2020-07-18");
-            LocalDate ld8 = LocalDate.parse("2020-12-24");
-            LocalDate ld9 = LocalDate.parse("2020-03-02");
-            LocalDate ld10 = LocalDate.parse("2020-06-10");
-            LocalDate ld11 = LocalDate.parse("2020-08-11");
-            LocalDate ld12 = LocalDate.parse("2020-04-15");
-            LocalDate ld13 = LocalDate.parse("2020-11-17");
-            LocalDate ld14 = LocalDate.parse("2020-01-01");
-            LocalDate ld15 = LocalDate.parse("2020-05-30");
-            LocalDate ld16 = LocalDate.parse("2020-10-10");
-            
-            dates.add(ld1);
-            dates.add(ld2);
-            dates.add(ld3);
-            dates.add(ld4);
-            dates.add(ld5);
-            dates.add(ld6);
-            dates.add(ld7);
-            dates.add(ld8);
-            dates.add(ld9);
-            dates.add(ld10);
-            dates.add(ld11);
-            dates.add(ld12);
-            dates.add(ld13);
-            dates.add(ld14);
-            dates.add(ld15);
-            dates.add(ld16);
-            
-            AbsenceCalculator ac = new AbsenceCalculator(dates);
-            
-            System.out.println(ac.getAbsentMondays()+ " Mondays");
-            System.out.println(ac.getAbsentTuedays()+ " Tuesdays");
-            System.out.println(ac.getAbsentWedesdays()+ " Wednesdays");
-            System.out.println(ac.getAbsentThursdays()+ " Thursdays");
-            System.out.println(ac.getAbsentFridays()+ " Fridays");
-            System.out.println(ac.getAbsentSaturdays()+ " Saturdays");
-            System.out.println(ac.getAbsentSundays()+ " Sundays");
-    }
-    
+  
     
 }

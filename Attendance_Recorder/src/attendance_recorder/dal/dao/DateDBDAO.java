@@ -75,13 +75,10 @@ public class DateDBDAO {
         return days;
     }
     
-    public void updatePresence(Date d){
+    public boolean updatePresence(Date d){
         int presence = 0;
         try (Connection con = dbs.getConnection()) {
-            String sql = "UPDATE Date" +
-                         " Set presence = ?" +
-                         " WHERE StudentId = ?" +
-                         " AND Date = ?";
+            String sql = "UPDATE Date Set presence = ? WHERE StudentId = ? AND Date = ?";
             
             PreparedStatement pstmt = con.prepareStatement(sql);
             
@@ -98,7 +95,12 @@ public class DateDBDAO {
             pstmt.setInt(2, d.getStudentId());
             pstmt.setString(3, d.getDate());            
             
-            ResultSet rs = pstmt.executeQuery(); 
+            int updatedRows = pstmt.executeUpdate();
+            
+            if(updatedRows > 0){
+                return true;
+            }
+            
             
               
         } catch (SQLServerException ex) {
@@ -106,6 +108,6 @@ public class DateDBDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+            return false;
     }
 }

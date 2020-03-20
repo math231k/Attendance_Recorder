@@ -149,15 +149,15 @@ public class TeacherScreenFXMLController implements Initializable {
                 showIndividualStudentInformation(newValue);
                 AbsenceTabel.getItems().clear();
                 AbsenceTabel.setItems(getStudentDates());
+                am.buildChart(newValue);
                 
         });
         
         AbsenceTabel.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)-> currentDate = newValue);
         
-       
         
-        buildChart();       
+        
                 
     }
     
@@ -221,7 +221,10 @@ public class TeacherScreenFXMLController implements Initializable {
         }
     }
     
-    private void buildChart(){
+    private void buildChart(Student s){
+        
+        
+        
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Weekday");
         
@@ -244,7 +247,7 @@ public class TeacherScreenFXMLController implements Initializable {
         
         diagramPane.setCenter(barChart);       
         
-    }        
+    }       
 
     @FXML
     private void handleLogout(ActionEvent event)

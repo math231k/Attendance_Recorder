@@ -13,10 +13,18 @@ import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.StudentBllManager;
+import attendance_recorder.bll.utility.AbsenceCalculator;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -90,6 +98,37 @@ public class AppModel
         dates.addAll(dm.getDates(selectedItem));
         return dates;
     }
+    
+    public BarChart buildChart(Student s){
+        
+        
+        
+        AbsenceCalculator ac = new AbsenceCalculator(getStudentDates(s));
+        
+        
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Weekday");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Presence");
+        
+        BarChart barChart = new BarChart(xAxis, yAxis);
+        
+        XYChart.Series data = new XYChart.Series();
+        data.setName("Student presence by weekday");
+        
+        data.getData().add(new XYChart.Data("Monday", ac.getAbsentMondays()));
+        data.getData().add(new XYChart.Data("Tuesday", ac.getAbsentTuedays()));
+        data.getData().add(new XYChart.Data("Wednesday", ac.getAbsentWedesdays()));
+        data.getData().add(new XYChart.Data("Thursday", ac.getAbsentThursdays()));
+        data.getData().add(new XYChart.Data("Friday", ac.getAbsentFridays()));
+        
+        barChart.getData().add(data);
+        barChart.setLegendVisible(false);
+        
+        return barChart;      
+        
+    } 
     
     
 }
