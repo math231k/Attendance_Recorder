@@ -36,6 +36,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+Attendance_Recorder/DBSettings.txt
 
 # End of https://www.gitignore.io/api/java,netbeans
-Attendance_Recorder/DBSettings.txt
