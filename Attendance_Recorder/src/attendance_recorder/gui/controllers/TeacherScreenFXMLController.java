@@ -48,6 +48,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -67,6 +68,8 @@ public class TeacherScreenFXMLController implements Initializable {
     private AppModel am;
     private Teacher currentUser;
     private Date currentDate;
+    private final ToggleGroup group = new ToggleGroup();
+
     
     @FXML
     private BorderPane diagramPane;
@@ -157,8 +160,14 @@ public class TeacherScreenFXMLController implements Initializable {
         
        
         
-        buildChart();       
-                
+        buildChart(); 
+        
+     
+        //Sets both radio buttons in the same group, making only 1 active at a time
+        presentRadiobtn.setToggleGroup(group);
+        absentRadioBtn.setToggleGroup(group);
+        
+      
     }
     
     private void initColumns()
@@ -334,5 +343,9 @@ public class TeacherScreenFXMLController implements Initializable {
         
         
     }
+    
+    
+    
+    
     
 }
