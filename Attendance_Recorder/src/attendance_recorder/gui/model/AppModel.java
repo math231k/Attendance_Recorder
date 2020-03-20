@@ -100,8 +100,7 @@ public class AppModel
     }
     
     public BarChart buildChart(Student s){
-        
-        
+                
         
         AbsenceCalculator ac = new AbsenceCalculator(getStudentDates(s));
         
@@ -129,6 +128,12 @@ public class AppModel
         return barChart;      
         
     } 
+    
+    public double getAbsencePercentage(){
+        
+        AbsenceCalculator ac = new AbsenceCalculator(dates);        
+        return ac.calculateAbsencePercentage(dates);       
+    }
     
     
 }

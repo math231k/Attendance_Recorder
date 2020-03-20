@@ -152,6 +152,7 @@ public class TeacherScreenFXMLController implements Initializable {
                 showIndividualStudentInformation(newValue);
                 AbsenceTabel.getItems().clear();
                 AbsenceTabel.setItems(getStudentDates(newValue));
+                lblAbsenceProcentage.setText(am.getAbsencePercentage()+"%");
                 diagramPane.setCenter(am.buildChart(newValue));
                 
         });
@@ -311,6 +312,7 @@ public class TeacherScreenFXMLController implements Initializable {
         AbsenceTabel.getItems().clear();
         am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
         diagramPane.setCenter(am.buildChart(tableStudents.getSelectionModel().getSelectedItem()));
+        lblAbsenceProcentage.setText((am.getAbsencePercentage()+"%"));
         
         
     }

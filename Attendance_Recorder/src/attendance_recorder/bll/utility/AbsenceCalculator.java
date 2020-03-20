@@ -32,10 +32,14 @@ public class AbsenceCalculator {
     private int fridays;
     private int saturdays;
     private int sundays;
+    
+    private double percentage;
+    private double  totalAbsence;
 
     public AbsenceCalculator(ObservableList<Date> dates) {
     
         dayCounter(dates);
+        //getTotalAbsence(dates);
         
     }
    
@@ -117,10 +121,25 @@ public class AbsenceCalculator {
                 sundays++;
         }
 
-    }
-        
-        
+    }     
     }
   
+    public double calculateAbsencePercentage(List<Date> dates){
+ 
+        return percentage = getTotalAbsence(dates)/dates.size()*100;        
+    }
+    
+    public double getTotalAbsence(List<Date> dates){
+        
+        totalAbsence = 0;
+        
+        for (Date date : dates) {
+            if (!date.isIsPresent()) {
+                totalAbsence++;
+            }
+        }
+        return totalAbsence;
+    }
+    
     
 }
