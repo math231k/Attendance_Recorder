@@ -5,7 +5,6 @@
  */
 package attendance_recorder.bll.utility.languages;
 
-import attendance_recorder.bll.utility.ILanguage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance_recorder.bll.utility;
+package attendance_recorder.bll.utility.languages;
 
 import java.util.List;
 

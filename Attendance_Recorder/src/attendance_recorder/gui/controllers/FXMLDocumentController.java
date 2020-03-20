@@ -9,7 +9,7 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
 import attendance_recorder.bll.MockStudentManager;
-import attendance_recorder.bll.utility.ILanguage;
+import attendance_recorder.bll.utility.languages.ILanguage;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.bll.utility.languages.LangDanish.Language;
 import attendance_recorder.bll.utility.languages.LangEnglish;
