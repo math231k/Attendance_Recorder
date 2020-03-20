@@ -80,41 +80,44 @@ public class AbsenceCalculator {
     
     public void dayCounter(List<Date> d){
         
-        for (Date localDate : d) {
-            
-        
+        for (Date localDate : d) {       
     
         if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().MONDAY)){
-            mondays++;
+            if(!localDate.isIsPresent())
+                mondays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().TUESDAY)){
-            tuesdays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().TUESDAY)){
+            if(!localDate.isIsPresent())
+                tuesdays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().WEDNESDAY)){
-            wednesdays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().WEDNESDAY)){
+            if(!localDate.isIsPresent())
+                wednesdays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().THURSDAY)){
-            thursdays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().THURSDAY)){
+            if(!localDate.isIsPresent())
+                thursdays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().FRIDAY)){
-            fridays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().FRIDAY)){
+            if(!localDate.isIsPresent())
+                fridays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SATURDAY)){
-            saturdays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SATURDAY)){
+            if(!localDate.isIsPresent())
+                saturdays++;
         }
         
-        if(LocalDate.parse(localDate.getDate()).equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SUNDAY)){
-            sundays++;
+        if(LocalDate.parse(localDate.getDate()).getDayOfWeek().equals(LocalDate.parse(localDate.getDate()).getDayOfWeek().SUNDAY)){
+            if(!localDate.isIsPresent())
+                sundays++;
         }
-        
-        
-        
-        }
+
+    }
         
         
     }

@@ -5,20 +5,10 @@
  */
 package attendance_recorder.bll;
 
-import attendance_recorder.be.Course;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
-import attendance_recorder.dal.dao.CourseDBDAO;
 import attendance_recorder.dal.dao.DateDBDAO;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

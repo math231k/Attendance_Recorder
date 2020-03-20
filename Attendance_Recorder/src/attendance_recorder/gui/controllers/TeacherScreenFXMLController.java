@@ -152,7 +152,7 @@ public class TeacherScreenFXMLController implements Initializable {
                 showIndividualStudentInformation(newValue);
                 AbsenceTabel.getItems().clear();
                 AbsenceTabel.setItems(getStudentDates());
-                am.buildChart(newValue);
+                diagramPane.setCenter(am.buildChart(newValue));
                 
         });
         
@@ -228,7 +228,7 @@ public class TeacherScreenFXMLController implements Initializable {
         }
     }
     
-    private void buildChart(Student s){
+    /*private void buildChart(Student s){
         
         
         
@@ -254,7 +254,7 @@ public class TeacherScreenFXMLController implements Initializable {
         
         diagramPane.setCenter(barChart);       
         
-    }       
+    }       */
 
     @FXML
     private void handleLogout(ActionEvent event)
