@@ -326,6 +326,8 @@ public class TeacherScreenFXMLController implements Initializable {
         Date updatedDate = new Date(currentDate.toString(), studentId, presence);
         
         am.updatePresence(updatedDate);
+        AbsenceTabel.getItems().clear();
+        am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
     }
     
     private ObservableList<Date> getStudentDates(){
