@@ -21,6 +21,7 @@ public class Date {
     private List<LocalDate> dates;
     private int studentId;
     private boolean isPresent;
+    private String message;
 
     public Date(String date, int studentId, boolean isPresent) {
         this.date = date;
@@ -59,6 +60,14 @@ public class Date {
         return ld;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }    
+    
     @Override
     public String toString() {
         return "Date{" + "date=" + date + ", studentId=" + studentId + ", isPresent=" + isPresent + '}';
