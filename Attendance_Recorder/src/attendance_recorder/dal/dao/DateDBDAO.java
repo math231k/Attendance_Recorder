@@ -62,8 +62,10 @@ public class DateDBDAO {
                     }
                     
                 int studentId = rs.getInt("studentId");
+                String absenceNote = rs.getString("AbsenceNote");
                 
                 Date day = new Date(date, studentId, presence);
+                day.getAbsenceNote();
                 days.add(day);
             }
             
@@ -103,6 +105,27 @@ public class DateDBDAO {
             
             
               
+        } catch (SQLServerException ex) {
+            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
+    }
+    
+    public boolean updateAbsenceNote(Date d){        
+        try (Connection con = dbs.getConnection()) {
+            String sql = "UPDATE Date SET AbsenceNote = ? WHERE StudentId = ? AND Date = ?";            
+            PreparedStatement pstmt = con.prepareStatement(sql);            
+            pstmt.setString(1, d.getAbsenceNote());
+            pstmt.setInt(2, d.getStudentId());
+            pstmt.setString(3, d.getDate());            
+            
+            int updatedRows = pstmt.executeUpdate();            
+            if(updatedRows > 0){
+                return true;
+            }            
+                          
         } catch (SQLServerException ex) {
             Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
