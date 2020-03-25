@@ -86,6 +86,10 @@ public class AppModel
     public void updatePresence(Date updatedDate) {
         dm.updatePresence(updatedDate);
     }
+    
+    public boolean updateAbsenceNote(Date updatedDate) {
+        return dm.updateAbsenceNote(updatedDate);
+    }
 
     public ObservableList<Date> getStudentDates(Student selectedItem) {
         
