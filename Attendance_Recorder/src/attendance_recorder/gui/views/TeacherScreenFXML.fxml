@@ -90,7 +90,7 @@
          <effect>
             <DropShadow />
          </effect></ImageView>
-      <Label fx:id="statisticsLbl" layoutX="304.0" layoutY="185.0" text="Statistics" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="185.0" />
+      <Label fx:id="statisticsLbl" layoutX="313.0" layoutY="185.0" text="Statistics" AnchorPane.leftAnchor="313.0" AnchorPane.topAnchor="185.0" />
       <BorderPane fx:id="diagramPane" layoutX="304.0" layoutY="202.0" prefHeight="245.0" prefWidth="429.0" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="11.0">
          <effect>
             <DropShadow />

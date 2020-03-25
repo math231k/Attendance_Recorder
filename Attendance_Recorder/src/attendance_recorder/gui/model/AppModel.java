@@ -11,16 +11,11 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.DateBllManager;
-import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.StudentBllManager;
 import attendance_recorder.bll.utility.AbsenceCalculator;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -128,6 +123,8 @@ public class AppModel
         return barChart;      
         
     } 
+    
+    
     
     public double getAbsencePercentage(){
         

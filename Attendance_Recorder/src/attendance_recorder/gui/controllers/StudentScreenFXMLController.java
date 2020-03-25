@@ -8,6 +8,7 @@ package attendance_recorder.gui.controllers;
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
+import attendance_recorder.gui.model.AppModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
@@ -57,6 +58,7 @@ public class StudentScreenFXMLController implements Initializable {
 
     
     private Student currentUser;
+    private AppModel am;
     
     @FXML
     private Label lblWelcome;
@@ -102,6 +104,9 @@ public class StudentScreenFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        am = AppModel.getAppModel();
+        
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
         menuItemProfile.setDisable(true);
@@ -114,39 +119,21 @@ public class StudentScreenFXMLController implements Initializable {
     public void setCurrentUser(Student student)
     {
         currentUser = student;
+        
         lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
         lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
-        lblAbsence.setText("Your total absence is " + currentUser.getAbsence() + "%");
+        lblAbsence.setText("Your total absence is " + am.getAbsencePercentage() + "%");
     }
    
     
     @FXML
     private void handleChart(ActionEvent event) {
     
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Weekday");
+       
+        diagramPane.setCenter(am.buildChart(currentUser));
         
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Presence");
-        
-        BarChart barChart = new BarChart(xAxis, yAxis);
-        
-        XYChart.Series data = new XYChart.Series();
-        data.setName("Student presence by weekday");
-        
-        data.getData().add(new XYChart.Data("Monday", 80));
-        data.getData().add(new XYChart.Data("Tuesday", 95));
-        data.getData().add(new XYChart.Data("Wednesday", 90));
-        data.getData().add(new XYChart.Data("Thursday", 75));
-        data.getData().add(new XYChart.Data("Friday", 70));
-        
-        barChart.getData().add(data);
-        barChart.setLegendVisible(false);
-        
-        diagramPane.setCenter(barChart);
-        menuItemDiagram.setDisable(true);
         menuItemProfile.setDisable(false);
     
     }
