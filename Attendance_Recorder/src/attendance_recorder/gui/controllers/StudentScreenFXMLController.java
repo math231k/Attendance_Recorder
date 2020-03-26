@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -54,6 +55,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -65,6 +67,7 @@ public class StudentScreenFXMLController implements Initializable {
 
     
     private Student currentUser;
+    private Date selectedDate;
     private AppModel am;
     private final ToggleGroup group = new ToggleGroup();
     
@@ -97,9 +100,7 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private JFXRadioButton radioPresent;
     @FXML
-    private JFXButton btnSubmit;
-    private TableColumn<?, ?> clmDate;
-    private TableColumn<?, ?> clmPresence;
+    private JFXButton btnSubmit;    
     @FXML
     private Label lblConnection;
     @FXML
@@ -108,6 +109,8 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXDatePicker JFXcalender;
     @FXML
     private TextArea txtAbsenceNote;
+    @FXML
+    private Label lblDatePresence;
 
 
 
@@ -205,9 +208,7 @@ public class StudentScreenFXMLController implements Initializable {
         lblAbsence.setText(Arrays.toString(transDk.Translate(lblAbsence.getText())));
         radioAbsent.setText(Arrays.toString(transDk.Translate(radioAbsent.getText())));
         radioPresent.setText(Arrays.toString(transDk.Translate(radioPresent.getText())));
-        btnSubmit.setText(Arrays.toString(transDk.Translate(btnSubmit.getText())));
-        clmDate.setText(Arrays.toString(transDk.Translate(clmDate.getText())));
-        clmPresence.setText(Arrays.toString(transDk.Translate(clmPresence.getText())));
+        btnSubmit.setText(Arrays.toString(transDk.Translate(btnSubmit.getText())));        
         lblConnection.setText(Arrays.toString(transDk.Translate(lblConnection.getText())));
         
     }
@@ -233,6 +234,7 @@ public class StudentScreenFXMLController implements Initializable {
         date.setAbsenceNote(txtAbsenceNote.getText());
         //am.updateAbsenceNote(date);
         System.out.println(date.getAbsenceNote());
+        System.out.println(currentUser);
     }
     
     private void showErrorAlert(String message) {
@@ -241,6 +243,29 @@ public class StudentScreenFXMLController implements Initializable {
         alert.setHeaderText("ERROR");
         alert.setContentText(String.format(message));
         alert.showAndWait();
+    }
+
+    @FXML
+    private void selectDate(ActionEvent event) {
+        //hardcoded data
+        currentUser = new Student(1, "", "", "", "", null);
+        
+        
+        List<Date> dates = am.getStudentDates(currentUser);
+        for (Date date : dates) {
+            if (JFXcalender.getValue().toString().equals(date.getDate())) {
+                selectedDate = date;
+                if (date.isIsPresent()==true) {
+                    lblDatePresence.setText("PRESENT");
+                    lblDatePresence.setTextFill(Color.GREEN);
+                }
+                else if (date.isIsPresent()==false) {
+                    lblDatePresence.setText("ABSENT");
+                    lblDatePresence.setTextFill(Color.RED);
+                }
+            }
+        }
+        
     }
 
     

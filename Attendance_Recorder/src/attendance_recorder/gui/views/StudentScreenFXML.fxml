@@ -60,10 +60,10 @@
             <JFXButton fx:id="langEngBtn" layoutX="271.0" layoutY="14.0" onAction="#handleEngTrans" text=" " />
             <JFXButton fx:id="langDanBtn" layoutX="271.0" layoutY="44.0" onAction="#handleDanTrans" text=" " />
             <JFXButton fx:id="btnAbsenceNote" layoutX="309.0" layoutY="229.0" onAction="#addEditAbsenceNote" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: d3d3d3;" text="Save note" />
-            <JFXDatePicker fx:id="JFXcalender" layoutX="309.0" layoutY="81.0" promptText="Choose a date" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="11.0" />
+            <JFXDatePicker fx:id="JFXcalender" layoutX="309.0" layoutY="81.0" onAction="#selectDate" promptText="Choose a date" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="11.0" />
             <TextArea fx:id="txtAbsenceNote" layoutX="309.0" layoutY="153.0" prefHeight="81.0" prefWidth="173.0" promptText="Absence note" />
             <Label layoutX="316.0" layoutY="121.0" text="Attendance:" />
-            <Label layoutX="395.0" layoutY="121.0" text="ABSENT" textFill="RED" />
+            <Label fx:id="lblDatePresence" layoutX="395.0" layoutY="121.0" text="ABSENT" textFill="RED" />
          </children>
       </AnchorPane>
    </center>
