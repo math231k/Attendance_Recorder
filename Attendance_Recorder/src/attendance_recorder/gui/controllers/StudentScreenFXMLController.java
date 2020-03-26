@@ -10,6 +10,7 @@ import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.gui.model.AppModel;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 import java.lang.System.Logger;
@@ -92,14 +93,14 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXRadioButton radioPresent;
     @FXML
     private JFXButton btnSubmit;
-    @FXML
     private TableColumn<?, ?> clmDate;
-    @FXML
     private TableColumn<?, ?> clmPresence;
     @FXML
     private Label lblConnection;
     @FXML
     private JFXButton btnAbsenceNote;
+    @FXML
+    private JFXDatePicker JFXcalender;
 
 
 
@@ -121,6 +122,7 @@ public class StudentScreenFXMLController implements Initializable {
         //radio buttons
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
+        
         
         
     }    
@@ -210,5 +212,6 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
     }
+
     
 }
