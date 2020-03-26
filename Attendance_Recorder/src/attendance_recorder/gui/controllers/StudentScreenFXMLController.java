@@ -5,6 +5,7 @@
  */
 package attendance_recorder.gui.controllers;
 
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
@@ -21,6 +22,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +49,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -91,11 +96,13 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private JFXButton btnSubmit;
     @FXML
-    private TableColumn<?, ?> clmDate;
+    private TableColumn<Date, String> clmDate;
     @FXML
-    private TableColumn<?, ?> clmPresence;
+    private TableColumn<Date, Boolean> clmPresence;
     @FXML
     private Label lblConnection;
+    @FXML
+    private TableView<Date> tblDate;
 
 
 
@@ -107,6 +114,8 @@ public class StudentScreenFXMLController implements Initializable {
         
         am = AppModel.getAppModel();
         
+        currentUser = new Student(1, "Mathias", "Birins", "mat123", "bir123", null);
+        
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
         menuItemProfile.setDisable(true);
@@ -114,17 +123,33 @@ public class StudentScreenFXMLController implements Initializable {
         langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
+        tblDate.setItems(am.getStudentDates(currentUser));
+        setCurrentUser(currentUser);
+        
+        clmPresence.setCellValueFactory(data -> {
+            boolean absence = data.getValue().isIsPresent();
+             return new SimpleBooleanProperty(absence);
+        });
+        
+        clmDate.setCellValueFactory(data -> {
+            String date = data.getValue().getDate();
+            return new SimpleStringProperty(date);
+        });
+        
+        
+        
     }    
     
     public void setCurrentUser(Student student)
     {
-        currentUser = student;
+        
         
         lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
         lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
         lblAbsence.setText("Your total absence is " + am.getAbsencePercentage() + "%");
+        
     }
    
     

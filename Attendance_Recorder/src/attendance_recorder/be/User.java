@@ -15,7 +15,7 @@ public abstract class User {
     private String lastName;
     private String profileName; //should be unique id in database
     private String password;
-    private final int id;
+    private int id;
     
     public User(int id, String firstName, String lastName, String profileName, String password) {
         this.id = id;

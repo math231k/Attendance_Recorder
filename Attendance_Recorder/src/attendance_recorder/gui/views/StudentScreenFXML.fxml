@@ -47,7 +47,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="281.0" layoutY="72.0" prefHeight="202.0" prefWidth="153.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0">
+            <TableView fx:id="tblDate" layoutX="281.0" layoutY="72.0" prefHeight="202.0" prefWidth="153.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0">
               <columns>
                 <TableColumn fx:id="clmDate" prefWidth="76.0" text="Date" />
                 <TableColumn fx:id="clmPresence" prefWidth="78.0" text="Presence" />
