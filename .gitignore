@@ -39,3 +39,8 @@ nbdist/
 Attendance_Recorder/DBSettings.txt
 
 # End of https://www.gitignore.io/api/java,netbeans
+Attendance_Recorder/nbproject/build-impl.xml
+Attendance_Recorder/nbproject/genfiles.properties
+Attendance_Recorder/nbproject/genfiles.properties
+Attendance_Recorder/nbproject/project.properties
+Attendance_Recorder/nbproject/project.xml
