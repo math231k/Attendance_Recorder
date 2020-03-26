@@ -45,6 +45,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -59,6 +60,7 @@ public class StudentScreenFXMLController implements Initializable {
     
     private Student currentUser;
     private AppModel am;
+    private final ToggleGroup group = new ToggleGroup();
     
     @FXML
     private Label lblWelcome;
@@ -113,6 +115,11 @@ public class StudentScreenFXMLController implements Initializable {
         
         langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
+        
+        //radio buttons
+        radioAbsent.setToggleGroup(group);
+        radioPresent.setToggleGroup(group);
+        
         
     }    
     
