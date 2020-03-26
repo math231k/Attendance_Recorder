@@ -7,10 +7,13 @@ package attendance_recorder.dal.dbaccess;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,9 +28,12 @@ public class DBSettings {
      *
      * @throws IOException
      */
-    public DBSettings() throws IOException {
+    public DBSettings() throws FileNotFoundException, IOException{
         Properties props = new Properties();
-        props.load(new FileReader("DBSettings.txt"));
+           
+            props.load(new FileReader("DBSettings.txt"));
+
+        
         dataSource = new SQLServerDataSource();
         dataSource.setDatabaseName(props.getProperty("database"));
         dataSource.setUser(props.getProperty("user"));

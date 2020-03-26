@@ -28,8 +28,15 @@ public class StudentDBDAO implements IStudentDalFacade {
 
     private DBSettings dbs;
 
-    public StudentDBDAO() throws IOException {
-        dbs = new DBSettings();
+    public StudentDBDAO(){
+        
+        try {
+            dbs = new DBSettings();
+            
+        } catch (IOException e) {
+
+        }
+        
     }        
     
     @Override

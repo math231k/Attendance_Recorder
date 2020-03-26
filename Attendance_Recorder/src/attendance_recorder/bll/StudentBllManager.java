@@ -7,6 +7,8 @@ package attendance_recorder.bll;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
+import attendance_recorder.dal.dao.StudentDBDAO;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,15 +17,16 @@ import java.util.List;
  */
 public class StudentBllManager {
 
-    public StudentBllManager() {
+    private StudentDBDAO studentManager;
+    
+    public StudentBllManager(){
+        studentManager = new StudentDBDAO();      
     }
 
-    public List<Teacher> getTeachers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     public List<Student> getAllStudents() {
-        return null;
+        return studentManager.getAllStudents();
     }
     
 }

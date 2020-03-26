@@ -9,10 +9,13 @@ import attendance_recorder.be.Course;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
+import attendance_recorder.be.User;
 import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.StudentBllManager;
 import attendance_recorder.bll.utility.AbsenceCalculator;
+import attendance_recorder.bll.utility.TeacherBllManager;
+import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +33,10 @@ public class AppModel
     private static AppModel am;
     private CourseBllManager cbm;
     private StudentBllManager sbm;
+    private TeacherBllManager tbm;
     private DateBllManager dm;
+    private Student currentStudent;
+    private Teacher currentTeacher;
     private ObservableList<Course> courses = FXCollections.observableArrayList();
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private ObservableList<Date> dates = FXCollections.observableArrayList();
@@ -39,6 +45,8 @@ public class AppModel
         sbm = new StudentBllManager();
         cbm = new CourseBllManager();
         dm = new DateBllManager();
+        tbm = new TeacherBllManager();
+        
     }
     
     public static AppModel getAppModel(){
@@ -57,7 +65,7 @@ public class AppModel
     }
     
     public List<Teacher> getTeachers() {
-        return sbm.getTeachers();
+        return tbm.getTeachers();
     }
 
     public ObservableList<Course> getAllCourses() {
@@ -66,8 +74,7 @@ public class AppModel
         return courses;
     }
     
-    public ObservableList<Course> getTeachersCourse(Teacher t){
-        
+    public ObservableList<Course> getTeachersCourse(Teacher t){        
         courses.removeAll();
         courses.addAll(cbm.getTeachersCourse(t));
         return courses;
@@ -134,6 +141,22 @@ public class AppModel
         
         AbsenceCalculator ac = new AbsenceCalculator(dates);        
         return ac.calculateAbsencePercentage(dates);       
+    }
+    
+    public void setCurrentStudent(Student student){
+        currentStudent = student;
+    }
+    
+    public Student getCurrentStudent(Student student){
+        return currentStudent;
+    }
+    
+    public Teacher getCurrentTeacher(){
+        return currentTeacher;
+    }
+    
+    public void setCurrentTeacher(Teacher teacher){
+        currentTeacher = teacher;
     }
     
     

@@ -94,8 +94,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent event)
     {
-        login();
-        
+        login();        
     }
     
     private void login() {
@@ -107,9 +106,12 @@ public class FXMLDocumentController implements Initializable {
             
         }
         else if (getVerifiedStudent(name, password)!=null) {
+            model.setCurrentStudent(getVerifiedStudent(name, password));
             openStudentScreen(getVerifiedStudent(name, password));
+            
         }
         else if (getVerifiedTeacher(name, password)!=null) {
+            
             openTeacherScreen(getVerifiedTeacher(name, password));
         }
         else errorAlert("Name or password incorrect");
@@ -124,6 +126,7 @@ public class FXMLDocumentController implements Initializable {
 
         for (Student student : students) {
             if (student.getProfileName().equals(name) && student.getPassword().equals(password)) {
+                model.setCurrentStudent(student);
                 return student;
             }
         }             
@@ -137,6 +140,7 @@ public class FXMLDocumentController implements Initializable {
 
         for (Teacher teacher : teachers) {
             if (teacher.getProfileName().equals(name) && teacher.getPassword().equals(password)) {
+                model.setCurrentTeacher(teacher);
                 return teacher;
             }
         }                     

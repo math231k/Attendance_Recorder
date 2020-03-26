@@ -13,7 +13,7 @@ public abstract class User {
     
     private String firstName;
     private String lastName;
-    private String profileName; //should be unique id in database
+    private String username; //should be unique id in database
     private String password;
     private int id;
     
@@ -21,7 +21,7 @@ public abstract class User {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.profileName = profileName;
+        this.username = profileName;
         this.password = password;
     }
     
@@ -46,11 +46,11 @@ public abstract class User {
     }
 
     public String getProfileName() {
-        return profileName;
+        return username;
     }
 
     public void setProfileName(String profileName) {
-        this.profileName = profileName;
+        this.username = profileName;
     }
 
     public String getPassword() {
@@ -63,7 +63,7 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return id + ", " + firstName + " " + lastName + ", " + profileName + ", " + password;
+        return id + ", " + firstName + " " + lastName + ", " + username + ", " + password;
     }
     
     

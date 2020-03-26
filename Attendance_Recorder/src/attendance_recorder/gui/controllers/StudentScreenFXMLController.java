@@ -7,6 +7,7 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
+import attendance_recorder.be.User;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.gui.model.AppModel;
@@ -50,6 +51,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -64,6 +66,7 @@ public class StudentScreenFXMLController implements Initializable {
     
     private Student currentUser;
     private AppModel am;
+    private final ToggleGroup group = new ToggleGroup();
     
     @FXML
     private Label lblWelcome;
@@ -113,8 +116,8 @@ public class StudentScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         am = AppModel.getAppModel();
+        setCurrentUser(am.getCurrentStudent(currentUser));
         
-        currentUser = new Student(1, "Mathias", "Birins", "mat123", "bir123", null);
         
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
@@ -124,7 +127,7 @@ public class StudentScreenFXMLController implements Initializable {
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
         tblDate.setItems(am.getStudentDates(currentUser));
-        setCurrentUser(currentUser);
+        
         
         clmPresence.setCellValueFactory(data -> {
             boolean absence = data.getValue().isIsPresent();
@@ -135,6 +138,9 @@ public class StudentScreenFXMLController implements Initializable {
             String date = data.getValue().getDate();
             return new SimpleStringProperty(date);
         });
+        
+        radioAbsent.setToggleGroup(group);
+        radioPresent.setToggleGroup(group);
         
         
         
@@ -196,6 +202,9 @@ public class StudentScreenFXMLController implements Initializable {
         }
 
         
+        
+        
+        
     }
     
     private Image getImage(){
@@ -221,6 +230,34 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void handleEngTrans(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleAbsence(ActionEvent event) {
+        
+        LocalDate currentDate = LocalDate.parse(tblDate.getSelectionModel().getSelectedItem().getDate());
+        
+        boolean presence = true;
+        
+        if(radioPresent.isSelected()){
+            presence = true;
+        }
+        else if(radioAbsent.isSelected()){
+            presence = false;
+        }
+        else{
+            System.out.println("ikke valgt");
+        }
+        
+        
+        Date updatedDate = new Date(currentDate.toString(), currentUser.getId(), presence);
+        
+        am.updatePresence(updatedDate);
+        tblDate.getItems().clear();
+        am.getStudentDates(currentUser);
+        
+        lblAbsence.setText((am.getAbsencePercentage()+"%"));
+        
     }
     
 }

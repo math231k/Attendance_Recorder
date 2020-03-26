@@ -28,8 +28,13 @@ public class TeacherDBDAO implements ITeacherDalFacade {
 
     private DBSettings dbs;
 
-    public TeacherDBDAO() throws IOException {
-        dbs = new DBSettings();
+    public TeacherDBDAO() {
+        try {
+            dbs = new DBSettings();            
+        } catch (IOException e) {
+
+        }
+        
     }        
     
     @Override

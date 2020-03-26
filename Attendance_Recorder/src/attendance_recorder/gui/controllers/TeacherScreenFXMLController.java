@@ -133,16 +133,20 @@ public class TeacherScreenFXMLController implements Initializable {
         
         initColumns();
         
-        currentUser = new Teacher(2, "jeppe", "led", "led", "jep");
-        
-        
+
+                
         am = AppModel.getAppModel();
+        
+        setCurrentUser(am.getCurrentTeacher());
+        System.out.println(am.getCurrentTeacher().toString());
         
         courses = am.getTeachersCourse(currentUser);
         
         btnCourseSelect.setItems(courses);
         
         tableStudents.setItems(students);
+        
+        
         
         btnCourseSelect.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showStudentsInClass(currentUser));

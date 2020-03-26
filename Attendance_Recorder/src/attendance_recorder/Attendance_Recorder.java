@@ -21,7 +21,7 @@ public class Attendance_Recorder extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/attendance_recorder/gui/views/StudentScreenFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/attendance_recorder/gui/views/LoginScreenFXML.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -29,6 +29,7 @@ public class Attendance_Recorder extends Application {
         
         stage.setScene(scene);
         stage.show();
+        /*
         stage.setMaxHeight(355);
         stage.setMinHeight(355);
         stage.setMaxWidth(488);
@@ -39,12 +40,13 @@ public class Attendance_Recorder extends Application {
         stage.setMinHeight(500);
         stage.setMaxWidth(800);
         stage.setMinWidth(800);
-        /* resulutionen til login skærmen
+        resulutionen til login skærmen*/
+        
         stage.setMaxHeight(280);
         stage.setMinHeight(280);
         stage.setMaxWidth(450);
         stage.setMinWidth(450);
-        */
+        
     }
 
     /**
