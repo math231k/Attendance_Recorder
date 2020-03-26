@@ -220,8 +220,8 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
         //hardcoded data              
-        
-        Date date = new Date("2020-02-02", 1, false);
+        //Date date = new Date("2020-02-02", 1, false);
+        Date date = selectedDate;
         if (date==null) {
             showErrorAlert("Select a date.");
             return;
@@ -230,11 +230,10 @@ public class StudentScreenFXMLController implements Initializable {
             showErrorAlert("You are/were present this day.");
             return;
         }
-        //String text = (date.getAbsenceNote()!=null) ? date.getAbsenceNote() : "";
         date.setAbsenceNote(txtAbsenceNote.getText());
-        //am.updateAbsenceNote(date);
-        System.out.println(date.getAbsenceNote());
-        System.out.println(currentUser);
+        am.updateAbsenceNote(date);
+        //perhaps include confirmation option, update textarea, etc.
+        
     }
     
     private void showErrorAlert(String message) {
@@ -248,6 +247,8 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private void selectDate(ActionEvent event) {
         //hardcoded data
+        txtAbsenceNote.clear();
+        lblDatePresence.setText("");
         currentUser = new Student(1, "", "", "", "", null);
         
         
@@ -255,6 +256,7 @@ public class StudentScreenFXMLController implements Initializable {
         for (Date date : dates) {
             if (JFXcalender.getValue().toString().equals(date.getDate())) {
                 selectedDate = date;
+                txtAbsenceNote.setText(selectedDate.getAbsenceNote());
                 if (date.isIsPresent()==true) {
                     lblDatePresence.setText("PRESENT");
                     lblDatePresence.setTextFill(Color.GREEN);
