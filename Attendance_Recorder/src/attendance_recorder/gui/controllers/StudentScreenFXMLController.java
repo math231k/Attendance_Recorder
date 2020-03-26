@@ -5,6 +5,7 @@
  */
 package attendance_recorder.gui.controllers;
 
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
@@ -20,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
@@ -34,6 +36,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -46,6 +49,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -211,6 +215,37 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
+        //hardcoded data              
+        
+        Date date = new Date("2020-02-02", 1, false);
+        if (date==null) {
+            showErrorAlert("Select a date.");
+            return;
+        }
+        if (date.isIsPresent()==true) {
+            showErrorAlert("You are/were present this day.");
+            return;
+        }
+        String text = (date.getAbsenceNote()!=null) ? date.getAbsenceNote() : "";
+        TextInputDialog dialog = new TextInputDialog(text);
+        dialog.setTitle("Absence note dialog");
+        dialog.setHeaderText("Add/edit absence note");
+        dialog.setContentText("Enter note:");
+        
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            date.setAbsenceNote(dialog.getResult());
+            //am.updateAbsenceNote(date);
+            System.out.println(dialog.getResult());
+        } 
+    }
+    
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);        
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("ERROR");
+        alert.setContentText(String.format(message));
+        alert.showAndWait();
     }
 
     
