@@ -65,7 +65,7 @@ public class DateDBDAO {
                 String absenceNote = rs.getString("AbsenceNote");
                 
                 Date day = new Date(date, studentId, presence);
-                day.getAbsenceNote();
+                day.setAbsenceNote(absenceNote);
                 days.add(day);
             }
             
