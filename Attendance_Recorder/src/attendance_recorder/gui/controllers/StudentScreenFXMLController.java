@@ -49,6 +49,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -105,6 +106,8 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXButton btnAbsenceNote;
     @FXML
     private JFXDatePicker JFXcalender;
+    @FXML
+    private TextArea txtAbsenceNote;
 
 
 
@@ -226,18 +229,10 @@ public class StudentScreenFXMLController implements Initializable {
             showErrorAlert("You are/were present this day.");
             return;
         }
-        String text = (date.getAbsenceNote()!=null) ? date.getAbsenceNote() : "";
-        TextInputDialog dialog = new TextInputDialog(text);
-        dialog.setTitle("Absence note dialog");
-        dialog.setHeaderText("Add/edit absence note");
-        dialog.setContentText("Enter note:");
-        
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            date.setAbsenceNote(dialog.getResult());
-            //am.updateAbsenceNote(date);
-            System.out.println(dialog.getResult());
-        } 
+        //String text = (date.getAbsenceNote()!=null) ? date.getAbsenceNote() : "";
+        date.setAbsenceNote(txtAbsenceNote.getText());
+        //am.updateAbsenceNote(date);
+        System.out.println(date.getAbsenceNote());
     }
     
     private void showErrorAlert(String message) {
