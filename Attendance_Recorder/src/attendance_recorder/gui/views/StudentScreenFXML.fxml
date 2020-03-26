@@ -47,7 +47,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="281.0" layoutY="72.0" prefHeight="202.0" prefWidth="153.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0">
+            <TableView layoutX="281.0" layoutY="72.0" prefHeight="180.0" prefWidth="153.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0">
               <columns>
                 <TableColumn fx:id="clmDate" prefWidth="76.0" text="Date" />
                 <TableColumn fx:id="clmPresence" prefWidth="78.0" text="Presence" />
@@ -68,6 +68,7 @@
             <ImageView fx:id="imgLogo" fitHeight="50.0" fitWidth="108.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
             <JFXButton fx:id="langEngBtn" layoutX="271.0" layoutY="14.0" onAction="#handleEngTrans" text=" " />
             <JFXButton fx:id="langDanBtn" layoutX="271.0" layoutY="44.0" onAction="#handleDanTrans" text=" " />
+            <JFXButton fx:id="btnAbsenceNote" layoutX="281.0" layoutY="253.0" onAction="#addEditAbsenceNote" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: d3d3d3;" text="Add/edit absence note" />
          </children>
       </AnchorPane>
    </center>
