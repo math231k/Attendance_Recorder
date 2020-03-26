@@ -98,6 +98,8 @@ public class StudentScreenFXMLController implements Initializable {
     private TableColumn<?, ?> clmPresence;
     @FXML
     private Label lblConnection;
+    @FXML
+    private JFXButton btnAbsenceNote;
 
 
 
@@ -203,6 +205,10 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void handleEngTrans(ActionEvent event) {
+    }
+
+    @FXML
+    private void addEditAbsenceNote(ActionEvent event) {
     }
     
 }
