@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -47,7 +48,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="281.0" layoutY="72.0" prefHeight="180.0" prefWidth="153.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0">
+            <TableView layoutX="262.0" layoutY="84.0" prefHeight="168.0" prefWidth="172.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="84.0">
               <columns>
                 <TableColumn fx:id="clmDate" prefWidth="76.0" text="Date" />
                 <TableColumn fx:id="clmPresence" prefWidth="78.0" text="Presence" />
@@ -69,6 +70,7 @@
             <JFXButton fx:id="langEngBtn" layoutX="271.0" layoutY="14.0" onAction="#handleEngTrans" text=" " />
             <JFXButton fx:id="langDanBtn" layoutX="271.0" layoutY="44.0" onAction="#handleDanTrans" text=" " />
             <JFXButton fx:id="btnAbsenceNote" layoutX="281.0" layoutY="253.0" onAction="#addEditAbsenceNote" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: d3d3d3;" text="Add/edit absence note" />
+            <JFXDatePicker fx:id="JFXcalender" layoutX="206.0" layoutY="51.0" promptText="Show attendance" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="4.0" />
          </children>
       </AnchorPane>
    </center>
