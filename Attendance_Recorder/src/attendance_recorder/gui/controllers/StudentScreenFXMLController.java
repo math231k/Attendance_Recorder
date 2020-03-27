@@ -114,7 +114,7 @@ public class StudentScreenFXMLController implements Initializable {
         
         am = AppModel.getAppModel();
         currentUser = am.getCurrentStudent();
-        setCurrentUser(am.getCurrentStudent());
+        am.getStudentDates(currentUser);
         
         
         imgLogo.setImage(getImage());
@@ -123,21 +123,17 @@ public class StudentScreenFXMLController implements Initializable {
         
         langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
-        
 
-        
 
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
-        
+        setCurrentUser(currentUser);
         
         
     }    
     
     public void setCurrentUser(Student student)
     {
-        
-        
         lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
@@ -235,10 +231,6 @@ public class StudentScreenFXMLController implements Initializable {
         else{
             System.out.println("ikke valgt");
         }
-        
- 
-    
-        
         am.getStudentDates(currentUser);
         
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
@@ -247,8 +239,8 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
-        //hardcoded data              
-        //Date date = new Date("2020-02-02", 1, false);
+        
+        
         Date date = selectedDate;
         if (date==null) {
             showErrorAlert("Select a date.");
