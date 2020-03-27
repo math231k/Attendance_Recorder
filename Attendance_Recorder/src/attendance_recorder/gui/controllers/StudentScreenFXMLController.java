@@ -232,6 +232,7 @@ public class StudentScreenFXMLController implements Initializable {
         
         if(radioPresent.isSelected()){
             presence = true;
+            txtAbsenceNote.clear();
         }
         else if(radioAbsent.isSelected()){
             presence = false;
@@ -244,7 +245,8 @@ public class StudentScreenFXMLController implements Initializable {
         am.updatePresence(selectedDate);
         am.getStudentDates(currentUser);
         
-        lblDatePresence.setText(""); //change this later
+        
+        setAbsenceLabelText();
         
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
         
@@ -281,24 +283,28 @@ public class StudentScreenFXMLController implements Initializable {
         
         txtAbsenceNote.clear();
         lblDatePresence.setText("");
-                
+        selectedDate = new Date(JFXcalender.getValue().toString(), currentUser.getId(), true);
         
         List<Date> dates = am.getStudentDates(currentUser);
         for (Date date : dates) {
             if (JFXcalender.getValue().toString().equals(date.getDate())) {
                 selectedDate = date;
                 txtAbsenceNote.setText(selectedDate.getAbsenceNote());
-                if (date.isIsPresent()==true) {
-                    lblDatePresence.setText("PRESENT");
-                    lblDatePresence.setTextFill(Color.GREEN);
-                }
-                else if (date.isIsPresent()==false) {
-                    lblDatePresence.setText("ABSENT");
-                    lblDatePresence.setTextFill(Color.RED);
-                }
+                setAbsenceLabelText();
             }
         }
         
+    }
+    
+    private void setAbsenceLabelText() {
+        if (selectedDate.isIsPresent()==true) {
+                    lblDatePresence.setText("PRESENT");
+                    lblDatePresence.setTextFill(Color.GREEN);
+                }
+                else if (selectedDate.isIsPresent()==false) {
+                    lblDatePresence.setText("ABSENT");
+                    lblDatePresence.setTextFill(Color.RED);
+                }
     }
 
     
