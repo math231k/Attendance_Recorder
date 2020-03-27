@@ -247,8 +247,7 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
-        //hardcoded data              
-        //Date date = new Date("2020-02-02", 1, false);
+        
         Date date = selectedDate;
         if (date==null) {
             showErrorAlert("Select a date.");
@@ -274,11 +273,10 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void selectDate(ActionEvent event) {
-        //hardcoded data
+        
         txtAbsenceNote.clear();
         lblDatePresence.setText("");
-        currentUser = new Student(1, "", "", "", "", null);
-        
+                
         
         List<Date> dates = am.getStudentDates(currentUser);
         for (Date date : dates) {
