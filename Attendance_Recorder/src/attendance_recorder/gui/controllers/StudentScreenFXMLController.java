@@ -91,8 +91,13 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXRadioButton radioPresent;
     @FXML
     private JFXButton btnSubmit;    
+
+    private TableColumn<Date, String> clmDate;
+    private TableColumn<Date, Boolean> clmPresence;
     @FXML
     private Label lblConnection;
+    private TableView<Date> tblDate;
+
     @FXML
     private JFXButton btnAbsenceNote;
     @FXML
@@ -111,7 +116,9 @@ public class StudentScreenFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         am = AppModel.getAppModel();
+        currentUser = am.getCurrentStudent();
         setCurrentUser(am.getCurrentStudent());
         
         
