@@ -240,6 +240,8 @@ public class StudentScreenFXMLController implements Initializable {
         am.updatePresence(selectedDate);
         am.getStudentDates(currentUser);
         
+        lblDatePresence.setText(""); //change this later
+        
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
         
     }
