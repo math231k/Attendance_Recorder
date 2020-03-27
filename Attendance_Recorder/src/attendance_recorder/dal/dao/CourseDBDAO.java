@@ -10,7 +10,7 @@ import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dbaccess.DBSettings;
 import attendance_recorder.dal.facades.ICourseDalFacade;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.microsoft.sqlserver.jdbc.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,16 +75,19 @@ public class CourseDBDAO implements ICourseDalFacade{
     }
     
     public List<Course> getTeacherCourses(Teacher teacher) {
-        List<Course> courses = new ArrayList();
+        
+        List<Course> teacherCourses = new ArrayList();
         try(Connection con = dbs.getConnection()) {
             String sql = "SELECT DISTINCT name FROM Course WHERE TeacherID = ?;";
             PreparedStatement pstmt = con.prepareStatement(sql);
+            
             pstmt.setInt(1, teacher.getId());
             ResultSet rs = pstmt.executeQuery();
+            
             while (rs.next()) {
                 String name = rs.getString("name");
-                Course course = new Course(name);
-                courses.add(course);
+                Course c = new Course(name);
+                teacherCourses.add(c);
             }
             
         } catch (SQLServerException ex) {
@@ -92,7 +95,7 @@ public class CourseDBDAO implements ICourseDalFacade{
         } catch (SQLException ex) {
             Logger.getLogger(CourseDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return courses;
+        return teacherCourses;
     }   
     
 
@@ -102,16 +105,17 @@ public class CourseDBDAO implements ICourseDalFacade{
         
         List<Student> students = new ArrayList();
         try(Connection con = dbs.getConnection()) {
-            String sql = "SELECT * FROM Course"
-                    + " JOIN Student ON Course.StudentID = Student.ID"
-                    + " JOIN Teacher ON Course.TeacherID = Teacher.ID"
-                    + " WHERE Teacher.ID = ?;";
+            String sql = 
+                      "SELECT distinct StudentID,Student.name,Student.LastName,Student.Username,Student.Password, Student.ImageFilePath "
+                    + "FROM Course "
+                    + "INNER JOIN Student ON Course.StudentID = Student.ID "
+                    + "INNER JOIN Teacher t ON Course.TeacherID = ?;";
             PreparedStatement pstmt = con.prepareStatement(sql);
             
             pstmt.setInt(1, t.getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("ID");
+                int id = rs.getInt("StudentID");
                 String firstName = rs.getString("Name");
                 String lastName = rs.getString("LastName");
                 String profileName = rs.getString("Username");                             

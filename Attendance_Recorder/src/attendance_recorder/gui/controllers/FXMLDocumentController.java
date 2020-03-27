@@ -166,24 +166,19 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-                    stage.setMaxHeight(355);
-                    stage.setMinHeight(355);
-                    stage.setMaxWidth(488);
-                    stage.setMinWidth(488);
+           stage.setMaxHeight(355);
+            stage.setMinHeight(355);
+            stage.setMaxWidth(488);
+            stage.setMinWidth(488);
             stage.setTitle("Student Overview");
             stage.setScene(scene);
-            //stage.initModality(Modality.WINDOW_MODAL);
-            //stage.initOwner(primStage);
             StudentScreenFXMLController controller = fxmlLoader.getController();
             controller.setCurrentUser(student);
             stage.show();
             primStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-            
-        
     }
     
     private void openTeacherScreen(Teacher teacher)
@@ -195,26 +190,21 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-                    stage.setMaxHeight(500);
-                    stage.setMinHeight(500);
-                    stage.setMaxWidth(800);
-                    stage.setMinWidth(800);
+            stage.setMaxHeight(500);
+            stage.setMinHeight(500);
+            stage.setMaxWidth(800);
+            stage.setMinWidth(800);
             stage.setTitle("Teacher Overview");
             stage.setScene(scene);
-            //stage.initModality(Modality.WINDOW_MODAL);
-            //stage.initOwner(primStage);
             TeacherScreenFXMLController controller = fxmlLoader.getController();
             controller.setCurrentUser(teacher);
             stage.show();
             primStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
-        }
-            
-        
+        }  
     }
-
+    
     @FXML
     private void handeTeacher(ActionEvent event) {
         

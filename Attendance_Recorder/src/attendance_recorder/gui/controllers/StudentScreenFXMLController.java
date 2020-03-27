@@ -70,9 +70,7 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private BorderPane diagramPane;
     @FXML
-
     private ImageView imgLogo;
-
     @FXML
     private MenuBar menubarStudent;
     @FXML
@@ -94,13 +92,7 @@ public class StudentScreenFXMLController implements Initializable {
     @FXML
     private JFXButton btnSubmit;    
     @FXML
-    private TableColumn<Date, String> clmDate;
-    @FXML
-    private TableColumn<Date, Boolean> clmPresence;
-    @FXML
     private Label lblConnection;
-    @FXML
-    private TableView<Date> tblDate;
     @FXML
     private JFXButton btnAbsenceNote;
     @FXML
@@ -120,7 +112,7 @@ public class StudentScreenFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         am = AppModel.getAppModel();
-        setCurrentUser(am.getCurrentStudent(currentUser));
+        setCurrentUser(am.getCurrentStudent());
         
         
         imgLogo.setImage(getImage());
@@ -131,18 +123,6 @@ public class StudentScreenFXMLController implements Initializable {
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
 
-        tblDate.setItems(am.getStudentDates(currentUser));
-        
-        
-        clmPresence.setCellValueFactory(data -> {
-            boolean absence = data.getValue().isIsPresent();
-             return new SimpleBooleanProperty(absence);
-        });
-        
-        clmDate.setCellValueFactory(data -> {
-            String date = data.getValue().getDate();
-            return new SimpleStringProperty(date);
-        });
         
 
         radioAbsent.setToggleGroup(group);
@@ -240,7 +220,7 @@ public class StudentScreenFXMLController implements Initializable {
 
     private void handleAbsence(ActionEvent event) {
         
-        LocalDate currentDate = LocalDate.parse(tblDate.getSelectionModel().getSelectedItem().getDate());
+     
         
         boolean presence = true;
         
@@ -254,17 +234,16 @@ public class StudentScreenFXMLController implements Initializable {
             System.out.println("ikke valgt");
         }
         
+ 
+    
         
-        Date updatedDate = new Date(currentDate.toString(), currentUser.getId(), presence);
-        
-        am.updatePresence(updatedDate);
-        tblDate.getItems().clear();
         am.getStudentDates(currentUser);
         
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
         
     }
 
+    @FXML
     private void addEditAbsenceNote(ActionEvent event) {
         //hardcoded data              
         //Date date = new Date("2020-02-02", 1, false);

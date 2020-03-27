@@ -64,7 +64,7 @@ import javafx.stage.Stage;
 public class TeacherScreenFXMLController implements Initializable {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Course> courses;// = FXCollections.observableArrayList();    
+    private ObservableList<Course> courses;    
     private AppModel am;
     private Teacher currentUser;
     private Date currentDate;
@@ -138,26 +138,29 @@ public class TeacherScreenFXMLController implements Initializable {
         am = AppModel.getAppModel();
         
         setCurrentUser(am.getCurrentTeacher());
-        System.out.println(am.getCurrentTeacher().toString());
         
-        courses = am.getTeachersCourse(currentUser);
-        
-        btnCourseSelect.setItems(courses);
-        
-        tableStudents.setItems(students);
+        courses.addAll(am.getTeachersCourse(currentUser));
         
         
         
+        
+
         btnCourseSelect.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> showStudentsInClass(currentUser));
+            (observable, oldValue, newValue) -> {
+            tableStudents.getItems().clear();
+            showStudentsInClass(currentUser);            
+            });
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> {
-                showIndividualStudentInformation(newValue);
-                AbsenceTabel.getItems().clear();
-                AbsenceTabel.setItems(getStudentDates(newValue));
+                Student s = newValue;
+                //AbsenceTabel.getItems().clear();
+                if(s!=null){
+                showIndividualStudentInformation(s);
+                AbsenceTabel.setItems(getStudentDates(s));
                 lblAbsenceProcentage.setText(am.getAbsencePercentage()+"%");
-                diagramPane.setCenter(am.buildChart(newValue));
+                diagramPane.setCenter(am.buildChart(s));
+                }
                 
         });
         
@@ -169,8 +172,9 @@ public class TeacherScreenFXMLController implements Initializable {
         presentRadiobtn.setToggleGroup(group);
         absentRadioBtn.setToggleGroup(group);
         
-      
-
+        btnCourseSelect.setItems(courses);
+        tableStudents.setItems(students);
+        
     }
     
     private void initColumns()
@@ -202,7 +206,6 @@ public class TeacherScreenFXMLController implements Initializable {
     {
         currentUser = teacher;
         courses = FXCollections.observableArrayList(currentUser.getCourses());
-        btnCourseSelect.setItems(courses); //is this really necessary?
         lblCurrentUser.setText("Logged in as: " + currentUser.getFirstName() + " " + currentUser.getLastName());
     }
     

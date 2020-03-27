@@ -24,6 +24,14 @@ public abstract class User {
         this.username = profileName;
         this.password = password;
     }
+
+    public User(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+    
+    
     
     public int getId() {
         return id;

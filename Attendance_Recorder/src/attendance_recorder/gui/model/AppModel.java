@@ -30,7 +30,7 @@ import javafx.scene.chart.XYChart;
  */
 public class AppModel
 {
-    private static AppModel am;
+    private static AppModel appModel_Instance;
     private CourseBllManager cbm;
     private StudentBllManager sbm;
     private TeacherBllManager tbm;
@@ -46,17 +46,15 @@ public class AppModel
         cbm = new CourseBllManager();
         dm = new DateBllManager();
         tbm = new TeacherBllManager();
-        
+        currentStudent = null;
+        currentTeacher = null;
     }
     
     public static AppModel getAppModel(){
-        if (am != null){
-            return am;
+        if (appModel_Instance == null){
+            appModel_Instance = new AppModel();
         }
-        else{
-            am = new AppModel();
-            return am;
-        }
+            return appModel_Instance;
     }
     
     public ObservableList<Student> getAllStudents(){
@@ -77,6 +75,7 @@ public class AppModel
     public ObservableList<Course> getTeachersCourse(Teacher t){        
         courses.removeAll();
         courses.addAll(cbm.getTeachersCourse(t));
+        
         return courses;
     }
     
@@ -147,17 +146,19 @@ public class AppModel
         currentStudent = student;
     }
     
-    public Student getCurrentStudent(Student student){
+    public Student getCurrentStudent(){
         return currentStudent;
+    }
+    
+    public void setCurrentTeacher(Teacher teacher){
+        currentTeacher = teacher;
     }
     
     public Teacher getCurrentTeacher(){
         return currentTeacher;
     }
     
-    public void setCurrentTeacher(Teacher teacher){
-        currentTeacher = teacher;
-    }
+    
     
     
 }
