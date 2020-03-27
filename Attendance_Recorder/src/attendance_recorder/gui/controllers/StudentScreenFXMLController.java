@@ -93,13 +93,10 @@ public class StudentScreenFXMLController implements Initializable {
     private JFXRadioButton radioPresent;
     @FXML
     private JFXButton btnSubmit;    
-    @FXML
     private TableColumn<Date, String> clmDate;
-    @FXML
     private TableColumn<Date, Boolean> clmPresence;
     @FXML
     private Label lblConnection;
-    @FXML
     private TableView<Date> tblDate;
     @FXML
     private JFXButton btnAbsenceNote;
@@ -265,6 +262,7 @@ public class StudentScreenFXMLController implements Initializable {
         
     }
 
+    @FXML
     private void addEditAbsenceNote(ActionEvent event) {
         //hardcoded data              
         //Date date = new Date("2020-02-02", 1, false);
