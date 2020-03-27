@@ -279,7 +279,8 @@ public class StudentScreenFXMLController implements Initializable {
         
         txtAbsenceNote.clear();
         lblDatePresence.setText("");
-        selectedDate = new Date(JFXcalender.getValue().toString(), currentUser.getId(), true);
+        selectedDate = null; //temporary solution
+        //selectedDate = new Date(JFXcalender.getValue().toString(), currentUser.getId(), true);
         
         List<Date> dates = am.getStudentDates(currentUser);
         for (Date date : dates) {
