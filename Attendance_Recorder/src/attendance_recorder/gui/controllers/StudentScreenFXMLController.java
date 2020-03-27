@@ -218,7 +218,11 @@ public class StudentScreenFXMLController implements Initializable {
 
     private void handleAbsence(ActionEvent event) {
         
-     
+        Date date = selectedDate;
+        if (date == null) {
+            showErrorAlert("Select a date.");
+            return;
+        }
         
         boolean presence = true;
         
@@ -229,8 +233,11 @@ public class StudentScreenFXMLController implements Initializable {
             presence = false;
         }
         else{
-            System.out.println("ikke valgt");
+            showErrorAlert("Select Present or Absent");
         }
+        
+        date.setIsPresent(presence);
+        am.updatePresence(selectedDate);
         am.getStudentDates(currentUser);
         
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
@@ -239,7 +246,6 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void addEditAbsenceNote(ActionEvent event) {
-        
         
         Date date = selectedDate;
         if (date==null) {
@@ -266,11 +272,10 @@ public class StudentScreenFXMLController implements Initializable {
 
     @FXML
     private void selectDate(ActionEvent event) {
-        //hardcoded data
+        
         txtAbsenceNote.clear();
         lblDatePresence.setText("");
-        currentUser = new Student(1, "", "", "", "", null);
-        
+                
         
         List<Date> dates = am.getStudentDates(currentUser);
         for (Date date : dates) {
