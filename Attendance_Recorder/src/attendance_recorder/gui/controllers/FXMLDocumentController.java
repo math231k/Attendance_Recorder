@@ -149,8 +149,7 @@ public class FXMLDocumentController implements Initializable {
                 model.setCurrentTeacher(teacher);
                 return teacher;
             }
-        }                     
-                             
+        }        
         return null;
     }           
         

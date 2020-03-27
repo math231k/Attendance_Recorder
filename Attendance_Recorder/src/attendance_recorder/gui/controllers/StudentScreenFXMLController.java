@@ -116,7 +116,7 @@ public class StudentScreenFXMLController implements Initializable {
         
         am = AppModel.getAppModel();
         currentUser = am.getCurrentStudent();
-        setCurrentUser(am.getCurrentStudent());
+        am.getStudentDates(currentUser);
         
         
         imgLogo.setImage(getImage());
@@ -125,23 +125,21 @@ public class StudentScreenFXMLController implements Initializable {
         
         langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
-        
 
-        
 
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
         
         checkIfConnected();
         
+        setCurrentUser(currentUser);
+
         
         
     }    
     
     public void setCurrentUser(Student student)
     {
-        
-        
         lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
@@ -236,6 +234,7 @@ public class StudentScreenFXMLController implements Initializable {
         
         if(radioPresent.isSelected()){
             presence = true;
+            txtAbsenceNote.clear();
         }
         else if(radioAbsent.isSelected()){
             presence = false;
@@ -248,7 +247,8 @@ public class StudentScreenFXMLController implements Initializable {
         am.updatePresence(selectedDate);
         am.getStudentDates(currentUser);
         
-        lblDatePresence.setText(""); //change this later
+        
+        setAbsenceLabelText();
         
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
         
@@ -285,24 +285,29 @@ public class StudentScreenFXMLController implements Initializable {
         
         txtAbsenceNote.clear();
         lblDatePresence.setText("");
-                
+        selectedDate = null; //temporary solution
+        //selectedDate = new Date(JFXcalender.getValue().toString(), currentUser.getId(), true);
         
         List<Date> dates = am.getStudentDates(currentUser);
         for (Date date : dates) {
             if (JFXcalender.getValue().toString().equals(date.getDate())) {
                 selectedDate = date;
                 txtAbsenceNote.setText(selectedDate.getAbsenceNote());
-                if (date.isIsPresent()==true) {
-                    lblDatePresence.setText("PRESENT");
-                    lblDatePresence.setTextFill(Color.GREEN);
-                }
-                else if (date.isIsPresent()==false) {
-                    lblDatePresence.setText("ABSENT");
-                    lblDatePresence.setTextFill(Color.RED);
-                }
+                setAbsenceLabelText();
             }
         }
         
+    }
+    
+    private void setAbsenceLabelText() {
+        if (selectedDate.isIsPresent()==true) {
+                    lblDatePresence.setText("PRESENT");
+                    lblDatePresence.setTextFill(Color.GREEN);
+                }
+                else if (selectedDate.isIsPresent()==false) {
+                    lblDatePresence.setText("ABSENT");
+                    lblDatePresence.setTextFill(Color.RED);
+                }
     }
     
     private void checkIfConnected()
