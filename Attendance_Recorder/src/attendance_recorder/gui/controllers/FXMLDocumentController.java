@@ -143,8 +143,7 @@ public class FXMLDocumentController implements Initializable {
                 model.setCurrentTeacher(teacher);
                 return teacher;
             }
-        }                     
-                             
+        }        
         return null;
     }           
         
@@ -168,8 +167,8 @@ public class FXMLDocumentController implements Initializable {
             Stage stage = new Stage();                       
            stage.setMaxHeight(355);
             stage.setMinHeight(355);
-            stage.setMaxWidth(488);
-            stage.setMinWidth(488);
+            stage.setMaxWidth(550);
+            stage.setMinWidth(550);
             stage.setTitle("Student Overview");
             stage.setScene(scene);
             StudentScreenFXMLController controller = fxmlLoader.getController();
