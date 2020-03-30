@@ -224,8 +224,7 @@ public class StudentScreenFXMLController implements Initializable {
             return;
         }
         
-        boolean presence = true;
-        
+        boolean presence = true;       
         if(radioPresent.isSelected()){
             presence = true;
             txtAbsenceNote.clear();
@@ -240,10 +239,7 @@ public class StudentScreenFXMLController implements Initializable {
         date.setIsPresent(presence);
         am.updatePresence(selectedDate);
         am.getStudentDates(currentUser);
-        
-        
         setAbsenceLabelText();
-        
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
         
     }

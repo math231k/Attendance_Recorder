@@ -28,6 +28,12 @@ public class Date {
         this.studentId = studentId;
         this.isPresent = isPresent;
     }
+    public Date(String date, int studentId, boolean isPresent, String note) {
+        this.date = date;
+        this.studentId = studentId;
+        this.isPresent = isPresent;
+        this.absenceNote = note;
+    }
 
     public String getDate() {
         return date;

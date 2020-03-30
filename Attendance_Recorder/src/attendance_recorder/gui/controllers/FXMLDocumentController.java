@@ -5,9 +5,11 @@
  */
 package attendance_recorder.gui.controllers;
 
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.be.User;
+import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.ILanguage;
 import attendance_recorder.bll.utility.languages.LangDanish;
@@ -18,6 +20,8 @@ import com.jfoenix.controls.JFXButton;
 import com.sun.java.accessibility.util.Translator;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,6 +52,7 @@ import javafx.stage.StageStyle;
 public class FXMLDocumentController implements Initializable {
     
     private AppModel model;
+    private DateBllManager dbm;
 
     @FXML
     private TextField txtName;
@@ -74,6 +79,7 @@ public class FXMLDocumentController implements Initializable {
         imageView.setImage(getImage());
 
         model = AppModel.getAppModel();
+        dbm = new DateBllManager();
         
         txtName.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
@@ -89,6 +95,8 @@ public class FXMLDocumentController implements Initializable {
         transDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         transEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
 
+        dbm.addCurrentDate(addCurrentDate());
+        
     }    
     
     @FXML
@@ -235,6 +243,22 @@ public class FXMLDocumentController implements Initializable {
     private void handleClose(ActionEvent event) {
         System.exit(0);
     }
+    
+    private List<Date> addCurrentDate(){
+        List<Date> dates = new ArrayList<>();
+        List<Student> students = model.getAllStudents();
 
+        
+       
+        for (Student student : students) {
+            Date d = new Date(LocalDate.now().toString(), student.getId(), false, null);
+            dates.add(d);
+        }
+        
+        return dates;
+    }
+
+    
+    
     
 }

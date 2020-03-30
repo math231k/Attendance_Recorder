@@ -50,5 +50,9 @@ public class DateBllManager {
     public boolean updateAbsenceNote(Date updatedDate) {
         return dm.updateAbsenceNote(updatedDate);
     }
+
+    public boolean addCurrentDate(List<Date> addCurrentDate) {
+        return dm.addNewDates(addCurrentDate);
+    }
     
 }
