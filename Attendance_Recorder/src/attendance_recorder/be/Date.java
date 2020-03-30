@@ -10,6 +10,7 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import javafx.util.converter.LocalDateStringConverter;
 
 /**
@@ -73,6 +74,29 @@ public class Date {
     public void setAbsenceNote(String absenceNote) {
         this.absenceNote = absenceNote;
     }    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Date)) {
+        return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        
+        return this.date.equals(((Date) obj).getDate()) && this.studentId == (((Date) obj).getStudentId());
+    }    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.date);
+        hash = 67 * hash + this.studentId;
+        return hash;
+    }
     
     @Override
     public String toString() {
