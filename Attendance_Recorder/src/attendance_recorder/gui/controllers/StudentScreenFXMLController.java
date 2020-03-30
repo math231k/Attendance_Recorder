@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -62,6 +63,7 @@ public class StudentScreenFXMLController implements Initializable {
     private Date selectedDate;
     private AppModel am;
     private final ToggleGroup group = new ToggleGroup();
+    private boolean isConnected;
     
     @FXML
     private Label lblWelcome;
@@ -127,7 +129,11 @@ public class StudentScreenFXMLController implements Initializable {
 
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
+        
+        checkIfConnected();
+        
         setCurrentUser(currentUser);
+
         
         
     }    
@@ -299,6 +305,32 @@ public class StudentScreenFXMLController implements Initializable {
                     lblDatePresence.setTextFill(Color.RED);
                 }
     }
+    
+    private void checkIfConnected()
+    {
+        try
+        {
+            Process process = java.lang.Runtime.getRuntime().exec("ping moodle.easv.dk");
+            int x = process.waitFor();
+            if (x == 0)
+            {
+                isConnected = true;
+            } else
+            {
+                isConnected = false;
+                radioAbsent.setDisable(true);
+                radioPresent.setDisable(true);
+                btnSubmit.setDisable(true);
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     
 }

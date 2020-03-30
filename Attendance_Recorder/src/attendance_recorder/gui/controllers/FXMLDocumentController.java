@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +74,8 @@ public class FXMLDocumentController implements Initializable {
     private Button transEngBtn;
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private Label lblConnection;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,7 +100,9 @@ public class FXMLDocumentController implements Initializable {
         transEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
 
         dbm.addCurrentDate(addCurrentDate());
-        
+  
+        showConnection();
+
     }    
     
     @FXML
@@ -173,10 +179,10 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
             Stage stage = new Stage();                       
-           stage.setMaxHeight(355);
-            stage.setMinHeight(355);
-            stage.setMaxWidth(550);
-            stage.setMinWidth(550);
+//            stage.setMaxHeight(355);
+//            stage.setMinHeight(355);
+//            stage.setMaxWidth(488);
+//            stage.setMinWidth(488);
             stage.setTitle("Student Overview");
             stage.setScene(scene);
             StudentScreenFXMLController controller = fxmlLoader.getController();
@@ -247,9 +253,7 @@ public class FXMLDocumentController implements Initializable {
     private List<Date> addCurrentDate(){
         List<Date> dates = new ArrayList<>();
         List<Student> students = model.getAllStudents();
-
-        
-       
+  
         for (Student student : students) {
             Date d = new Date(LocalDate.now().toString(), student.getId(), false, null);
             dates.add(d);
@@ -259,6 +263,29 @@ public class FXMLDocumentController implements Initializable {
     }
 
     
+
+    public void showConnection()
+    {
+        try
+        {
+            Process process = java.lang.Runtime.getRuntime().exec("ping moodle.easv.dk");
+            int x = process.waitFor();
+            if (x == 0)
+            {
+                lblConnection.setText("You are connected to EASV");
+            } else
+            {
+                lblConnection.setText("You are not connected to EASV and cannot submit attendance");
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
     
 }

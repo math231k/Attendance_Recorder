@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="218.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="232.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
    <children>
       <Label fx:id="titleLbl" layoutX="136.0" layoutY="39.0" text="EASV Attendance" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="39.0">
          <font>
@@ -39,5 +39,6 @@
       <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0" />
       <JFXButton fx:id="transDanBtn" layoutX="303.0" layoutY="179.0" onAction="#handleTranslation" text=" " AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
       <JFXButton fx:id="transEngBtn" layoutX="238.0" layoutY="176.0" text=" " />
+      <Label fx:id="lblConnection" layoutX="15.0" layoutY="154.0" prefHeight="25.0" prefWidth="340.0" />
    </children>
 </AnchorPane>
