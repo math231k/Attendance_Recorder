@@ -279,7 +279,7 @@ public class StudentScreenFXMLController implements Initializable {
             return;
         }       
         if(radioPresent.isSelected()){
-            presence = true;
+            selectedDate.setIsPresent(true);
             txtAbsenceNote.clear(); //remember to also clear message in database
         }
         else if(radioAbsent.isSelected()){
