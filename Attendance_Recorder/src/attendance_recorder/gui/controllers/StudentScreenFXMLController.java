@@ -23,8 +23,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,17 +31,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -113,11 +103,9 @@ public class StudentScreenFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
         am = AppModel.getAppModel();
         currentUser = am.getCurrentStudent();
         am.getStudentDates(currentUser);
-        
         
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
@@ -125,38 +113,20 @@ public class StudentScreenFXMLController implements Initializable {
         
         langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
         langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
-
-
+        
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
         
         checkIfConnected();
         
         setCurrentUser(currentUser);
-
-        
-        
-    }    
-    
-    public void setCurrentUser(Student student)
-    {
-        lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-        LocalDate localDate = LocalDate.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
-        lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
-        lblAbsence.setText("Your total absence is " + am.getAbsencePercentage() + "%");
-        
     }
-   
     
     @FXML
     private void handleChart(ActionEvent event) {
-    
-       
-        diagramPane.setCenter(am.buildChart(currentUser));
         
+        diagramPane.setCenter(am.buildChart(currentUser));
         menuItemProfile.setDisable(false);
-    
     }
 
     @FXML
@@ -166,35 +136,29 @@ public class StudentScreenFXMLController implements Initializable {
         diagramPane.setCenter(studentPane);
         menuItemProfile.setDisable(true);
         menuItemDiagram.setDisable(false);
-        
-        
     }
 
     @FXML
     private void handleClose(ActionEvent event) {
     
    
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/LoginScreenFXML.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage primStage = (Stage) menubarStudent.getScene().getWindow();
-            Stage stage = new Stage();
+    try
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/LoginScreenFXML.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage primStage = (Stage) menubarStudent.getScene().getWindow();
+        Stage stage = new Stage();
 
-            stage.setTitle("Attendance Login");
-            stage.setScene(scene);
-            stage.show();
-            primStage.close();
-        } catch (IOException ex)
+        stage.setTitle("Attendance Login");
+        stage.setScene(scene);
+        stage.show();
+        primStage.close();
+        
+    } catch (IOException ex)
         {
             java.util.logging.Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        
-        
-        
     }
     
     private Image getImage(){
@@ -213,7 +177,6 @@ public class StudentScreenFXMLController implements Initializable {
         radioPresent.setText(Arrays.toString(transDk.Translate(radioPresent.getText())));
         btnSubmit.setText(Arrays.toString(transDk.Translate(btnSubmit.getText())));        
         lblConnection.setText(Arrays.toString(transDk.Translate(lblConnection.getText())));
-        
     }
 
     @FXML
@@ -221,33 +184,25 @@ public class StudentScreenFXMLController implements Initializable {
     }
 
     @FXML
-
     private void handleAbsence(ActionEvent event) {
-        
-        Date date = selectedDate;
-        if (date == null) {
+
+        if (selectedDate == null) {
             showErrorAlert("Select a date.");
             return;
-        }
-        
-        boolean presence = true;       
+        }       
         if(radioPresent.isSelected()){
-            presence = true;
+            selectedDate.setIsPresent(true);
             txtAbsenceNote.clear();
         }
         else if(radioAbsent.isSelected()){
-            presence = false;
+            selectedDate.setIsPresent(false);
         }
         else{
             showErrorAlert("Select Present or Absent");
+            return;
         }
         
-        date.setIsPresent(presence);
-        am.updatePresence(selectedDate);
-        am.getStudentDates(currentUser);
-        setAbsenceLabelText();
-        lblAbsence.setText((am.getAbsencePercentage()+"%"));
-        
+        updateAllData();   
     }
 
     @FXML
@@ -268,13 +223,7 @@ public class StudentScreenFXMLController implements Initializable {
         
     }
     
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);        
-        alert.setTitle("Error Dialog");
-        alert.setHeaderText("ERROR");
-        alert.setContentText(String.format(message));
-        alert.showAndWait();
-    }
+    
 
     @FXML
     private void selectDate(ActionEvent event) {
@@ -329,6 +278,32 @@ public class StudentScreenFXMLController implements Initializable {
         {
             Logger.getLogger(StudentScreenFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void updateAllData(){
+        
+        am.updatePresence(selectedDate);
+        am.getStudentDates(currentUser);
+        setAbsenceLabelText();
+        lblAbsence.setText((am.getAbsencePercentage()+"%"));
+    }
+    
+    public void setCurrentUser(Student student)
+    {
+        lblWelcome.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy");
+        lblDate.setText(localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH) + ", " + localDate.format(dateFormatter));
+        lblAbsence.setText("Your total absence is " + am.getAbsencePercentage() + "%");
+        
+    }
+    
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);        
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("ERROR");
+        alert.setContentText(String.format(message));
+        alert.showAndWait();
     }
     
 
