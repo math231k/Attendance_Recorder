@@ -23,14 +23,18 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -46,10 +50,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -116,7 +125,9 @@ public class StudentScreenFXMLController implements Initializable {
         
         am = AppModel.getAppModel();
         currentUser = am.getCurrentStudent();
-        am.getStudentDates(currentUser);
+        List<Date> dates = am.getStudentDates(currentUser);        
+        colorCalendarDaysByPresenceStatus(dates);
+        
         
         
         imgLogo.setImage(getImage());
@@ -147,6 +158,80 @@ public class StudentScreenFXMLController implements Initializable {
         lblAbsence.setText("Your total absence is " + am.getAbsencePercentage() + "%");
         
     }
+    
+    private void colorCalendarDaysByPresenceStatus(List<Date> dates) {
+        
+        Background absent = new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY));
+        Background present = new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY));
+        
+        JFXcalender.setDayCellFactory(dp -> new DateCell() {
+
+            {
+                addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+                    for (Date date : dates) {
+                        if (date.getDate().equals(getItem().toString())) {
+                            if (date.isIsPresent()) {
+                                Platform.runLater(() -> {
+                                    //setStyle("-fx-background-color: green");
+                                    setBackground(present);
+                                });
+
+                            } else if (!date.isIsPresent()) {
+                                Platform.runLater(() -> {
+                                    //setStyle("-fx-background-color: red");
+                                    setBackground(absent);
+                                });
+                            }
+                        }
+                    }
+                });
+
+            }
+            
+            {
+                addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
+                    for (Date date : dates) {
+                        if (date.getDate().equals(getItem().toString())) {
+                            if (date.isIsPresent()) {
+                                Platform.runLater(() -> {
+                                    //setStyle("-fx-background-color: green");
+                                    setBackground(present);
+                                });
+
+                            } else if (!date.isIsPresent()) {
+                                Platform.runLater(() -> {
+                                    //setStyle("-fx-background-color: red");
+                                    setBackground(absent);
+                                });
+                            }
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                for (Date date : dates) {
+                    if (date.getDate().equals(item.toString())) {
+                        if (date.isIsPresent()) {
+                            //setStyle("-fx-background-color: green");
+                            setBackground(present);
+                        } else if (!date.isIsPresent()) {
+                            //setStyle("-fx-background-color: red");
+                            setBackground(absent);
+                        }
+
+                    }
+                }
+            }
+
+        });
+    }
+    
+    
    
     
     @FXML
@@ -233,7 +318,7 @@ public class StudentScreenFXMLController implements Initializable {
         boolean presence = true;       
         if(radioPresent.isSelected()){
             presence = true;
-            txtAbsenceNote.clear();
+            txtAbsenceNote.clear(); //remember to also clear message in database
         }
         else if(radioAbsent.isSelected()){
             presence = false;
