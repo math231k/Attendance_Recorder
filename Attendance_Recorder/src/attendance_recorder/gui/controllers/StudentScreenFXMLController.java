@@ -281,6 +281,7 @@ public class StudentScreenFXMLController implements Initializable {
         if(radioPresent.isSelected()){
             selectedDate.setIsPresent(true);
             txtAbsenceNote.clear(); //remember to also clear message in database
+            selectedDate.setAbsenceNote(null);
         }
         else if(radioAbsent.isSelected()){
             selectedDate.setIsPresent(false);
@@ -371,6 +372,7 @@ public class StudentScreenFXMLController implements Initializable {
     private void updateAllData(){
         
         am.updatePresence(selectedDate);
+        am.updateAbsenceNote(selectedDate);
         am.getStudentDates(currentUser);
         setAbsenceLabelText();
         lblAbsence.setText((am.getAbsencePercentage()+"%"));
