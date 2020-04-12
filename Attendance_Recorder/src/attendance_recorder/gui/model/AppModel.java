@@ -73,7 +73,7 @@ public class AppModel
     }
     
     public ObservableList<Course> getTeachersCourse(Teacher t){        
-        courses.removeAll();
+        courses.clear();
         courses.addAll(cbm.getTeachersCourse(t));
         
         return courses;
