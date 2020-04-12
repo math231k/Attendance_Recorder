@@ -80,7 +80,7 @@ public class AppModel
     }
     
     public ObservableList<Student> getStudentsInCourse(Course course){
-        students.removeAll();
+        students.clear();
         students.addAll(cbm.getStudentsInCourse(course));
         return students;
     }
