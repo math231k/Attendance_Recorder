@@ -87,6 +87,7 @@ public class CourseDBDAO implements ICourseDalFacade{
             while (rs.next()) {
                 String name = rs.getString("name");
                 Course c = new Course(name);
+                c.setTeacherId(teacher.getId());
                 teacherCourses.add(c);
             }
             
@@ -99,23 +100,21 @@ public class CourseDBDAO implements ICourseDalFacade{
     }   
     
 
-    public List<Student> getCourseStudents(Teacher t) {
-        
-        Course selectedCourse;
-        
+    public List<Student> getCourseStudents(Course course) {        
+                
         List<Student> students = new ArrayList();
         try(Connection con = dbs.getConnection()) {
             String sql = 
-                      "SELECT distinct StudentID,Student.name,Student.LastName,Student.Username,Student.Password, Student.ImageFilePath "
-                    + "FROM Course "
-                    + "INNER JOIN Student ON Course.StudentID = Student.ID "
-                    + "INNER JOIN Teacher t ON Course.TeacherID = ?;";
+                    "SELECT * FROM Student JOIN Course ON Student.ID = Course.StudentID"
+                    + " WHERE Course.TeacherId = ? AND Course.name = ?;";
+            
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setInt(1, t.getId());
+            pstmt.setInt(1, course.getTeacherId());
+            pstmt.setString(2, course.getName());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("StudentID");
+                int id = rs.getInt("ID");
                 String firstName = rs.getString("Name");
                 String lastName = rs.getString("LastName");
                 String profileName = rs.getString("Username");                             

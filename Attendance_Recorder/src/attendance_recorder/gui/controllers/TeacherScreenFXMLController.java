@@ -148,7 +148,7 @@ public class TeacherScreenFXMLController implements Initializable {
         btnCourseSelect.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> {
             tableStudents.getItems().clear();
-            showStudentsInClass(currentUser);            
+            showStudentsInClass(newValue);            
             });
         
         tableStudents.getSelectionModel().selectedItemProperty().addListener(
@@ -209,9 +209,9 @@ public class TeacherScreenFXMLController implements Initializable {
         lblCurrentUser.setText("Logged in as: " + currentUser.getFirstName() + " " + currentUser.getLastName());
     }
     
-    private void showStudentsInClass(Teacher t)
+    private void showStudentsInClass(Course course)
     {
-        students = FXCollections.observableArrayList(am.getStudentsInCourse(t));
+        students = FXCollections.observableArrayList(am.getStudentsInCourse(course));
         tableStudents.getSelectionModel().clearSelection();
         tableStudents.setItems(students);  
         showIndividualStudentInformation(null);
@@ -300,10 +300,12 @@ public class TeacherScreenFXMLController implements Initializable {
         
         LocalDate currentDate = LocalDate.parse(AbsenceTabel.getSelectionModel().getSelectedItem().getDate());
         int studentId = tableStudents.getSelectionModel().getSelectedItem().getId();
+        String absenceNote = AbsenceTabel.getSelectionModel().getSelectedItem().getAbsenceNote();
         boolean presence = true;
         
         if(presentRadiobtn.isSelected()){
             presence = true;
+            absenceNote = null;
         }
         else if(absentRadioBtn.isSelected()){
             presence = false;
@@ -314,8 +316,10 @@ public class TeacherScreenFXMLController implements Initializable {
         
         
         Date updatedDate = new Date(currentDate.toString(), studentId, presence);
+        updatedDate.setAbsenceNote(absenceNote);
         
         am.updatePresence(updatedDate);
+        am.updateAbsenceNote(updatedDate);
         AbsenceTabel.getItems().clear();
         am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
         diagramPane.setCenter(am.buildChart(tableStudents.getSelectionModel().getSelectedItem()));

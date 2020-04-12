@@ -41,8 +41,8 @@ public class CourseBllManager {
         return courseManager.getTeacherCourses(t);
     }
 
-    public List<Student> getStudentsInCourse(Teacher t) {
-        return courseManager.getCourseStudents(t);
+    public List<Student> getStudentsInCourse(Course course) {
+        return courseManager.getCourseStudents(course);
     }
     
 }

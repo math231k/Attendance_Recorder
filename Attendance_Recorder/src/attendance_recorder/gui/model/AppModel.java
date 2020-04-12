@@ -79,9 +79,9 @@ public class AppModel
         return courses;
     }
     
-    public ObservableList<Student> getStudentsInCourse(Teacher t){
+    public ObservableList<Student> getStudentsInCourse(Course course){
         students.removeAll();
-        students.addAll(cbm.getStudentsInCourse(t));
+        students.addAll(cbm.getStudentsInCourse(course));
         return students;
     }
 
