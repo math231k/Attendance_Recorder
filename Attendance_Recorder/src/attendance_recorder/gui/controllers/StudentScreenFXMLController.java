@@ -42,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -51,6 +52,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -136,10 +138,13 @@ public class StudentScreenFXMLController implements Initializable {
     }
     
     private void colorCalendarDaysByPresenceStatus(List<Date> dates) {
-        
+
         Background absent = new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY));
         Background present = new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY));
-        
+        Tooltip tooltip = new Tooltip();
+        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setHideDelay(Duration.ZERO);
+
         JFXcalender.setDayCellFactory(dp -> new DateCell() {
 
             {
@@ -150,12 +155,19 @@ public class StudentScreenFXMLController implements Initializable {
                                 Platform.runLater(() -> {
                                     //setStyle("-fx-background-color: green");
                                     setBackground(present);
+
                                 });
 
                             } else if (!date.isIsPresent()) {
                                 Platform.runLater(() -> {
                                     //setStyle("-fx-background-color: red");
                                     setBackground(absent);
+                                    if (date.getAbsenceNote() != null) {
+                                        if (!date.getAbsenceNote().trim().isEmpty()) {
+                                            tooltip.setText(date.getAbsenceNote());
+                                            setTooltip(tooltip);
+                                        }
+                                    }
                                 });
                             }
                         }
@@ -163,7 +175,7 @@ public class StudentScreenFXMLController implements Initializable {
                 });
 
             }
-            
+
             {
                 addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
                     for (Date date : dates) {
@@ -178,6 +190,12 @@ public class StudentScreenFXMLController implements Initializable {
                                 Platform.runLater(() -> {
                                     //setStyle("-fx-background-color: red");
                                     setBackground(absent);
+                                    if (date.getAbsenceNote() != null) {
+                                        if (!date.getAbsenceNote().trim().isEmpty()) {
+                                            tooltip.setText(date.getAbsenceNote());
+                                            setTooltip(tooltip);
+                                        }
+                                    }
                                 });
                             }
                         }
@@ -198,6 +216,12 @@ public class StudentScreenFXMLController implements Initializable {
                         } else if (!date.isIsPresent()) {
                             //setStyle("-fx-background-color: red");
                             setBackground(absent);
+                            if (date.getAbsenceNote() != null) {
+                                if (!date.getAbsenceNote().trim().isEmpty()) {
+                                    tooltip.setText(date.getAbsenceNote());
+                                    setTooltip(tooltip);
+                                }
+                            }
                         }
 
                     }
@@ -308,6 +332,7 @@ public class StudentScreenFXMLController implements Initializable {
         }
         date.setAbsenceNote(txtAbsenceNote.getText());
         am.updateAbsenceNote(date);
+        am.getStudentDates(currentUser);
         //perhaps include confirmation option, update textarea, etc.
         
     }
