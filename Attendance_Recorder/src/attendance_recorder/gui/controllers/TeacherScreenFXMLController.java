@@ -13,6 +13,7 @@ import attendance_recorder.be.Date;
 import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.gui.model.AppModel;
+import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -124,6 +125,10 @@ public class TeacherScreenFXMLController implements Initializable {
     private TableColumn<Date, String> dateColumn;
     @FXML
     private TableColumn<Date, Boolean> presensColumn;
+    @FXML
+    private JFXButton btnDanishTran;
+    @FXML
+    private JFXButton btnEnglishTran;
 
     /**
      * Initializes the controller class.
@@ -174,6 +179,10 @@ public class TeacherScreenFXMLController implements Initializable {
         
         btnCourseSelect.setItems(courses);
         tableStudents.setItems(students);
+        
+        btnDanishTran.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
+        btnEnglishTran.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
+        
         
     }
     
@@ -333,6 +342,16 @@ public class TeacherScreenFXMLController implements Initializable {
         return am.getStudentDates(s);
         
         
+    }
+
+    @FXML
+    private void handleDanishTranslation(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleEnglishTranslation(ActionEvent event)
+    {
     }
     
     
