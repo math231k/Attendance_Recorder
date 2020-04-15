@@ -15,6 +15,7 @@ import attendance_recorder.bll.utility.languages.ILanguage;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.bll.utility.languages.LangDanish.Language;
 import attendance_recorder.bll.utility.languages.LangEnglish;
+import attendance_recorder.bll.utility.languages.Localizer;
 import attendance_recorder.gui.model.AppModel;
 import com.jfoenix.controls.JFXButton;
 import com.sun.java.accessibility.util.Translator;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +39,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -55,6 +58,7 @@ public class FXMLDocumentController implements Initializable {
     
     private AppModel model;
     private DateBllManager dbm;
+    private Localizer localizer;
 
     @FXML
     private TextField txtName;
@@ -76,6 +80,14 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Label lblConnection;
+    @FXML
+    private MenuItem teacherMenuItem;
+    @FXML
+    private MenuItem studentMenuItem;
+    @FXML
+    private Menu logoutMenu;
+    @FXML
+    private MenuItem logoutMenuItem;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,6 +96,8 @@ public class FXMLDocumentController implements Initializable {
 
         model = AppModel.getAppModel();
         dbm = new DateBllManager();
+        localizer = new Localizer("src/attendance_recorder/resources/loginscreen_localization.txt");
+        
         
         txtName.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
@@ -102,6 +116,8 @@ public class FXMLDocumentController implements Initializable {
         dbm.addCurrentDate(addCurrentDate());
   
         showConnection();
+        
+        translateText(model.getCurrentLanguage());
 
     }    
     
@@ -234,18 +250,6 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-
-    private void handleTranslation(ActionEvent event) {
-        final LangDanish transDk = new LangDanish(Language.EN, Language.DK);
-        
-        txtName.setPromptText(Arrays.toString(transDk.Translate(txtName.getPromptText())));
-        txtPassword.setPromptText(Arrays.toString(transDk.Translate(txtPassword.getPromptText())));
-        btnLogin.setText(Arrays.toString(transDk.Translate(btnLogin.getText())));
-        titleLbl.setText(Arrays.toString(transDk.Translate(titleLbl.getText())));
-
-    }
-
-    @FXML
     private void handleClose(ActionEvent event) {
         System.exit(0);
     }
@@ -261,15 +265,42 @@ public class FXMLDocumentController implements Initializable {
         
         return dates;
     }
+    
+    @FXML
+    private void handleDanTrans(ActionEvent event) {
+        model.setCurrentLanguage(Localizer.Language.DANSK);        
+        translateText(model.getCurrentLanguage());
+    }
 
+    @FXML
+    private void handleEngTrans(ActionEvent event) {
+        model.setCurrentLanguage(Localizer.Language.ENGLISH);
+        translateText(model.getCurrentLanguage());
+        
+    }
+    
+    private void translateText(Localizer.Language language) {  
+        
+    txtName.setPromptText(localizer.translate("txtName", language));    
+    txtPassword.setPromptText(localizer.translate("txtPassword", language));    
+    btnLogin.setText(localizer.translate("btnLogin", language));      
+    titleLbl.setText(localizer.translate("titleLbl", language));    
+    optionsBar.setText(localizer.translate("optionsBar", language));  
+    teacherMenuItem.setText(localizer.translate("teacherMenuItem", language));
+    studentMenuItem.setText(localizer.translate("studentMenuItem", language));
+    logoutMenu.setText(localizer.translate("logoutMenu", language));
+    logoutMenuItem.setText(localizer.translate("logoutMenuItem", language));
+    lblConnection.setText(showConnection() == 0 ? localizer.translate("lblConnectionYes", language) : localizer.translate("lblConnectionNo", language));
+    }
     
 
-    public void showConnection()
+    public int showConnection()
     {
+        int x = -1;
         try
         {
             Process process = java.lang.Runtime.getRuntime().exec("ping moodle.easv.dk");
-            int x = process.waitFor();
+            x = process.waitFor();
             if (x == 0)
             {
                 lblConnection.setText("You are connected to EASV");
@@ -284,7 +315,9 @@ public class FXMLDocumentController implements Initializable {
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return x;
     }
+
 
     
     

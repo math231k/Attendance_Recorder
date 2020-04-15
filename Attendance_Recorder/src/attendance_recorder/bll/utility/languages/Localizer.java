@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,8 +33,7 @@ public class Localizer {
     Note: case sensitive!
     
     */
-
-    private static final String FILE = "localization.txt"; //Enter file location
+    
     private Properties props;
     private FileReader reader;
 
@@ -51,10 +52,16 @@ public class Localizer {
         }
     }
 
-    public Localizer() throws FileNotFoundException, IOException {
-        props = new Properties();
-        reader = new FileReader(FILE);
-        props.load(reader);
+    public Localizer(String filePath) {
+        try {
+            props = new Properties();
+            reader = new FileReader(filePath);
+            props.load(reader);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Localizer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Localizer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String translate(String node, Language lang) {

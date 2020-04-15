@@ -15,6 +15,7 @@ import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.StudentBllManager;
 import attendance_recorder.bll.utility.AbsenceCalculator;
 import attendance_recorder.bll.utility.TeacherBllManager;
+import attendance_recorder.bll.utility.languages.Localizer;
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -37,6 +38,7 @@ public class AppModel
     private DateBllManager dm;
     private Student currentStudent;
     private Teacher currentTeacher;
+    private Localizer.Language currentLanguage;
     private ObservableList<Course> courses = FXCollections.observableArrayList();
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private ObservableList<Date> dates = FXCollections.observableArrayList();
@@ -48,6 +50,7 @@ public class AppModel
         tbm = new TeacherBllManager();
         currentStudent = null;
         currentTeacher = null;
+        currentLanguage = Localizer.Language.DANSK;
     }
     
     public static AppModel getAppModel(){
@@ -157,6 +160,14 @@ public class AppModel
     public Teacher getCurrentTeacher(){
         return currentTeacher;
     }
+
+    public Localizer.Language getCurrentLanguage() {
+        return currentLanguage;
+    }
+
+    public void setCurrentLanguage(Localizer.Language currentLanguage) {
+        this.currentLanguage = currentLanguage;
+    }    
     
     
     

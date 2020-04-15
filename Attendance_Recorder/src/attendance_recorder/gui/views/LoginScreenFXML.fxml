@@ -25,20 +25,20 @@
         <menus>
           <Menu fx:id="optionsBar" mnemonicParsing="false" text="Options">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handeTeacher" text="Change to teacher" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleStudent" text="Change to student" />
+              <MenuItem fx:id="teacherMenuItem" mnemonicParsing="false" onAction="#handeTeacher" text="Change to teacher" />
+                  <MenuItem fx:id="studentMenuItem" mnemonicParsing="false" onAction="#handleStudent" text="Change to student" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Resolution">
+            <Menu fx:id="logoutMenu" mnemonicParsing="false" text="Log out">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
+                  <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Log out" />
                </items>
             </Menu>
         </menus>
       </MenuBar>
       <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0" />
-      <JFXButton fx:id="transDanBtn" layoutX="303.0" layoutY="179.0" onAction="#handleTranslation" text=" " AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <JFXButton fx:id="transEngBtn" layoutX="238.0" layoutY="176.0" text=" " />
+      <JFXButton fx:id="transDanBtn" layoutX="303.0" layoutY="179.0" onAction="#handleDanTrans" text=" " AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <JFXButton fx:id="transEngBtn" layoutX="238.0" layoutY="176.0" onAction="#handleEngTrans" text=" " />
       <Label fx:id="lblConnection" layoutX="15.0" layoutY="154.0" prefHeight="25.0" prefWidth="340.0" />
    </children>
 </AnchorPane>
