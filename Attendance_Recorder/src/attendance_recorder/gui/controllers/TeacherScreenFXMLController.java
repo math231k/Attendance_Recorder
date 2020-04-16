@@ -57,6 +57,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -155,9 +156,8 @@ public class TeacherScreenFXMLController implements Initializable {
                 Student s = newValue;
                 //AbsenceTabel.getItems().clear();
                 if(s!=null){
-                showIndividualStudentInformation(s);
                 AbsenceTabel.setItems(getStudentDates(s));
-                lblAbsenceProcentage.setText(am.getAbsencePercentage()+"%");
+                showIndividualStudentInformation(s);            
                 diagramPane.setCenter(am.buildChart(s));
                 }
                 
@@ -280,9 +280,7 @@ public class TeacherScreenFXMLController implements Initializable {
         if (student != null) {
         lblFirstName.setText(student.getFirstName());
         lblLastName.setText(student.getLastName());
-        lblAbsenceProcentage.setText(student.getAbsence() + "%");
-        String presence = (student.isPresent()) ? "PRESENT" : "ABSENT";
-        lblPresentStatus.setText(presence);
+        setAbsenceInformation(student);
         imageView.setImage(new Image(student.getImageFilePath())); //perhaps student should just hold Image
     }
         else {
@@ -331,7 +329,7 @@ public class TeacherScreenFXMLController implements Initializable {
     private void HandleChangePresence(ActionEvent event) {
         
         LocalDate currentDate = LocalDate.parse(AbsenceTabel.getSelectionModel().getSelectedItem().getDate());
-        int studentId = tableStudents.getSelectionModel().getSelectedItem().getId();
+        Student student = tableStudents.getSelectionModel().getSelectedItem();
         String absenceNote = AbsenceTabel.getSelectionModel().getSelectedItem().getAbsenceNote();
         boolean presence = true;
         
@@ -347,7 +345,7 @@ public class TeacherScreenFXMLController implements Initializable {
         }
         
         
-        Date updatedDate = new Date(currentDate.toString(), studentId, presence);
+        Date updatedDate = new Date(currentDate.toString(), student.getId(), presence);
         updatedDate.setAbsenceNote(absenceNote);
         
         am.updatePresence(updatedDate);
@@ -355,7 +353,7 @@ public class TeacherScreenFXMLController implements Initializable {
         AbsenceTabel.getItems().clear();
         am.getStudentDates(tableStudents.getSelectionModel().getSelectedItem());
         diagramPane.setCenter(am.buildChart(tableStudents.getSelectionModel().getSelectedItem()));
-        lblAbsenceProcentage.setText((am.getAbsencePercentage()+"%"));
+        setAbsenceInformation(student);
         
         
     }
@@ -364,6 +362,19 @@ public class TeacherScreenFXMLController implements Initializable {
         
         return am.getStudentDates(s);        
         
+    }
+    
+    private void setAbsenceInformation(Student student) {
+        lblAbsenceProcentage.setText(am.getAbsencePercentage() + "%");        
+        
+        if (am.isStudentPresentToday(student)) {
+            lblPresentStatus.setText("PRESENT");
+            lblPresentStatus.setTextFill(Color.GREEN);            
+        }
+        else {
+            lblPresentStatus.setText("ABSENT");
+            lblPresentStatus.setTextFill(Color.RED);
+        }        
     }
 
     
