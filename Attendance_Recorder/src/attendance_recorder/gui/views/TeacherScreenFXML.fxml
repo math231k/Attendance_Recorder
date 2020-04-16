@@ -24,7 +24,6 @@
       <TableView fx:id="tableStudents" layoutX="14.0" layoutY="87.0" prefHeight="148.0" prefWidth="262.0" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="87.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Student" />
-          <TableColumn fx:id="absenceColumn" prefWidth="75.0" text="Absence %" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

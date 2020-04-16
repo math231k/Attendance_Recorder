@@ -92,7 +92,6 @@ public class TeacherScreenFXMLController implements Initializable {
     private Label lblCurrentUser;
     @FXML
     private TableColumn<Student, String> nameColumn;
-    @FXML
     private TableColumn<Student, Number> absenceColumn;
     @FXML
     private MenuBar menuBarTeacher;
@@ -191,11 +190,6 @@ public class TeacherScreenFXMLController implements Initializable {
         nameColumn.setCellValueFactory(data -> {
             String name = data.getValue().getLastName() + ", " + data.getValue().getFirstName();
             return new SimpleStringProperty(name);
-        });
-        
-        absenceColumn.setCellValueFactory(data -> {
-            int absence = data.getValue().getAbsence();
-            return new SimpleIntegerProperty(absence);
         });
         
         dateColumn.setCellValueFactory(data -> {

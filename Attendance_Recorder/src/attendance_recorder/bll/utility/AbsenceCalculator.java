@@ -126,7 +126,7 @@ public class AbsenceCalculator {
   
     public double calculateAbsencePercentage(List<Date> dates){
  
-        return percentage = getTotalAbsence(dates)/dates.size()*100;        
+        return percentage = Math.round(getTotalAbsence(dates)/dates.size()*100);        
     }
     
     public double getTotalAbsence(List<Date> dates){

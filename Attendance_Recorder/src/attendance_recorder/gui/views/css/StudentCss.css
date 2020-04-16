@@ -8,12 +8,12 @@ and open the template in the editor.
     Author     : math2
 */
 
-BoarderPane{
+AnchorPane{
     -fx-background-color: linear-gradient(
     to right,
     #eab040 0%, 
-    #eab040 62%, 
-    #00afeb 62%, 
+    #eab040 55%, 
+    #00afeb 55%, 
     #00afeb 100%
-  );
+    );
 }
