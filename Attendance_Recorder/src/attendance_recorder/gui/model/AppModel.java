@@ -15,6 +15,8 @@ import attendance_recorder.bll.StudentBllManager;
 import attendance_recorder.bll.utility.AbsenceCalculator;
 import attendance_recorder.bll.TeacherBllManager;
 import attendance_recorder.bll.utility.languages.Localizer;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -160,6 +162,17 @@ public class AppModel
         this.currentLanguage = currentLanguage;
     }    
     
+    public boolean isStudentPresentToday(Student student) {
+        boolean present = false;        
+        String today = LocalDate.now().toString();
+        for (Date date : dm.getDates(student)) {
+            if (date.getDate().equals(today)) {
+                present = date.isIsPresent();
+            }
+        }
+        student.setPresent(present);
+        return present;
+    }
     
     
     
