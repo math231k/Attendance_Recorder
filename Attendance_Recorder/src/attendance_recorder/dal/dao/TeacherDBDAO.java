@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.List;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -61,8 +60,5 @@ public class TeacherDBDAO implements ITeacherDalFacade {
             Logger.getLogger(TeacherDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return teachers;
-    }    
-        /*
-    
-        */
+    }
 }

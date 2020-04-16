@@ -104,22 +104,6 @@
               <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Log out to login screen" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Resolution">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Log out" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Options">
-              <items>
-                <MenuItem fx:id="danishTgl" mnemonicParsing="false" onAction="#handleDanishTrans" text="Danish" />
-                  <MenuItem fx:id="englishTgl" mnemonicParsing="false" onAction="#handleEngTrans" text="English" />
-              </items>
-            </Menu>
         </menus>
       </MenuBar>
       <Button layoutX="14.0" layoutY="422.0" mnemonicParsing="false" onAction="#HandleChangePresence" text="Submit Change" />
@@ -138,7 +122,7 @@
          </effect>
       </TableView>
       <Label layoutX="14.0" layoutY="246.0" text="Absence for:" />
-      <JFXButton fx:id="btnDanishTran" layoutX="304.0" layoutY="439.0" onAction="#handleDanishTranslation" text=" " />
-      <JFXButton fx:id="btnEnglishTran" layoutX="360.0" layoutY="439.0" onAction="#handleEnglishTranslation" text=" " />
+      <JFXButton fx:id="btnDanishTran" layoutX="304.0" layoutY="439.0" onAction="#handleDanishTranslation" text=" " AnchorPane.bottomAnchor="5.0" />
+      <JFXButton fx:id="btnEnglishTran" layoutX="369.0" layoutY="435.0" onAction="#handleEnglishTranslation" text=" " AnchorPane.bottomAnchor="5.0" />
    </children>
 </AnchorPane>

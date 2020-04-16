@@ -5,9 +5,11 @@
  */
 package attendance_recorder.dal.mockdata;
 
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
-import attendance_recorder.be.TempDate;
+import attendance_recorder.dal.facades.IDateDalFacade;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -15,30 +17,77 @@ import java.util.List;
  *
  * @author math2
  */
-public class MockDateManagerDAO {
-    List<TempDate> datoer = new ArrayList<TempDate>();
+public class MockDateManagerDAO implements IDateDalFacade{
+
+    List<Date> dates;
     
-    
-    TempDate d1 = new TempDate("monday 3/2", "present");
-    TempDate d2 = new TempDate("tuesday 4/2", "present");
-    TempDate d3 = new TempDate("wednesday 5/2", "present");
-    TempDate d4 = new TempDate("thursday 6/2", "present");
-    TempDate d5 = new TempDate("friday 7/2", "present");
-    TempDate d6 = new TempDate("monday 10/2", "present");
-    TempDate d7 = new TempDate("tuesday 11/2", "present");
-    
-    public List<TempDate> getAllDates(){
-        datoer.add(d1);
-        datoer.add(d2);
-        datoer.add(d3);
-        datoer.add(d4);
-        datoer.add(d5);
-        datoer.add(d6);
-        datoer.add(d7);
+    public MockDateManagerDAO() {
         
-        return datoer;
+        initialize();
+    }
+    
+    private void initialize(){
+        
+        dates = new ArrayList<>();
+        
+        Date d1 = new Date("2020-02-12", 1, true);
+        Date d2 = new Date("2020-02-13", 1, true);
+        Date d3 = new Date("2020-02-14", 1, true);
+        Date d4 = new Date("2020-02-12", 2, true);
+        Date d5 = new Date("2020-02-13", 2, true);
+        Date d6 = new Date("2020-02-14", 2, true);
+        
+        dates.add(d1);
+        dates.add(d2);
+        dates.add(d3);
+        dates.add(d4);
+        dates.add(d5);
+        dates.add(d6);
     }
     
     
+    @Override
+    public List<Date> getStudentDays(Student s) {
     
+        List<Date> studentDates = new ArrayList<>();
+        
+        for (Date d : dates) {
+            if (d.getStudentId() == s.getId()) {
+                studentDates.add(d);
+            }
+        }
+        return studentDates;
+    }
+
+    @Override
+    public List<Date> getAllDates() {
+        return dates;
+    }
+
+    @Override
+    public boolean addNewDates(List<Date> dates) {
+        return dates.addAll(dates);
+    }
+
+    @Override
+    public boolean updatePresence(Date d) {
+        
+        for (Date date : dates) {
+            if(d.getDate().equals(date.getDate())){
+                date = d;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateAbsenceNote(Date d) {
+        return true;
+    }
+
 }
+    
+    
+    
+

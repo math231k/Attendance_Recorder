@@ -6,9 +6,7 @@
 package attendance_recorder.bll;
 
 import attendance_recorder.be.Student;
-import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dao.StudentDBDAO;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,14 +15,12 @@ import java.util.List;
  */
 public class StudentBllManager {
 
-    private StudentDBDAO studentManager;
+    private final StudentDBDAO studentManager;
     
     public StudentBllManager(){
         studentManager = new StudentDBDAO();      
     }
-
-
-
+    
     public List<Student> getAllStudents() {
         return studentManager.getAllStudents();
     }

@@ -8,6 +8,7 @@ package attendance_recorder.bll;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.dal.dao.DateDBDAO;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class DateBllManager {
 
-    private DateDBDAO dm;
+    private final DateDBDAO dm;
 
     public DateBllManager() {
     
@@ -33,11 +34,10 @@ public class DateBllManager {
         
         for (Date date : dm.getStudentDays(s)) {
             LocalDate ld = LocalDate.parse(date.getDate());
-            if(!ld.getDayOfWeek().equals(ld.getDayOfWeek().SUNDAY) && !ld.getDayOfWeek().equals(ld.getDayOfWeek().SATURDAY)){
+            if(!ld.getDayOfWeek().equals(DayOfWeek.SUNDAY) && !ld.getDayOfWeek().equals(ld.getDayOfWeek().SATURDAY)){
                 dates.add(date);
             }
         }
-        
         return dates;
     }
 

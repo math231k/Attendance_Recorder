@@ -6,12 +6,7 @@
 package attendance_recorder.be;
 
 import java.time.LocalDate;
-import java.time.format.FormatStyle;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
-import javafx.util.converter.LocalDateStringConverter;
 
 /**
  *
@@ -19,7 +14,6 @@ import javafx.util.converter.LocalDateStringConverter;
  */
 public class Date {
     private String date;
-    private List<LocalDate> dates;
     private int studentId;
     private boolean isPresent;
     private String absenceNote;

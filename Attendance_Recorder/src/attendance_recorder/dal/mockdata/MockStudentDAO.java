@@ -17,12 +17,14 @@ import attendance_recorder.dal.facades.IStudentDalFacade;
  */
 public class MockStudentDAO implements IStudentDalFacade {
 
+    List<Student> students;
+    
     public MockStudentDAO() {
+    initialize();
     }
-
-    @Override
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<Student>();        
+    
+    void initialize(){
+        students = new ArrayList<Student>();        
                 
         Student s1 = new Student(0, "Mathias", "Birins", "math231k", "test", "/attendance_recorder/images/thiasPic.jpg");
         Student s2 = new Student(1, "Mock", "Student", "student", "password", null);
@@ -40,7 +42,11 @@ public class MockStudentDAO implements IStudentDalFacade {
         students.add(s4);
         students.add(s3);
         students.add(s2);
-        students.add(s5);
+        students.add(s5);    
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
         
         return students;
     }

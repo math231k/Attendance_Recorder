@@ -5,18 +5,18 @@
  */
 package attendance_recorder.dal.facades;
 
-import attendance_recorder.be.Course;
+import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
-import attendance_recorder.be.Teacher;
 import java.util.List;
 
 /**
  *
  * @author math2
  */
-public interface ICourseDalFacade {
-    
-    public List<Course> getTeacherCourses(Teacher teacher);
-    public List<Student> getCourseStudents(Course course);
-    
+public interface IDateDalFacade {
+    public List<Date> getStudentDays(Student s);
+    public List<Date> getAllDates();
+    public boolean addNewDates(List<Date> dates);
+    public boolean updatePresence(Date d);
+    public boolean updateAbsenceNote(Date d);
 }

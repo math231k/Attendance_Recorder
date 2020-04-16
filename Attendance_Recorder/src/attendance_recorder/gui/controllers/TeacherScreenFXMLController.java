@@ -7,25 +7,19 @@ package attendance_recorder.gui.controllers;
 
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
-import attendance_recorder.be.User;
 import attendance_recorder.be.Course;
 import attendance_recorder.be.Date;
-import attendance_recorder.bll.MockStudentManager;
 import attendance_recorder.bll.utility.languages.LangDanish;
 import attendance_recorder.gui.model.AppModel;
 import com.jfoenix.controls.JFXButton;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,11 +28,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
@@ -52,7 +41,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -97,10 +85,6 @@ public class TeacherScreenFXMLController implements Initializable {
     private MenuBar menuBarTeacher;
     @FXML
     private Menu menubarTeacher;
-    @FXML
-    private MenuItem danishTgl;
-    @FXML
-    private MenuItem englishTgl;
     @FXML
     private Label firstNameLbl;
     @FXML
@@ -260,7 +244,6 @@ public class TeacherScreenFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void handleAbout(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information about license");
@@ -272,31 +255,10 @@ public class TeacherScreenFXMLController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
     private void handleClose(ActionEvent event) {
+        System.exit(0);
     }
 
-    @FXML
-    private void handleDanishTrans(ActionEvent event) {
-
-        LangDanish transDk = new LangDanish(LangDanish.Language.EN, LangDanish.Language.DK);
-        
-    danishTgl.setText(Arrays.toString(transDk.Translate(danishTgl.getText())));
-    englishTgl.setText(Arrays.toString(transDk.Translate(englishTgl.getText())));
-    firstNameLbl.setText("Fornavn");
-    LastNameLbl.setText("Efternavn");
-    absenceLbl.setText(Arrays.toString(transDk.Translate(absenceLbl.getText())));
-    statusLbl.setText(Arrays.toString(transDk.Translate(statusLbl.getText())));
-    statisticsLbl.setText(Arrays.toString(transDk.Translate(statisticsLbl.getText())));
-    lblCurrentUser.setText("Logget ind som: " + currentUser.getFirstName() + " " + currentUser.getLastName());
-    nameColumn.setText(Arrays.toString(transDk.Translate(nameColumn.getText())));
-    absenceColumn.setText(Arrays.toString(transDk.Translate(absenceColumn.getText())));
-    
-    }
-
-    @FXML
-    private void handleEngTrans(ActionEvent event) {
-    }
 
     @FXML
     private void HandleChangePresence(ActionEvent event) {
@@ -332,10 +294,7 @@ public class TeacherScreenFXMLController implements Initializable {
     }
     
     private ObservableList<Date> getStudentDates(Student s){
-        
         return am.getStudentDates(s);
-        
-        
     }
 
     @FXML

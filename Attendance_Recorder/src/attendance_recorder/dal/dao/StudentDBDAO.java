@@ -6,7 +6,6 @@
 package attendance_recorder.dal.dao;
 
 import attendance_recorder.be.Student;
-import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dbaccess.DBSettings;
 import attendance_recorder.dal.facades.IStudentDalFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;

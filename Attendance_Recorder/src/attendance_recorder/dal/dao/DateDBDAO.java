@@ -5,17 +5,16 @@
  */
 package attendance_recorder.dal.dao;
 
-import attendance_recorder.be.Course;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.dal.dbaccess.DBSettings;
+import attendance_recorder.dal.facades.IDateDalFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author math2
  */
-public class DateDBDAO {
+public class DateDBDAO implements IDateDalFacade{
 
     private DBSettings dbs;
 
@@ -39,6 +38,7 @@ public class DateDBDAO {
 
     }
 
+    @Override
     public List<Date> getStudentDays(Student s) {
         List<Date> days = new ArrayList();
         try ( Connection con = dbs.getConnection()) {
@@ -73,6 +73,7 @@ public class DateDBDAO {
         return days;
     }
 
+    @Override
     public boolean updatePresence(Date d) {
         int presence = 0;
         try ( Connection con = dbs.getConnection()) {
@@ -104,6 +105,7 @@ public class DateDBDAO {
         return false;
     }
 
+    @Override
     public boolean updateAbsenceNote(Date d) {
         try ( Connection con = dbs.getConnection()) {
             String sql = "UPDATE Date SET AbsenceNote = ? WHERE StudentId = ? AND Date = ?";
@@ -125,6 +127,7 @@ public class DateDBDAO {
         return false;
     }
 
+    @Override
     public List<Date> getAllDates() {
         try ( Connection con = dbs.getConnection()) {
 
@@ -159,10 +162,7 @@ public class DateDBDAO {
         return null;
     }
 
-    public boolean createDate(Date d) {
-        return true;
-    }
-
+    @Override
     public boolean addNewDates(List<Date> dates) {
         try ( Connection con = dbs.getConnection()) {
             int saveMePlease = 1;
@@ -181,7 +181,6 @@ public class DateDBDAO {
                 pstm.executeUpdate();
             }
         } catch (SQLServerException ex) {
-            //Logger.getLogger(DateDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Dates where already added");
         } catch (SQLException ex) {
             Logger.getLogger(DateDBDAO.class.getName()).log(Level.SEVERE, null, ex);

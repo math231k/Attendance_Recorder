@@ -18,7 +18,7 @@ public class Teacher extends User {
 
     public Teacher(int id, String firstName, String lastName, String profileName, String password) {
         super(id, firstName, lastName, profileName, password);
-        courses = new ArrayList<Course>();
+        courses = new ArrayList<>();
     }
 
     public List<Course> getCourses() {
@@ -28,9 +28,4 @@ public class Teacher extends User {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    
-    
-    
-    
-    
 }

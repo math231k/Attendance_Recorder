@@ -9,7 +9,6 @@ import attendance_recorder.be.Course;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
 import attendance_recorder.dal.dao.CourseDBDAO;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,32 +16,21 @@ import java.util.List;
  * @author math2
  */
 public class CourseBllManager {
-    
-    
-    private CourseDBDAO courseManager;
-    
-    
+
+    private final CourseDBDAO courseManager;
+
     public CourseBllManager() {
-        
+
         courseManager = new CourseDBDAO();
-        
     }
 
+    public List<Course> getTeachersCourse(Teacher t) {
 
-
-    public List<Course> getAllCourses() {               
-        
-        return courseManager.getAllCourses();
-
-    }
-    
-    public List<Course> getTeachersCourse(Teacher t){
-        
         return courseManager.getTeacherCourses(t);
     }
 
     public List<Student> getStudentsInCourse(Course course) {
         return courseManager.getCourseStudents(course);
     }
-    
+
 }

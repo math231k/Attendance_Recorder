@@ -9,14 +9,12 @@ import attendance_recorder.be.Course;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
-import attendance_recorder.be.User;
 import attendance_recorder.bll.CourseBllManager;
 import attendance_recorder.bll.DateBllManager;
 import attendance_recorder.bll.StudentBllManager;
 import attendance_recorder.bll.utility.AbsenceCalculator;
-import attendance_recorder.bll.utility.TeacherBllManager;
+import attendance_recorder.bll.TeacherBllManager;
 import attendance_recorder.bll.utility.languages.Localizer;
-import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,16 +30,17 @@ import javafx.scene.chart.XYChart;
 public class AppModel
 {
     private static AppModel appModel_Instance;
-    private CourseBllManager cbm;
-    private StudentBllManager sbm;
-    private TeacherBllManager tbm;
-    private DateBllManager dm;
+    private final CourseBllManager cbm;
+    private final StudentBllManager sbm;
+    private final TeacherBllManager tbm;
+    private final DateBllManager dm;
+    private final ObservableList<Course> courses = FXCollections.observableArrayList();
+    private final ObservableList<Student> students = FXCollections.observableArrayList();
+    private final ObservableList<Date> dates = FXCollections.observableArrayList();
     private Student currentStudent;
     private Teacher currentTeacher;
     private Localizer.Language currentLanguage;
-    private ObservableList<Course> courses = FXCollections.observableArrayList();
-    private ObservableList<Student> students = FXCollections.observableArrayList();
-    private ObservableList<Date> dates = FXCollections.observableArrayList();
+    
 
     private AppModel() {
         sbm = new StudentBllManager();
@@ -67,12 +66,6 @@ public class AppModel
     
     public List<Teacher> getTeachers() {
         return tbm.getTeachers();
-    }
-
-    public ObservableList<Course> getAllCourses() {
-        
-        courses.addAll(cbm.getAllCourses());
-        return courses;
     }
     
     public ObservableList<Course> getTeachersCourse(Teacher t){        
@@ -108,10 +101,8 @@ public class AppModel
     }
     
     public BarChart buildChart(Student s){
-                
         
         AbsenceCalculator ac = new AbsenceCalculator(getStudentDates(s));
-        
         
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Weekday");

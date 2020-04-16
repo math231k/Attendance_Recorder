@@ -28,9 +28,6 @@ import java.util.logging.Logger;
  */
 public class CourseDBDAO implements ICourseDalFacade{
     
-    
-    
-    private List<Course> courses;
     private DBSettings dbs;
 
     public CourseDBDAO() {
@@ -40,7 +37,6 @@ public class CourseDBDAO implements ICourseDalFacade{
         } catch (IOException e) {
 
         }
-        
         setCourse();
         
     }
@@ -73,7 +69,8 @@ public class CourseDBDAO implements ICourseDalFacade{
         }
           
     }
-    
+        
+    @Override
     public List<Course> getTeacherCourses(Teacher teacher) {
         
         List<Course> teacherCourses = new ArrayList();
@@ -99,7 +96,7 @@ public class CourseDBDAO implements ICourseDalFacade{
         return teacherCourses;
     }   
     
-
+    @Override
     public List<Student> getCourseStudents(Course course) {        
                 
         List<Student> students = new ArrayList();
@@ -133,11 +130,6 @@ public class CourseDBDAO implements ICourseDalFacade{
         }
         return students;
     }   
-
-    @Override
-    public List<Course> getAllCourses() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
           
        
 }

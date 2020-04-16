@@ -23,7 +23,7 @@ public class Course {
     
     public Course(String name) {
         this.name = name;
-        students = new ArrayList<Student>();
+        students = new ArrayList<>();
     }    
 
     public Course(String name, int teacherId, int studentId) {
@@ -31,8 +31,6 @@ public class Course {
         this.teacherId = teacherId;
         this.studentId = studentId;
     }
-
-    
     
     public List<Student> getStudents() {
         return students;
@@ -66,9 +64,6 @@ public class Course {
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-    
-    
-    
     
     @Override
     public String toString() {

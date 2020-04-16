@@ -8,32 +8,22 @@ package attendance_recorder.gui.controllers;
 import attendance_recorder.be.Date;
 import attendance_recorder.be.Student;
 import attendance_recorder.be.Teacher;
-import attendance_recorder.be.User;
 import attendance_recorder.bll.DateBllManager;
-import attendance_recorder.bll.MockStudentManager;
-import attendance_recorder.bll.utility.languages.ILanguage;
-import attendance_recorder.bll.utility.languages.LangDanish;
-import attendance_recorder.bll.utility.languages.LangDanish.Language;
-import attendance_recorder.bll.utility.languages.LangEnglish;
 import attendance_recorder.bll.utility.languages.Localizer;
 import attendance_recorder.gui.model.AppModel;
 import com.jfoenix.controls.JFXButton;
-import com.sun.java.accessibility.util.Translator;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -46,15 +36,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
  * @author math2
  */
-public class FXMLDocumentController implements Initializable {
+public class LoginScreenController implements Initializable {
     
     private AppModel model;
     private DateBllManager dbm;
@@ -70,7 +58,6 @@ public class FXMLDocumentController implements Initializable {
     private ImageView imageView;
     @FXML
     private Label titleLbl;
-    @FXML
     private Menu optionsBar;
     @FXML
     private JFXButton transDanBtn;
@@ -80,9 +67,7 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Label lblConnection;
-    @FXML
     private MenuItem teacherMenuItem;
-    @FXML
     private MenuItem studentMenuItem;
     @FXML
     private Menu logoutMenu;
@@ -194,11 +179,7 @@ public class FXMLDocumentController implements Initializable {
             fxmlLoader.setLocation(getClass().getResource("/attendance_recorder/gui/views/StudentScreenFXML.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage primStage = (Stage) btnLogin.getScene().getWindow();
-            Stage stage = new Stage();                       
-//            stage.setMaxHeight(355);
-//            stage.setMinHeight(355);
-//            stage.setMaxWidth(488);
-//            stage.setMinWidth(488);
+            Stage stage = new Stage(); 
             stage.setTitle("Student Overview");
             stage.setScene(scene);
             StudentScreenFXMLController controller = fxmlLoader.getController();
@@ -234,15 +215,6 @@ public class FXMLDocumentController implements Initializable {
         }  
     }
     
-    @FXML
-    private void handeTeacher(ActionEvent event) {
-        
-    }
-
-    @FXML
-    private void handleStudent(ActionEvent event) {
-    
-    }
     
     private Image getImage(){
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
@@ -284,10 +256,7 @@ public class FXMLDocumentController implements Initializable {
     txtName.setPromptText(localizer.translate("txtName", language));    
     txtPassword.setPromptText(localizer.translate("txtPassword", language));    
     btnLogin.setText(localizer.translate("btnLogin", language));      
-    titleLbl.setText(localizer.translate("titleLbl", language));    
-    optionsBar.setText(localizer.translate("optionsBar", language));  
-    teacherMenuItem.setText(localizer.translate("teacherMenuItem", language));
-    studentMenuItem.setText(localizer.translate("studentMenuItem", language));
+    titleLbl.setText(localizer.translate("titleLbl", language));  
     logoutMenu.setText(localizer.translate("logoutMenu", language));
     logoutMenuItem.setText(localizer.translate("logoutMenuItem", language));
     lblConnection.setText(showConnection() == 0 ? localizer.translate("lblConnectionYes", language) : localizer.translate("lblConnectionNo", language));
@@ -310,10 +279,10 @@ public class FXMLDocumentController implements Initializable {
             }
         } catch (IOException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return x;
     }

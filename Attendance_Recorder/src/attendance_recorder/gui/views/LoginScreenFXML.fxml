@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="232.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="232.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance_recorder.gui.controllers.LoginScreenController">
    <children>
       <Label fx:id="titleLbl" layoutX="136.0" layoutY="39.0" text="EASV Attendance" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="39.0">
          <font>
@@ -23,22 +23,16 @@
       <JFXButton fx:id="btnLogin" layoutX="15.0" layoutY="166.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" />
       <MenuBar prefHeight="0.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
-          <Menu fx:id="optionsBar" mnemonicParsing="false" text="Options">
-            <items>
-              <MenuItem fx:id="teacherMenuItem" mnemonicParsing="false" onAction="#handeTeacher" text="Change to teacher" />
-                  <MenuItem fx:id="studentMenuItem" mnemonicParsing="false" onAction="#handleStudent" text="Change to student" />
-            </items>
-          </Menu>
             <Menu fx:id="logoutMenu" mnemonicParsing="false" text="Log out">
                <items>
-                  <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Log out" />
+                  <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Exit" />
                </items>
             </Menu>
         </menus>
       </MenuBar>
       <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="108.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0" />
       <JFXButton fx:id="transDanBtn" layoutX="303.0" layoutY="179.0" onAction="#handleDanTrans" text=" " AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <JFXButton fx:id="transEngBtn" layoutX="238.0" layoutY="176.0" onAction="#handleEngTrans" text=" " />
+      <JFXButton fx:id="transEngBtn" layoutX="278.0" layoutY="198.0" onAction="#handleEngTrans" text=" " AnchorPane.bottomAnchor="14.0" />
       <Label fx:id="lblConnection" layoutX="15.0" layoutY="154.0" prefHeight="25.0" prefWidth="340.0" />
    </children>
 </AnchorPane>
