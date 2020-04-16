@@ -112,9 +112,6 @@ public class StudentScreenFXMLController implements Initializable {
         menuItemDiagram.setDisable(false);
         menuItemProfile.setDisable(true);
 
-        langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
-        langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
-
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
 
