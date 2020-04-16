@@ -99,11 +99,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private MenuBar menuBarTeacher;
     @FXML
-    private Menu menubarTeacher;
-    @FXML
-    private MenuItem danishTgl;
-    @FXML
-    private MenuItem englishTgl;
+    private Menu menubarTeacher;    
     @FXML
     private Label firstNameLbl;
     @FXML
@@ -126,11 +122,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private TableColumn<Date, String> dateColumn;
     @FXML
-    private TableColumn<Date, Boolean> presensColumn;
-    @FXML
-    private JFXButton btnDanishTran;
-    @FXML
-    private JFXButton btnEnglishTran;
+    private TableColumn<Date, Boolean> presensColumn;    
 
     /**
      * Initializes the controller class.
@@ -180,10 +172,8 @@ public class TeacherScreenFXMLController implements Initializable {
         absentRadioBtn.setToggleGroup(group);
         
         btnCourseSelect.setItems(courses);
-        tableStudents.setItems(students);
+        tableStudents.setItems(students);        
         
-        btnDanishTran.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
-        btnEnglishTran.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
         
     }
@@ -338,32 +328,6 @@ public class TeacherScreenFXMLController implements Initializable {
     }
 
     @FXML
-    private void handleClose(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleDanishTrans(ActionEvent event) {
-
-        LangDanish transDk = new LangDanish(LangDanish.Language.EN, LangDanish.Language.DK);
-        
-    danishTgl.setText(Arrays.toString(transDk.Translate(danishTgl.getText())));
-    englishTgl.setText(Arrays.toString(transDk.Translate(englishTgl.getText())));
-    firstNameLbl.setText("Fornavn");
-    LastNameLbl.setText("Efternavn");
-    absenceLbl.setText(Arrays.toString(transDk.Translate(absenceLbl.getText())));
-    statusLbl.setText(Arrays.toString(transDk.Translate(statusLbl.getText())));
-    statisticsLbl.setText(Arrays.toString(transDk.Translate(statisticsLbl.getText())));
-    lblCurrentUser.setText("Logget ind som: " + currentUser.getFirstName() + " " + currentUser.getLastName());
-    nameColumn.setText(Arrays.toString(transDk.Translate(nameColumn.getText())));
-    absenceColumn.setText(Arrays.toString(transDk.Translate(absenceColumn.getText())));
-    
-    }
-
-    @FXML
-    private void handleEngTrans(ActionEvent event) {
-    }
-
-    @FXML
     private void HandleChangePresence(ActionEvent event) {
         
         LocalDate currentDate = LocalDate.parse(AbsenceTabel.getSelectionModel().getSelectedItem().getDate());
@@ -398,20 +362,10 @@ public class TeacherScreenFXMLController implements Initializable {
     
     private ObservableList<Date> getStudentDates(Student s){
         
-        return am.getStudentDates(s);
-        
+        return am.getStudentDates(s);        
         
     }
 
-    @FXML
-    private void handleDanishTranslation(ActionEvent event)
-    {
-    }
-
-    @FXML
-    private void handleEnglishTranslation(ActionEvent event)
-    {
-    }
     
     
     

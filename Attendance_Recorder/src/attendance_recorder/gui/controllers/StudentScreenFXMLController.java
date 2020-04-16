@@ -86,10 +86,7 @@ public class StudentScreenFXMLController implements Initializable {
     private MenuItem menuItemDiagram;
     @FXML
     private MenuItem menuItemProfile;
-    @FXML
-    private JFXButton langEngBtn;
-    @FXML
-    private JFXButton langDanBtn;
+    
     @FXML
     private JFXRadioButton radioAbsent;
     @FXML
@@ -125,9 +122,6 @@ public class StudentScreenFXMLController implements Initializable {
         imgLogo.setImage(getImage());
         menuItemDiagram.setDisable(false);
         menuItemProfile.setDisable(true);
-        
-        langDanBtn.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
-        langEngBtn.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
         radioAbsent.setToggleGroup(group);
         radioPresent.setToggleGroup(group);
@@ -239,6 +233,7 @@ public class StudentScreenFXMLController implements Initializable {
         
         diagramPane.setCenter(am.buildChart(currentUser));
         menuItemProfile.setDisable(false);
+        menuItemDiagram.setDisable(true);
     }
 
     @FXML
@@ -276,23 +271,6 @@ public class StudentScreenFXMLController implements Initializable {
     private Image getImage(){
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
         return logo;
-    }
-
-    @FXML
-    private void handleDanTrans(ActionEvent event) {
-        
-        LangDanish transDk = new LangDanish(LangDanish.Language.EN, LangDanish.Language.DK);
-        
-        lblDate.setText(Arrays.toString(transDk.Translate(lblDate.getText())));
-        lblAbsence.setText(Arrays.toString(transDk.Translate(lblAbsence.getText())));
-        radioAbsent.setText(Arrays.toString(transDk.Translate(radioAbsent.getText())));
-        radioPresent.setText(Arrays.toString(transDk.Translate(radioPresent.getText())));
-        btnSubmit.setText(Arrays.toString(transDk.Translate(btnSubmit.getText())));        
-        lblConnection.setText(Arrays.toString(transDk.Translate(lblConnection.getText())));
-    }
-
-    @FXML
-    private void handleEngTrans(ActionEvent event) {
     }
 
     @FXML

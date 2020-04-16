@@ -23,12 +23,6 @@
       <JFXButton fx:id="btnLogin" layoutX="15.0" layoutY="166.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: dodgerblue;" text="Log in" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" />
       <MenuBar prefHeight="0.0" prefWidth="370.0" stylesheets="@css/LoginCss.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
-          <Menu fx:id="optionsBar" mnemonicParsing="false" text="Options">
-            <items>
-              <MenuItem fx:id="teacherMenuItem" mnemonicParsing="false" onAction="#handeTeacher" text="Change to teacher" />
-                  <MenuItem fx:id="studentMenuItem" mnemonicParsing="false" onAction="#handleStudent" text="Change to student" />
-            </items>
-          </Menu>
             <Menu fx:id="logoutMenu" mnemonicParsing="false" text="Log out">
                <items>
                   <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Log out" />

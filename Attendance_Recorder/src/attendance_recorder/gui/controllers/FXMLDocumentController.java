@@ -69,9 +69,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ImageView imageView;
     @FXML
-    private Label titleLbl;
-    @FXML
-    private Menu optionsBar;
+    private Label titleLbl;    
     @FXML
     private JFXButton transDanBtn;
     @FXML
@@ -80,10 +78,7 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Label lblConnection;
-    @FXML
-    private MenuItem teacherMenuItem;
-    @FXML
-    private MenuItem studentMenuItem;
+    
     @FXML
     private Menu logoutMenu;
     @FXML
@@ -234,15 +229,6 @@ public class FXMLDocumentController implements Initializable {
         }  
     }
     
-    @FXML
-    private void handeTeacher(ActionEvent event) {
-        
-    }
-
-    @FXML
-    private void handleStudent(ActionEvent event) {
-    
-    }
     
     private Image getImage(){
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
@@ -284,10 +270,7 @@ public class FXMLDocumentController implements Initializable {
     txtName.setPromptText(localizer.translate("txtName", language));    
     txtPassword.setPromptText(localizer.translate("txtPassword", language));    
     btnLogin.setText(localizer.translate("btnLogin", language));      
-    titleLbl.setText(localizer.translate("titleLbl", language));    
-    optionsBar.setText(localizer.translate("optionsBar", language));  
-    teacherMenuItem.setText(localizer.translate("teacherMenuItem", language));
-    studentMenuItem.setText(localizer.translate("studentMenuItem", language));
+    titleLbl.setText(localizer.translate("titleLbl", language));  
     logoutMenu.setText(localizer.translate("logoutMenu", language));
     logoutMenuItem.setText(localizer.translate("logoutMenuItem", language));
     lblConnection.setText(showConnection() == 0 ? localizer.translate("lblConnectionYes", language) : localizer.translate("lblConnectionNo", language));
