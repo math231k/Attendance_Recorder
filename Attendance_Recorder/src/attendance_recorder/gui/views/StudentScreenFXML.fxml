@@ -73,7 +73,10 @@
             <JFXDatePicker fx:id="JFXcalender" layoutX="309.0" layoutY="81.0" onAction="#selectDate" promptText="Choose a date" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="11.0" />
             <TextArea fx:id="txtAbsenceNote" layoutX="309.0" layoutY="153.0" prefHeight="81.0" prefWidth="173.0" promptText="Absence note" />
             <Label layoutX="316.0" layoutY="121.0" text="Attendance:" />
-            <Label fx:id="lblDatePresence" layoutX="395.0" layoutY="121.0" text="ABSENT" textFill="RED" />
+            <Label fx:id="lblDatePresence" layoutX="395.0" layoutY="121.0" text="ABSENT" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </center>
