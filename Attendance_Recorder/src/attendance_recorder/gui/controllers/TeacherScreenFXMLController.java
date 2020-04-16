@@ -36,14 +36,17 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -84,7 +87,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private MenuBar menuBarTeacher;
     @FXML
-    private Menu menubarTeacher;
+    private Menu menubarTeacher;    
     @FXML
     private Label firstNameLbl;
     @FXML
@@ -107,11 +110,7 @@ public class TeacherScreenFXMLController implements Initializable {
     @FXML
     private TableColumn<Date, String> dateColumn;
     @FXML
-    private TableColumn<Date, Boolean> presensColumn;
-    @FXML
-    private JFXButton btnDanishTran;
-    @FXML
-    private JFXButton btnEnglishTran;
+    private TableColumn<Date, Boolean> presensColumn;    
 
     /**
      * Initializes the controller class.
@@ -161,10 +160,8 @@ public class TeacherScreenFXMLController implements Initializable {
         absentRadioBtn.setToggleGroup(group);
         
         btnCourseSelect.setItems(courses);
-        tableStudents.setItems(students);
+        tableStudents.setItems(students);        
         
-        btnDanishTran.setGraphic(new ImageView("/attendance_recorder/images/da.png"));
-        btnEnglishTran.setGraphic(new ImageView("/attendance_recorder/images/en.png"));
         
         
     }
@@ -174,18 +171,80 @@ public class TeacherScreenFXMLController implements Initializable {
         nameColumn.setCellValueFactory(data -> {
             String name = data.getValue().getLastName() + ", " + data.getValue().getFirstName();
             return new SimpleStringProperty(name);
-        });
+        });        
         
         dateColumn.setCellValueFactory(data -> {
             String date = data.getValue().getDate();
             return new SimpleStringProperty(date);
         });
         
-        presensColumn.setCellValueFactory(data -> {
-            
+        dateColumn.setCellFactory(tc -> new TableCell<Date, String>() {
+            @Override
+            protected void updateItem(String string, boolean empty) {
+                super.updateItem(string, empty);
+                if (!empty) {
+                    int row = getIndex();
+                    Date date = getTableView().getItems().get(row);
+                    Label lbl = new Label(date.getDate());
+                    setGraphic(lbl);     
+                        if (date.isIsPresent()) {
+                            setStyle("-fx-background-color: green");
+                            setTooltip(null);
+                        }
+                        else {
+                            setStyle("-fx-background-color: red");
+                            if (date.getAbsenceNote() != null) {
+                                if (!date.getAbsenceNote().trim().isEmpty()) {
+                                    Tooltip tooltip = new Tooltip(date.getAbsenceNote());
+                                    tooltip.setShowDelay(Duration.ZERO);
+                                    tooltip.setHideDelay(Duration.ZERO);
+                                    setTooltip(tooltip);
+                                }
+                            }
+                        }
+                }
+                else {
+                    setGraphic(null);
+                    setStyle(null);
+                }
+            }
+        });        
+        
+        presensColumn.setCellValueFactory(data -> {            
             boolean absence = data.getValue().isIsPresent();
              return new SimpleBooleanProperty(absence);
-
+        });
+        
+        presensColumn.setCellFactory(tc -> new TableCell<Date, Boolean>() {
+            @Override
+            protected void updateItem(Boolean presence, boolean empty) {
+                super.updateItem(presence, empty);
+                if (!empty) {
+                    int row = getIndex();
+                    Date date = getTableView().getItems().get(row);
+                    Label lbl = new Label(date.isIsPresent()+"");
+                    setGraphic(lbl);     
+                        if (date.isIsPresent()) {
+                            setStyle("-fx-background-color: green");
+                            setTooltip(null);
+                        }
+                        else {
+                            setStyle("-fx-background-color: red");
+                            if (date.getAbsenceNote() != null) {
+                                if (!date.getAbsenceNote().trim().isEmpty()) {
+                                    Tooltip tooltip = new Tooltip(date.getAbsenceNote());
+                                    tooltip.setShowDelay(Duration.ZERO);
+                                    tooltip.setHideDelay(Duration.ZERO);
+                                    setTooltip(tooltip);
+                                }
+                            }
+                        }
+                }
+                else {
+                    setGraphic(null);
+                    setStyle(null);
+                }
+            }
         });
     }
     
@@ -255,11 +314,6 @@ public class TeacherScreenFXMLController implements Initializable {
         alert.showAndWait();
     }
 
-    private void handleClose(ActionEvent event) {
-        System.exit(0);
-    }
-
-
     @FXML
     private void HandleChangePresence(ActionEvent event) {
         
@@ -294,18 +348,11 @@ public class TeacherScreenFXMLController implements Initializable {
     }
     
     private ObservableList<Date> getStudentDates(Student s){
-        return am.getStudentDates(s);
+        
+        return am.getStudentDates(s);        
+        
     }
 
-    @FXML
-    private void handleDanishTranslation(ActionEvent event)
-    {
-    }
-
-    @FXML
-    private void handleEnglishTranslation(ActionEvent event)
-    {
-    }
     
     
     

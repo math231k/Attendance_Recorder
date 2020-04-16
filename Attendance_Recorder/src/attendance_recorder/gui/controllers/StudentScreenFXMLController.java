@@ -79,10 +79,7 @@ public class StudentScreenFXMLController implements Initializable {
     private MenuItem menuItemDiagram;
     @FXML
     private MenuItem menuItemProfile;
-    @FXML
-    private JFXButton langEngBtn;
-    @FXML
-    private JFXButton langDanBtn;
+    
     @FXML
     private JFXRadioButton radioAbsent;
     @FXML
@@ -219,6 +216,7 @@ public class StudentScreenFXMLController implements Initializable {
 
         diagramPane.setCenter(am.buildChart(currentUser));
         menuItemProfile.setDisable(false);
+        menuItemDiagram.setDisable(true);
     }
 
     @FXML
@@ -253,14 +251,6 @@ public class StudentScreenFXMLController implements Initializable {
     private Image getImage() {
         Image logo = new Image("/attendance_recorder/images/EASVLogo.png");
         return logo;
-    }
-
-    @FXML
-    private void handleDanTrans(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleEngTrans(ActionEvent event) {
     }
 
     @FXML

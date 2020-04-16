@@ -57,8 +57,7 @@ public class LoginScreenController implements Initializable {
     @FXML
     private ImageView imageView;
     @FXML
-    private Label titleLbl;
-    private Menu optionsBar;
+    private Label titleLbl;    
     @FXML
     private JFXButton transDanBtn;
     @FXML
@@ -67,8 +66,7 @@ public class LoginScreenController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Label lblConnection;
-    private MenuItem teacherMenuItem;
-    private MenuItem studentMenuItem;
+    
     @FXML
     private Menu logoutMenu;
     @FXML
