@@ -8,9 +8,7 @@ package attendance_recorder.bll.utility;
 import attendance_recorder.be.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -24,7 +22,6 @@ public class AbsenceCalculator {
     private int thursdays;
     private int fridays;
     
-    private double percentage;
     private double  totalAbsence;
 
     public AbsenceCalculator(List<Date> dates) {
@@ -94,7 +91,7 @@ public class AbsenceCalculator {
   
     public double calculateAbsencePercentage(List<Date> dates){
         
-        return percentage = Math.round(getTotalAbsence(dates)/dates.size()*100);        
+        return Math.round(getTotalAbsence(dates)/dates.size()*100);        
     }
     
     public double getTotalAbsence(List<Date> dates){
